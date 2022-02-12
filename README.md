@@ -11,3 +11,9 @@ This module focuses main itinerary functionality of Guest
     - Feature 5 - Viewing of booking Of Transportation (Taxi) options 
 
 
+### P3-02
+    - Feature 1 - Navigation of Trips (Directions and Guide) - Doing for prototype
+    - Feature 2 - Tourist Attractions and Hawker/Restaurant Suggestion
+    - Feature 3 - View List of Tourist Attractions
+    - Feature 4 - Allowing Guests to Vote Tourist Attractions and Hawker/Restaurant 
+    - Feature 5 - UI Feedback for Analysis
