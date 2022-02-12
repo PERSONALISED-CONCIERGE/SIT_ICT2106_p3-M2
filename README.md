@@ -8,7 +8,8 @@ This module focuses main itinerary functionality of Guest
     - Feature 2 - Reviews & Ratings 
     - Feature 3 - Reservation of Food_Leisures 
     - Feature 4 - Blog of Itinerary  
-    - Feature 5 - Viewing of booking Of Transportation (Taxi) options 
+    - Feature 5 - Viewing of booking Of Transportation (Taxi) options - Doing for prototype
+   
 
 
 ### P3-02
