@@ -468,7 +468,7 @@ namespace personalised_concierge_m1.Models
                 {
                     transport_id = 01,
                     account_id = 01,
-                    name = "GrabCar",
+                    company_name = "GrabCar",
                     description = "for rich people only",
                     website = "www.grab.com",
                     contact_num = 99119911
@@ -477,7 +477,7 @@ namespace personalised_concierge_m1.Models
                 {
                     transport_id = 02,
                     account_id = 02,
-                    name = "Gojek",
+                    company_name = "Gojek",
                     description = "for peasant people only",
                     website = "www.gojek.com",
                     contact_num = 92206874

@@ -56,6 +56,7 @@ namespace personalised_concierge_m1.Data
         public DbSet<Navigation> Navigations { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Transportation> Transportations { get; set; }
+        public DbSet<TransportFares> TransportFares { get; set; }
         
         //M3 Facilities
         public DbSet<Facility> Facilities { get; set; }
@@ -80,8 +81,8 @@ namespace personalised_concierge_m1.Data
             NpgsqlConnection.GlobalTypeMapper.MapEnum<CuisineType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FoodLeisureType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<NavigationType>();
-            NpgsqlConnection.GlobalTypeMapper.MapEnum<TransportationType>();
-            builder.UseNpgsql(connectionString:"Server=ec2-50-19-32-96.compute-1.amazonaws.com; Database=d1oj5mvl9l9lk1;Port=5432; User Id=zzzdwyspgzgwfy; Password=785618b138278c89939f83e523bf40609a490d176ab401f29a97c125c2feeb3e; SslMode=Require; Trust Server Certificate = true; ");
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<TaxiType>();
+            builder.UseNpgsql(connectionString: "Server=localhost; Database=maymadiaung; Port=5432; User Id=maymadiaung; Password=1234;");
         }
 
         
@@ -93,8 +94,8 @@ namespace personalised_concierge_m1.Data
             modelBuilder.HasPostgresEnum<FoodLeisureType>();
             modelBuilder.HasPostgresEnum<Rating>();
             modelBuilder.HasPostgresEnum<NavigationType>();
-            modelBuilder.HasPostgresEnum<TransportationType>();
-            
+            modelBuilder.HasPostgresEnum<TaxiType>();
+
             //M2 model builders for enum conversion
             modelBuilder.Entity<Food>()
                 .Property(u => u.cuisine)
@@ -113,11 +114,11 @@ namespace personalised_concierge_m1.Data
             modelBuilder.Entity<Navigation>()
                 .Property(u => u.type)
                 .HasConversion<NavigationType>();
-            
-            
-            modelBuilder.Entity<Transportation>()
+
+            modelBuilder.Entity<TransportFares>()
                 .Property(u => u.type)
-                .HasConversion<TransportationType>();
+                .HasConversion<TaxiType>();
+            
             
 
             //M3 model builder
