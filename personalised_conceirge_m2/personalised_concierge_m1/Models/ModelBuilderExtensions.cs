@@ -483,9 +483,32 @@ namespace personalised_concierge_m1.Models
                     contact_num = 92206874
                 }
             );
-            
+
             #endregion
-            
+            #region TransportFares Data Seed Start
+
+            modelBuilder.Entity<TransportFares>().HasData(
+                new TransportFares
+                {
+                    fare_id = 01,
+                    transport_id = 01,
+                    fare_name = "Basic Fares",
+                    fares = "$3.00",
+                    type = TaxiType.Standard
+                },
+                new TransportFares
+                {
+                    fare_id = 02,
+                    transport_id = 01,
+                    fare_name = "Non-Basic Fares",
+                    fares = "$10.00",
+                    type = TaxiType.Standard
+                }
+            ); ;
+
+            #endregion
+
+
             #endregion
 
             //M3 Data Seeding

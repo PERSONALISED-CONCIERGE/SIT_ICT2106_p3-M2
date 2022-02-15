@@ -11,7 +11,7 @@ using personalised_concierge_m1.Models.Entities.Inventories;
 using personalised_concierge_m1.Models.Entities.OtherServices;
 //using personalised_concierge_m1.Models.Entities.OtherServices.Review;
 using personalised_concierge_m1.Models.Entities.Requests;
-
+using personalised_concierge_m1.Models.Interfaces.OtherServices;
 
 namespace personalised_concierge_m1.Data
 {
@@ -21,7 +21,9 @@ namespace personalised_concierge_m1.Data
         {
             
         }
-        
+
+        public static ITransportationRepo Transportation { get; internal set; }
+
         //Entities need to be set in DB using DBSet so that EF knows where to look for the data.
         #region DBSetting Entities
         //TODO: All Entities to be found by DbSet goes here.

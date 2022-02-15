@@ -1,4 +1,27 @@
-﻿@page
-@model personalised_concierge_m1.Views.Transportation.ViewTransportationModel
+﻿@using personalised_concierge_m1.Models.Entities.OtherServices
+
 @{
+    ViewData["Title"] = "Transport ";
+    var transports = (ViewData["transports"]);
+
+
 }
+
+<div class="text-center">
+    <h1> Transport</h1>
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Transportation atransport in (dynamic) transports)
+                {
+                    @atransport.company_name
+                }
+            </tbody>
+        </table>
+    </body>
+</div>

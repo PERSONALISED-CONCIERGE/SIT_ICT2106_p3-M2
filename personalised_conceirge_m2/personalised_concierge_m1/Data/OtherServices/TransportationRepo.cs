@@ -13,6 +13,7 @@ namespace personalised_concierge_m1.Data.OtherServices
         public ITransportationRepo getAllTransportations()
         {
             throw new System.NotImplementedException();
+
         }
         
         public ITransportationRepo getTransportationById(int transport_id)
