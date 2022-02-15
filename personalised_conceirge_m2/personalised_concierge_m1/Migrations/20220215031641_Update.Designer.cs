@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using personalised_concierge_m1.Data;
@@ -11,9 +12,10 @@ using personalised_concierge_m1.Models.Entities.OtherServices;
 namespace personalised_concierge_m1.Migrations
 {
     [DbContext(typeof(ConciergeContext))]
-    partial class ConciergeContextModelSnapshot : ModelSnapshot
+    [Migration("20220215031641_Update")]
+    partial class Update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

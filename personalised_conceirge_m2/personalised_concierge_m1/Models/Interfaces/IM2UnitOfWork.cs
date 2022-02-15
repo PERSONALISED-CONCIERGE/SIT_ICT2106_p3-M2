@@ -13,7 +13,7 @@ namespace personalised_concierge_m1.Models.Interfaces
         INavigationRepo NavigationDetails { get; }
         IReviewRepo ReviewDetails { get; }
         ITransportationRepo TransportationDetails { get; }
-        ITransportFaresRepo TransportFaresRepo { get; }
+        ITransportFaresRepo TransportFareDetails { get; }
         // Itineraries
         IBlogRepo BlogDetails { get; }
         IBudgetRepo BudgetDetails { get; }

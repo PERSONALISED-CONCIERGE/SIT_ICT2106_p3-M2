@@ -3,8 +3,7 @@
 @{
     ViewData["Title"] = "Transport ";
     var transports = (ViewData["transports"]);
-
-
+    var taxifares = (ViewData["taxifares"]);
 }
 
 <div class="text-center">
@@ -14,12 +13,30 @@
             <thead>
                 <tr>
                     <th>Company Name</th>
+                    <th>Description</th>
+                    <th> Fare Name</th>
+                    <th> Fares</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (Transportation atransport in (dynamic) transports)
                 {
-                    @atransport.company_name
+                    @foreach(TransportFares afare in (dynamic)taxifares)
+                    {
+                <tr>
+                    @if (atransport.transport_id == afare.transport_id)
+                    {
+                    <th> @atransport.company_name</th>
+                    <th>@atransport.description</th>
+                    <th>@afare.fare_name</th>
+                    <th>@afare.fares</th>
+
+                    }
+                </tr>
+
+                    }
+                    
+                   
                 }
             </tbody>
         </table>

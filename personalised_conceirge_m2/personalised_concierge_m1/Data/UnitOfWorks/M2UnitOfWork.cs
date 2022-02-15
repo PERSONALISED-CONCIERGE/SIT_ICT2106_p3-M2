@@ -63,7 +63,7 @@ namespace personalised_concierge_m1.Data.UnitOfWorks
         public IItineraryItemRepo ItineraryItemDetails { get; }
         public IItineraryRepo ItineraryDetails { get; }
 
-        public ITransportFaresRepo TransportFaresRepo => throw new System.NotImplementedException();
+        
 
         #endregion
 

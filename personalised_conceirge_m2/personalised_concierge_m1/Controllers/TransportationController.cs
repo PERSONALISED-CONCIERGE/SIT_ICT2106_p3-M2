@@ -24,9 +24,12 @@ namespace personalised_concierge_m1.Controllers
         {
             //variable getting data from DB and storing in an Object 
             var transportList = _m2UnitOfWork.TransportationDetails.GetAll();
+            var taxifaresList = _m2UnitOfWork.TransportFareDetails.GetAll();
+
 
 
             ViewData["transports"] = transportList;
+            ViewData["taxifares"] = taxifaresList;
             return View();
         }
     }
