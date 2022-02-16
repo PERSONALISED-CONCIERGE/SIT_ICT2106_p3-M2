@@ -55,7 +55,10 @@ namespace personalised_concierge_m1.Controllers
         [HttpPost]
         public ActionResult addcompany(string company, string description, int phonenum, string website)
         {
-            if(company!= null)
+            //variable getting data from DB and storing in an Object 
+            var transportList = _m2UnitOfWork.TransportationDetails.GetAll();
+            ViewData["transports"] = transportList;
+            if (company!= null)
             {
                 var transport = new Models.Entities.OtherServices.Transportation();
                 transport.account_id = 1;
