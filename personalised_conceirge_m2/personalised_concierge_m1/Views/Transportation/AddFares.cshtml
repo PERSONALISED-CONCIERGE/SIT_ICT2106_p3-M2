@@ -1,0 +1,59 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width-device-width" />
+    <title>Index</title>
+    <style>
+        .form-center {
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        .submitbutton {
+            background-color: #e7e7e7;
+            color: black;
+            border: 2px solid #e7e7e7;
+            width: 40%;
+            padding: 6px 12px;
+            float: right;
+        }
+
+            .submitbutton:hover {
+                background-color: #e7e7e7;
+                opacity: 0.8;
+            }
+    </style>
+</head>
+<body>
+    <div class="form-center">
+        <form>
+            <h4 style="text-align: left; padding-bottom: 20px; padding-top: 15px;">Add a new transportation</h4>
+            <div class="form-group">
+                <label>Company</label>
+                <select class="form-control">
+                    <option>Comfort Del Gro</option>
+                    <option>Grab</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Type of Taxi</label>
+                <select class="form-control">
+                    <option>Dial-A-Cab</option>
+                    <option>Comfort Taxis</option>
+                    <option>Comfort Premier Cabs</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Fares Type</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Fares</label>
+                <input type="text" class="form-control">
+            </div>
+        </form>
+        <input type="submit" class="submitbutton" value="Add new fares">
+    </div>
+</body>
+</html>

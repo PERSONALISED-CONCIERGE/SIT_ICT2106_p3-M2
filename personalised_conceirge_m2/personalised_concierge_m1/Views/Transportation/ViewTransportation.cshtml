@@ -6,39 +6,90 @@
     var taxifares = (ViewData["taxifares"]);
 }
 
-<div class="text-center">
-    <h1> Transport</h1>
-    <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>Company Name</th>
-                    <th>Description</th>
-                    <th> Fare Name</th>
-                    <th> Fares</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Transportation atransport in (dynamic) transports)
-                {
-                    @foreach(TransportFares afare in (dynamic)taxifares)
-                    {
-                <tr>
-                    @if (atransport.transport_id == afare.transport_id)
-                    {
-                    <th> @atransport.company_name</th>
-                    <th>@atransport.description</th>
-                    <th>@afare.fare_name</th>
-                    <th>@afare.fares</th>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-                    }
-                </tr>
+    <!-- Bootstrap CSS -->
+    <style>
+        h2 {
+            width: 400px;
+            display: inline-block;
+        }
 
+        button {
+            float: right;
+        }
+
+        #banner {
+            padding-bottom: 10px;
+        }
+
+        table {
+            border: 1px solid;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Hello, world!</title>
+</head>
+<body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <div class="container">
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <div class="row" id="banner">
+                <h2>Book a transportation</h2> <button>Create new row</button>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Type of Taxi</th>
+                        <th scope="col">Type of Fares</th>
+                        <th scope="col">Fares</th>
+                        <th scope="col">Phone Numbers</th>
+                        <th scope="col">Website</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Transportation atransport in (dynamic)transports)
+                    {
+                        @foreach (TransportFares afare in (dynamic)taxifares)
+                        {
+                    <tr>
+                        @if (atransport.transport_id == afare.transport_id)
+                        {
+                            <td scope="row"><a href="">Edit</a></td>
+                            <td>@atransport.company_name</td>
+                            <td>@afare.type</td>
+                            <td>@afare.fare_name</td>
+                            <td>@afare.fares</td>
+                            <td>@atransport.contact_num</td>
+                            <td><a href="">IOS</a> | <a href="">Android</a></td>
+                        }
+                    </tr>
+                        }
                     }
-                    
-                   
-                }
-            </tbody>
-        </table>
-    </body>
-</div>
+                    </tbody>
+            </table>
+            <p><b>General steps for making a transportation Booking</b></p>
+            <ol>
+                <li>Download Grab/Confort Del gro app</li>
+                <li>Enter destination and pick up point destination</li>
+                <li>Choose method of transportation</li>
+                <li>Choose method of payment</li>
+                <li>Wait for taxi to be assigned, note the car lisence plate number given and estimated time of car arrival</li>
+            </ol>
+        </div>
+    </div>
+</body>

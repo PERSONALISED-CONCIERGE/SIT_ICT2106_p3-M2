@@ -1,3 +1,87 @@
-﻿@page
-@{
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width-device-width" />
+    <title>Index</title>
+    <style>
+        .form-center {
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        .updatebutton {
+            background-color: white;
+            color: black;
+            border: 2px solid #e7e7e7;
+            width: 40%;
+            padding: 6px 12px;
+            float: right;
+        }
+
+            .updatebutton:hover {
+                background-color: #e7e7e7;
+            }
+
+        .deletebutton {
+            background-color: #f4511e;
+            color: white;
+            border: 2px solid #e7e7e7;
+            width: 40%;
+            padding: 6px 12px;
+            float: right;
+            margin-right: 10px;
+        }
+
+            .deletebutton:hover {
+                background-color: #f4511e;
+                opacity: 0.8;
+            }
+    </style>
+</head>
+<body>
+    <div class="form-center">
+        <form>
+            <h4 style="text-align: left; padding-bottom: 20px; padding-top: 15px;">Update transportation</h4>
+            <div class="form-group">
+                <label>Taxi Type</label>
+                <select class="form-control">
+                    <option>Comfort Del Gro</option>
+                    <option>Grab</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Transportation</label>
+                <select class="form-control">
+                    <option>Dial-A-Cab</option>
+                    <option>Comfort Taxis</option>
+                    <option>Comfort Premier Cabs</option>
+                    <option>SMRT Taxis</option>
+                    <option>Smart Cab</option>
+                    <option>TransCab</option>
+                    <option>Premier Taxis</option>
+                    <option>Prime Taxis</option>
+                    <option>Yellow Top Taxis</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Fares</label>
+                <input type="number" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>ios Link</label>
+                <input type="url" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>android Link</label>
+                <input type="url" class="form-control">
+            </div>
+        </form>
+        <input type="submit" class="updatebutton" value="Update">
+        <input type="submit" class="deletebutton" value="Delete">
+    </div>
+</body>
+</html>

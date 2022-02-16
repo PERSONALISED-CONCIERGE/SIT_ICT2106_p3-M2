@@ -42,5 +42,10 @@ namespace personalised_concierge_m1.Data
         {
             _context.Set<T>().RemoveRange(entities);
         }
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
     }
 }
