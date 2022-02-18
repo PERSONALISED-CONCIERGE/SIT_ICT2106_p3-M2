@@ -17,3 +17,11 @@ This module focuses main itinerary functionality of Guest
     - Feature 3 - View List of Tourist Attractions
     - Feature 4 - Allowing Guests to Vote Tourist Attractions and Hawker/Restaurant 
     - Feature 5 - UI Feedback for Analysis
+    
+   
+### P3-03
+    - Feature 1 - Recommend Trips (Just a Main Page with all Trips) Provide trips based on guest booking
+    - Feature 2 - Filtering of trip for guest (By Distance, Category, Rating)
+    - Feature 3 - Trip Itinerary Planner
+    - Feature 4 - Checklist(packing list) e.g travel doc 
+    - Feature 5 - Currency Converter (other currency to SGD)
