@@ -627,21 +627,13 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public",
                 columns: table => new
                 {
-                    budget_id = table.Column<int>(type: "integer", nullable: false)
+                    Budgetid = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    itinerary_id = table.Column<int>(type: "integer", nullable: false),
-                    budget_estimate = table.Column<double>(type: "double precision", nullable: false)
+                    Budgetlimit = table.Column<double>(type: "double precision", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Budgets", x => x.budget_id);
-                    table.ForeignKey(
-                        name: "FK_Budgets_Itineraries_itinerary_id",
-                        column: x => x.itinerary_id,
-                        principalSchema: "public",
-                        principalTable: "Itineraries",
-                        principalColumn: "itinerary_id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_budget", x => x.Budgetid);
                 });
 
             migrationBuilder.CreateTable(
@@ -703,23 +695,17 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public",
                 columns: table => new
                 {
-                    expenses_id = table.Column<int>(type: "integer", nullable: false)
+                    ExpensesId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    budget_id = table.Column<int>(type: "integer", nullable: false),
-                    cost = table.Column<double>(type: "double precision", nullable: false),
-                    category = table.Column<string>(type: "varchar(50)", nullable: false),
-                    description = table.Column<string>(type: "varchar(100)", nullable: false)
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    Currency = table.Column<string>(type: "text", nullable: true),
+                    Category = table.Column<string>(type: "text", nullable: true),
+                    Amount = table.Column<double>(type: "double precision", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Expenses", x => x.expenses_id);
-                    table.ForeignKey(
-                        name: "FK_Expenses_Budgets_budget_id",
-                        column: x => x.budget_id,
-                        principalSchema: "public",
-                        principalTable: "Budgets",
-                        principalColumn: "budget_id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_expenses", x => x.ExpensesId);
                 });
 
             migrationBuilder.InsertData(
@@ -965,11 +951,11 @@ namespace personalised_concierge_m1.Migrations
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "Budgets",
-                columns: new[] { "budget_id", "budget_estimate", "itinerary_id" },
+                columns: new[] { "Budgetid", "Budgetlimit" },
                 values: new object[,]
                 {
-                    { 1, 120.5, 1 },
-                    { 2, 231.30000000000001, 2 }
+                    { 1, 120.5 },
+                    { 2, 231.30000000000001 }
                 });
 
             migrationBuilder.InsertData(
@@ -995,11 +981,11 @@ namespace personalised_concierge_m1.Migrations
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "Expenses",
-                columns: new[] { "expenses_id", "budget_id", "category", "cost", "description" },
+                columns: new[] { "ExpensesId", "UserId", "Currency", "Category", "Amount", "Description" },
                 values: new object[,]
                 {
-                    { 1, 1, "Food&Drinks", 1.0, "My Singapore Expenses" },
-                    { 2, 2, "Food&Drinks", 23.489999999999998, "nasi lemak" }
+                    { 1, 1, "SGD", "Food", 50, "Eat Mac" },
+                    { 2, 2, "SGD", "Food", 50, "Eat Food" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1039,22 +1025,10 @@ namespace personalised_concierge_m1.Migrations
                 column: "itinerary_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Budgets_itinerary_id",
-                schema: "public",
-                table: "Budgets",
-                column: "itinerary_id");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Checklists_itinerary_id",
                 schema: "public",
                 table: "Checklists",
                 column: "itinerary_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Expenses_budget_id",
-                schema: "public",
-                table: "Expenses",
-                column: "budget_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FacilityBookings_account_id",
