@@ -22,9 +22,13 @@
       <Folder Include="Data\UserDetails\" />
       <Folder Include="Migrations" />
       <Folder Include="Views\Transportation\" />
+      <Folder Include="wwwroot\images\" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Views\Transportation\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Remove="wwwroot\images\" />
     </ItemGroup>
 </Project>
