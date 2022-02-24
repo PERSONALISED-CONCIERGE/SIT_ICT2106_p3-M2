@@ -1,0 +1,29 @@
+﻿@page
+@{}
+
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h1>Trip Planner Home</h1>
+    <p>This is where P3-02 will do their foodleisure item display.</p>
+
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("SpecificFoodLeisure", "FoodLeisure"))
+            {
+                <input type="number" name="FoodLeisureID"/>
+                <br/>
+
+                <input type="submit" value="Go Specific View"/>
+            }
+            This is some text within a card body.
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+     
