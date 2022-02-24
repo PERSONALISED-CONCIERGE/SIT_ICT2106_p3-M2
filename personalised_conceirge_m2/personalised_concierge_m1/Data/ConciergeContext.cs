@@ -9,9 +9,8 @@ using personalised_concierge_m1.Models.Entities.UserDetails;
 using personalised_concierge_m1.Models.Entities.Facilities;
 using personalised_concierge_m1.Models.Entities.Inventories;
 using personalised_concierge_m1.Models.Entities.OtherServices;
-//using personalised_concierge_m1.Models.Entities.OtherServices.Review;
 using personalised_concierge_m1.Models.Entities.Requests;
-
+using personalised_concierge_m1.Models.Interfaces.OtherServices;
 
 namespace personalised_concierge_m1.Data
 {
@@ -21,7 +20,9 @@ namespace personalised_concierge_m1.Data
         {
             
         }
-        
+
+        public static ITransportationRepo Transportation { get; internal set; }
+
         //Entities need to be set in DB using DBSet so that EF knows where to look for the data.
         #region DBSetting Entities
         //TODO: All Entities to be found by DbSet goes here.
@@ -56,6 +57,7 @@ namespace personalised_concierge_m1.Data
         public DbSet<Navigation> Navigations { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Transportation> Transportations { get; set; }
+        public DbSet<TransportFares> TransportFares { get; set; }
         
         //M3 Facilities
         public DbSet<Facility> Facilities { get; set; }
@@ -80,8 +82,8 @@ namespace personalised_concierge_m1.Data
             NpgsqlConnection.GlobalTypeMapper.MapEnum<CuisineType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FoodLeisureType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<NavigationType>();
-            NpgsqlConnection.GlobalTypeMapper.MapEnum<TransportationType>();
-            builder.UseNpgsql(connectionString:"Server=ec2-50-19-32-96.compute-1.amazonaws.com; Database=d1oj5mvl9l9lk1;Port=5432; User Id=zzzdwyspgzgwfy; Password=785618b138278c89939f83e523bf40609a490d176ab401f29a97c125c2feeb3e; SslMode=Require; Trust Server Certificate = true; ");
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<FaresType>();
+            builder.UseNpgsql(connectionString: "Server=localhost; Database=maymadiaung; Port=5432; User Id=maymadiaung; Password=1234;");
         }
 
         
@@ -93,8 +95,8 @@ namespace personalised_concierge_m1.Data
             modelBuilder.HasPostgresEnum<FoodLeisureType>();
             modelBuilder.HasPostgresEnum<Rating>();
             modelBuilder.HasPostgresEnum<NavigationType>();
-            modelBuilder.HasPostgresEnum<TransportationType>();
-            
+            modelBuilder.HasPostgresEnum<FaresType>();
+
             //M2 model builders for enum conversion
             modelBuilder.Entity<Food>()
                 .Property(u => u.cuisine)
@@ -113,11 +115,11 @@ namespace personalised_concierge_m1.Data
             modelBuilder.Entity<Navigation>()
                 .Property(u => u.type)
                 .HasConversion<NavigationType>();
+
+            modelBuilder.Entity<TransportFares>()
+                .Property(u => u.fares_type)
+                .HasConversion<FaresType>();
             
-            
-            modelBuilder.Entity<Transportation>()
-                .Property(u => u.type)
-                .HasConversion<TransportationType>();
             
 
             //M3 model builder

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using personalised_concierge_m1.Models.Interfaces;
-using personalised_concierge_m1.Models.Interfaces.RoomDetails;
 
 namespace personalised_concierge_m1.Data
 {
@@ -43,5 +42,10 @@ namespace personalised_concierge_m1.Data
         {
             _context.Set<T>().RemoveRange(entities);
         }
+        public void Save()
+        {
+            _context.SaveChanges();
+        }
+
     }
 }

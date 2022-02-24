@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using personalised_concierge_m1.Models.Entities.Facilities;
 using personalised_concierge_m1.Models.Entities.Inventories;
@@ -334,7 +333,7 @@ namespace personalised_concierge_m1.Models
                     contact_num = "+852 3550 3388",
                     type = FoodLeisureType.POI,
                     address = "Lantau Island, Hong Kong",
-                    category = "Theme Park"
+                    featured = true
                 },
                 new FoodLeisure
                 {
@@ -345,7 +344,7 @@ namespace personalised_concierge_m1.Models
                     contact_num = "89773448",
                     type = FoodLeisureType.Restaurant,
                     address = "Jurong East",
-                    category = "Theme Park"
+                    featured = false
                 }
                 
             );
@@ -445,7 +444,7 @@ namespace personalised_concierge_m1.Models
                     review_id = 01,
                     account_id = 01,
                     foodleisure_id = 01,
-                    description = "saizeriya sucks",
+                    review = "saizeriya sucks",
                     rating = Rating.One
                 },
                 new Review
@@ -453,7 +452,7 @@ namespace personalised_concierge_m1.Models
                     review_id = 02,
                     account_id = 02,
                     foodleisure_id = 02,
-                    description = "mcdonalds is awesome!",
+                    review = "mcdonalds is awesome!",
                     rating = Rating.Five
                 }
             );
@@ -467,8 +466,7 @@ namespace personalised_concierge_m1.Models
                 new Transportation
                 {
                     transport_id = 01,
-                    account_id = 01,
-                    name = "GrabCar",
+                    company_name = "GrabCar",
                     description = "for rich people only",
                     website = "www.grab.com",
                     contact_num = 99119911
@@ -476,16 +474,43 @@ namespace personalised_concierge_m1.Models
                 new Transportation
                 {
                     transport_id = 02,
-                    account_id = 02,
-                    name = "Gojek",
+                    company_name = "Gojek",
                     description = "for peasant people only",
                     website = "www.gojek.com",
                     contact_num = 92206874
                 }
             );
-            
+
             #endregion
-            
+            #region TransportFares Data Seed Start
+
+            modelBuilder.Entity<TransportFares>().HasData(
+                new TransportFares
+                {
+                    fare_id = 01,
+                    transport_id = 01,
+                    fares_type = FaresType.Standard,
+                    fares = "$3.00"
+                },
+                new TransportFares
+                {
+                    fare_id = 02,
+                    transport_id = 01,
+                    fares_type = FaresType.Flagdown,
+                    fares = "$10.00"
+                },
+                new TransportFares
+                {
+                    fare_id = 03,
+                    transport_id = 01,
+                    fares_type = FaresType.Distance,
+                    fares = "Every 400m thereafter or less up to 10km, $0.22"
+                }
+            ); ;
+
+            #endregion
+
+
             #endregion
 
             //M3 Data Seeding

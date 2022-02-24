@@ -23,6 +23,7 @@ namespace personalised_concierge_m1.Data.UnitOfWorks
             NavigationDetails = new NavigationRepo(_context);
             ReviewDetails = new ReviewRepo(_context);
             TransportationDetails = new TransportationRepo(_context);
+            TransportFareDetails = new TransportFaresRepo(_context);
             
             // M2 Itineraries
             BlogDetails = new BlogRepo(_context);
@@ -47,7 +48,8 @@ namespace personalised_concierge_m1.Data.UnitOfWorks
         public INavigationRepo NavigationDetails { get; }
         public IReviewRepo ReviewDetails { get; }
         public ITransportationRepo TransportationDetails { get; }
-        
+        public ITransportFaresRepo TransportFareDetails { get; }
+
         // Food Leisure services
         public IAttractionRepo AttractionDetails { get; }
         public IFoodLeisureRepo FoodLeisureDetails { get; }
@@ -60,9 +62,11 @@ namespace personalised_concierge_m1.Data.UnitOfWorks
         public IExpensesRepo ExpensesDetails { get; }
         public IItineraryItemRepo ItineraryItemDetails { get; }
         public IItineraryRepo ItineraryDetails { get; }
+
         
+
         #endregion
-        
+
         public int Complete()
         {
             return _context.SaveChanges();

@@ -4,6 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'personalised_conceirge_m1' " />
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.13" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.13">
@@ -20,6 +21,10 @@
     <ItemGroup>
       <Folder Include="Data\UserDetails\" />
       <Folder Include="Migrations" />
+      <Folder Include="Views\Transportation\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Views\Transportation\" />
+    </ItemGroup>
 </Project>

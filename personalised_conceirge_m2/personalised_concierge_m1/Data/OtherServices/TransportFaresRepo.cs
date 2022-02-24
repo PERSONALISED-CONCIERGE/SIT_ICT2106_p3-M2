@@ -3,22 +3,23 @@ using personalised_concierge_m1.Models.Interfaces.OtherServices;
 
 namespace personalised_concierge_m1.Data.OtherServices
 {
-    public class TransportationRepo : GenericRepo<Transportation>,ITransportationRepo
+    public class TransportFaresRepo : GenericRepo<TransportFares>, ITransportFaresRepo
     {
-        public TransportationRepo(ConciergeContext context) : base(context)
+        public TransportFaresRepo(ConciergeContext context) : base(context)
         {
         }
-        
-        //implementation of non-generic interface methods
-        public ITransportationRepo getAllTransportations()
-        {
-            throw new System.NotImplementedException();
 
-        }
-        
-        public ITransportationRepo getTransportationById(int transport_id)
+        //implementation of non-generic interface methods
+        public ITransportFaresRepo getAllTransportFares()
         {
             throw new System.NotImplementedException();
         }
+
+        public ITransportFaresRepo getTransportFaresRepoById(int fare_id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+
     }
 }
