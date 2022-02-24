@@ -9,7 +9,6 @@ using personalised_concierge_m1.Models.Entities.UserDetails;
 using personalised_concierge_m1.Models.Entities.Facilities;
 using personalised_concierge_m1.Models.Entities.Inventories;
 using personalised_concierge_m1.Models.Entities.OtherServices;
-//using personalised_concierge_m1.Models.Entities.OtherServices.Review;
 using personalised_concierge_m1.Models.Entities.Requests;
 using personalised_concierge_m1.Models.Interfaces.OtherServices;
 
@@ -83,7 +82,7 @@ namespace personalised_concierge_m1.Data
             NpgsqlConnection.GlobalTypeMapper.MapEnum<CuisineType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FoodLeisureType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<NavigationType>();
-            NpgsqlConnection.GlobalTypeMapper.MapEnum<TaxiType>();
+            NpgsqlConnection.GlobalTypeMapper.MapEnum<FaresType>();
             builder.UseNpgsql(connectionString: "Server=localhost; Database=maymadiaung; Port=5432; User Id=maymadiaung; Password=1234;");
         }
 
@@ -96,7 +95,7 @@ namespace personalised_concierge_m1.Data
             modelBuilder.HasPostgresEnum<FoodLeisureType>();
             modelBuilder.HasPostgresEnum<Rating>();
             modelBuilder.HasPostgresEnum<NavigationType>();
-            modelBuilder.HasPostgresEnum<TaxiType>();
+            modelBuilder.HasPostgresEnum<FaresType>();
 
             //M2 model builders for enum conversion
             modelBuilder.Entity<Food>()
@@ -118,8 +117,8 @@ namespace personalised_concierge_m1.Data
                 .HasConversion<NavigationType>();
 
             modelBuilder.Entity<TransportFares>()
-                .Property(u => u.type)
-                .HasConversion<TaxiType>();
+                .Property(u => u.fares_type)
+                .HasConversion<FaresType>();
             
             
 

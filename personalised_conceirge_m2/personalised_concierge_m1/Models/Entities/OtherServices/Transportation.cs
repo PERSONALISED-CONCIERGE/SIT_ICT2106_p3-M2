@@ -10,10 +10,6 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
         //table columns and properties
         [Key] 
         public int transport_id { get; set; }
-        [Required]
-        public int account_id { get; set; }
-        [ForeignKey("account_id")]
-        public Account Account { get; set; }
         
         [Required]
         [Column(TypeName = "varchar(100)")]
@@ -21,8 +17,11 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
         
         [Column(TypeName = "varchar(500)")]
         public string description { get; set; }
+
         [Column(TypeName = "varchar(500)")]
         public string website { get; set; }
+
+
         [Required]
         [MaxLength(8)]
         public int contact_num { get; set; }

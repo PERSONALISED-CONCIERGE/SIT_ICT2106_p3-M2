@@ -15,10 +15,10 @@ namespace personalised_concierge_m1.Migrations
 
             migrationBuilder.AlterDatabase()
                 .Annotation("Npgsql:Enum:cuisine_type", "malay,chinese,indian,western")
+                .Annotation("Npgsql:Enum:fares_type", "standard,flagdown,distance")
                 .Annotation("Npgsql:Enum:food_leisure_type", "restaurant,hawker,poi,hotel_facilities")
                 .Annotation("Npgsql:Enum:navigation_type", "walk,drive,car,taxi,train,bus")
-                .Annotation("Npgsql:Enum:rating", "one,two,three,four,five")
-                .Annotation("Npgsql:Enum:taxi_type", "standard,limo,chrylsler");
+                .Annotation("Npgsql:Enum:rating", "one,two,three,four,five");
 
             migrationBuilder.CreateTable(
                 name: "Attractions",
@@ -68,7 +68,7 @@ namespace personalised_concierge_m1.Migrations
                     contact_num = table.Column<string>(type: "varchar(20)", nullable: false),
                     type = table.Column<FoodLeisureType>(type: "food_leisure_type", nullable: false),
                     address = table.Column<string>(type: "varchar(500)", nullable: false),
-                    category = table.Column<string>(type: "varchar(50)", nullable: false)
+                    featured = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -134,6 +134,23 @@ namespace personalised_concierge_m1.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RoomTypes", x => x.roomtype_id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Transportations",
+                schema: "public",
+                columns: table => new
+                {
+                    transport_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    company_name = table.Column<string>(type: "varchar(100)", nullable: false),
+                    description = table.Column<string>(type: "varchar(500)", nullable: true),
+                    website = table.Column<string>(type: "varchar(500)", nullable: true),
+                    contact_num = table.Column<int>(type: "integer", maxLength: 8, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transportations", x => x.transport_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -244,6 +261,29 @@ namespace personalised_concierge_m1.Migrations
                         principalSchema: "public",
                         principalTable: "RoomTypes",
                         principalColumn: "roomtype_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TransportFares",
+                schema: "public",
+                columns: table => new
+                {
+                    fare_id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    transport_id = table.Column<int>(type: "integer", nullable: false),
+                    fares_type = table.Column<FaresType>(type: "fares_type", nullable: false),
+                    fares = table.Column<string>(type: "varchar(100)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TransportFares", x => x.fare_id);
+                    table.ForeignKey(
+                        name: "FK_TransportFares_Transportations_transport_id",
+                        column: x => x.transport_id,
+                        principalSchema: "public",
+                        principalTable: "Transportations",
+                        principalColumn: "transport_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -535,7 +575,7 @@ namespace personalised_concierge_m1.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     account_id = table.Column<int>(type: "integer", nullable: false),
                     foodleisure_id = table.Column<int>(type: "integer", nullable: false),
-                    description = table.Column<string>(type: "varchar(500)", nullable: true),
+                    review = table.Column<string>(type: "varchar(500)", nullable: true),
                     rating = table.Column<Rating>(type: "rating", nullable: false)
                 },
                 constraints: table =>
@@ -554,31 +594,6 @@ namespace personalised_concierge_m1.Migrations
                         principalSchema: "public",
                         principalTable: "FoodLeisures",
                         principalColumn: "foodleisure_id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Transportations",
-                schema: "public",
-                columns: table => new
-                {
-                    transport_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    account_id = table.Column<int>(type: "integer", nullable: false),
-                    company_name = table.Column<string>(type: "varchar(100)", nullable: false),
-                    description = table.Column<string>(type: "varchar(500)", nullable: true),
-                    website = table.Column<string>(type: "varchar(500)", nullable: true),
-                    contact_num = table.Column<int>(type: "integer", maxLength: 8, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transportations", x => x.transport_id);
-                    table.ForeignKey(
-                        name: "FK_Transportations_Accounts_account_id",
-                        column: x => x.account_id,
-                        principalSchema: "public",
-                        principalTable: "Accounts",
-                        principalColumn: "account_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -699,30 +714,6 @@ namespace personalised_concierge_m1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TransportFares",
-                schema: "public",
-                columns: table => new
-                {
-                    fare_id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    transport_id = table.Column<int>(type: "integer", nullable: false),
-                    fare_name = table.Column<string>(type: "varchar(500)", nullable: false),
-                    fares = table.Column<string>(type: "varchar(100)", nullable: true),
-                    type = table.Column<TaxiType>(type: "taxi_type", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TransportFares", x => x.fare_id);
-                    table.ForeignKey(
-                        name: "FK_TransportFares_Transportations_transport_id",
-                        column: x => x.transport_id,
-                        principalSchema: "public",
-                        principalTable: "Transportations",
-                        principalColumn: "transport_id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Expenses",
                 schema: "public",
                 columns: table => new
@@ -762,18 +753,18 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "facility_id", "hotel_id", "name", "operation_end_time", "operation_start_time", "status" },
                 values: new object[,]
                 {
-                    { 1, 1, "Basketball Court", new DateTime(2022, 2, 14, 11, 32, 49, 36, DateTimeKind.Local).AddTicks(1520), new DateTime(2022, 2, 14, 11, 32, 49, 36, DateTimeKind.Local).AddTicks(500), "Available" },
-                    { 2, 2, "Tennis Court", new DateTime(2022, 2, 14, 11, 32, 49, 36, DateTimeKind.Local).AddTicks(2990), new DateTime(2022, 2, 14, 11, 32, 49, 36, DateTimeKind.Local).AddTicks(2890), "Available" }
+                    { 1, 1, "Basketball Court", new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(2940), new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(1920), "Available" },
+                    { 2, 2, "Tennis Court", new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4450), new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4370), "Available" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "FoodLeisures",
-                columns: new[] { "foodleisure_id", "address", "category", "contact_num", "description", "name", "type", "website_link" },
+                columns: new[] { "foodleisure_id", "address", "contact_num", "description", "featured", "name", "type", "website_link" },
                 values: new object[,]
                 {
-                    { 1, "Lantau Island, Hong Kong", "Theme Park", "+852 3550 3388", "The happiest place on earth!", "Hong Kong Disneyland", FoodLeisureType.POI, "https://www.hongkongdisneyland.com/" },
-                    { 2, "Jurong East", "Theme Park", "89773448", "seasfood restaurant", "Tunglok", FoodLeisureType.Restaurant, "tunglok.com" }
+                    { 1, "Lantau Island, Hong Kong", "+852 3550 3388", "The happiest place on earth!", true, "Hong Kong Disneyland", FoodLeisureType.POI, "https://www.hongkongdisneyland.com/" },
+                    { 2, "Jurong East", "89773448", "seasfood restaurant", false, "Tunglok", FoodLeisureType.Restaurant, "tunglok.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -792,8 +783,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "invcate_id", "cate_name" },
                 values: new object[,]
                 {
-                    { 1, "Red Wine" },
-                    { 2, "Bathroom Items" }
+                    { 2, "Bathroom Items" },
+                    { 1, "Red Wine" }
                 });
 
             migrationBuilder.InsertData(
@@ -802,8 +793,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "requesttype_id", "created_at", "deleted_at", "is_deleted", "type_value" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 2, 14, 11, 32, 49, 39, DateTimeKind.Local).AddTicks(1380), new DateTime(2022, 2, 14, 11, 32, 49, 39, DateTimeKind.Local).AddTicks(2160), false, "RoomService" },
-                    { 2, new DateTime(2022, 2, 14, 11, 32, 49, 39, DateTimeKind.Local).AddTicks(3550), new DateTime(2022, 2, 14, 11, 32, 49, 39, DateTimeKind.Local).AddTicks(3650), false, "Bathroom replenishment" }
+                    { 1, new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(2760), new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(3550), false, "RoomService" },
+                    { 2, new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(4960), new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(5050), false, "Bathroom replenishment" }
                 });
 
             migrationBuilder.InsertData(
@@ -814,6 +805,16 @@ namespace personalised_concierge_m1.Migrations
                 {
                     { 1, "The Presidential Suite offers a tranquil haven of comfort and luxury surrounded by sophisticated d'ecor designed to delight all tastes. Featuring a fully-equipped kitchen, bedroom, large living room - including a working and dining area - and guest restroom, the Presidential Suite is the ultimate in creating a feeling of home", 10000m, "Presidential Suite" },
                     { 2, "The Business Suite offers a tranquil haven of comfort and luxury surrounded by sophisticated d'ecor designed to delight all tastes. Featuring a fully-equipped kitchen, bedroom, large living room - including a working and dining area - and guest restroom, the Business Suite is the ultimate in creating a feeling of home", 5000m, "Business Suite" }
+                });
+
+            migrationBuilder.InsertData(
+                schema: "public",
+                table: "Transportations",
+                columns: new[] { "transport_id", "company_name", "contact_num", "description", "website" },
+                values: new object[,]
+                {
+                    { 1, "GrabCar", 99119911, "for rich people only", "www.grab.com" },
+                    { 2, "Gojek", 92206874, "for peasant people only", "www.gojek.com" }
                 });
 
             migrationBuilder.InsertData(
@@ -868,6 +869,17 @@ namespace personalised_concierge_m1.Migrations
 
             migrationBuilder.InsertData(
                 schema: "public",
+                table: "TransportFares",
+                columns: new[] { "fare_id", "fares", "fares_type", "transport_id" },
+                values: new object[,]
+                {
+                    { 1, "$3.00", FaresType.Standard, 1 },
+                    { 2, "$10.00", FaresType.Flagdown, 1 },
+                    { 3, "Every 400m thereafter or less up to 10km, $0.22", FaresType.Distance, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                schema: "public",
                 table: "Accounts",
                 columns: new[] { "account_id", "access_key", "currency", "distance_from_hotel", "email", "email_confirmed", "facility_id", "feedback_id", "full_name", "guest_type", "has_reservation", "location", "password_hash", "phone_number", "phone_number_confirmed", "position", "request_id", "reservation_id", "role_id", "secret_hashpin", "two_factor_enabled", "username" },
                 values: new object[,]
@@ -892,8 +904,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "facilitybooking_id", "account_id", "booking_end", "booking_start", "facility_id" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 14, 11, 32, 49, 36, DateTimeKind.Local).AddTicks(7600), new DateTime(2022, 2, 14, 11, 32, 49, 36, DateTimeKind.Local).AddTicks(6830), 1 },
-                    { 2, 2, new DateTime(2022, 2, 14, 11, 32, 49, 36, DateTimeKind.Local).AddTicks(9090), new DateTime(2022, 2, 14, 11, 32, 49, 36, DateTimeKind.Local).AddTicks(9020), 2 }
+                    { 1, 1, new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(9220), new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(8430), 1 },
+                    { 2, 2, new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(750), new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(670), 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -902,8 +914,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "feedback_id", "account_id", "created_at", "description", "type" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 14, 11, 32, 49, 37, DateTimeKind.Local).AddTicks(3690), "Perfect dream hotel after a hard project", "General" },
-                    { 2, 2, new DateTime(2022, 2, 14, 11, 32, 49, 37, DateTimeKind.Local).AddTicks(5060), "Perfect dream hotel after a hard project", "General" }
+                    { 1, 1, new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(5620), "Perfect dream hotel after a hard project", "General" },
+                    { 2, 2, new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(7060), "Perfect dream hotel after a hard project", "General" }
                 });
 
             migrationBuilder.InsertData(
@@ -922,8 +934,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "account_id", "request_id", "created_at", "deleted_at", "is_deleted", "serviced_at", "serviced_by", "status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 14, 11, 32, 49, 37, DateTimeKind.Local).AddTicks(9790), new DateTime(2022, 2, 14, 11, 32, 49, 38, DateTimeKind.Local).AddTicks(600), false, new DateTime(2022, 2, 14, 11, 32, 49, 38, DateTimeKind.Local).AddTicks(1380), 1, "In progress" },
-                    { 2, 2, new DateTime(2022, 2, 14, 11, 32, 49, 38, DateTimeKind.Local).AddTicks(2690), new DateTime(2022, 2, 14, 11, 32, 49, 38, DateTimeKind.Local).AddTicks(2780), false, new DateTime(2022, 2, 14, 11, 32, 49, 38, DateTimeKind.Local).AddTicks(2870), 2, "In progress" }
+                    { 1, 1, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(1610), new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(2360), false, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(3060), 1, "In progress" },
+                    { 2, 2, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4380), new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4460), false, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4530), 2, "In progress" }
                 });
 
             migrationBuilder.InsertData(
@@ -959,21 +971,11 @@ namespace personalised_concierge_m1.Migrations
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "Reviews",
-                columns: new[] { "review_id", "account_id", "description", "foodleisure_id", "rating" },
+                columns: new[] { "review_id", "account_id", "foodleisure_id", "rating", "review" },
                 values: new object[,]
                 {
-                    { 1, 1, "saizeriya sucks", 1, Rating.One },
-                    { 2, 2, "mcdonalds is awesome!", 2, Rating.Five }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "public",
-                table: "Transportations",
-                columns: new[] { "transport_id", "account_id", "company_name", "contact_num", "description", "website" },
-                values: new object[,]
-                {
-                    { 2, 2, "Gojek", 92206874, "for peasant people only", "www.gojek.com" },
-                    { 1, 1, "GrabCar", 99119911, "for rich people only", "www.grab.com" }
+                    { 1, 1, 1, Rating.One, "saizeriya sucks" },
+                    { 2, 2, 2, Rating.Five, "mcdonalds is awesome!" }
                 });
 
             migrationBuilder.InsertData(
@@ -1003,7 +1005,7 @@ namespace personalised_concierge_m1.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2022, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "10 Fun things to do in SG when you are on a budget", 1, "Things to Do in Singapore" },
-                    { 2, new DateTime(2022, 2, 14, 11, 32, 49, 16, DateTimeKind.Local).AddTicks(1730), "Alex dream holiday", 2, "Alex Checklist" }
+                    { 2, new DateTime(2022, 2, 24, 11, 21, 46, 189, DateTimeKind.Local).AddTicks(2510), "Alex dream holiday", 2, "Alex Checklist" }
                 });
 
             migrationBuilder.InsertData(
@@ -1193,12 +1195,6 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public",
                 table: "Rooms",
                 column: "roomType_id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Transportations_account_id",
-                schema: "public",
-                table: "Transportations",
-                column: "account_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TransportFares_transport_id",

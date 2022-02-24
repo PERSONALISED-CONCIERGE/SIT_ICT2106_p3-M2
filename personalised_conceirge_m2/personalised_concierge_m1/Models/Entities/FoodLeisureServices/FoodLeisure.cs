@@ -39,8 +39,11 @@ namespace personalised_concierge_m1.Models.Entities.FoodLeisureServices
         [Column(TypeName = "varchar(500)")]
         public string address { get; set; }
 
+
         [Required]
-        [Column(TypeName = "varchar(50)")]
-        public string category { get; set; }
+        [Column(TypeName = "boolean")]
+        public Boolean featured { get; set; }
+
+
     }
 }

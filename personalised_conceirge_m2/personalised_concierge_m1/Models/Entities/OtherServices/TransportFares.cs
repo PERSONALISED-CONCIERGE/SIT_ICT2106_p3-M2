@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
     namespace personalised_concierge_m1.Models.Entities.OtherServices
 {
-    public enum TaxiType
+    public enum FaresType
     {
         Standard,
-        Limo,
-        Chrylsler,
+        Flagdown,
+        Distance
     }
     public class TransportFares
     {
@@ -20,17 +20,11 @@ using System.ComponentModel.DataAnnotations.Schema;
         [ForeignKey("transport_id")]
         public Transportation Transportation { get; set; }
 
-
-
         [Required]
-        [Column(TypeName = "varchar(500)")]
-        public string fare_name { get; set; }
+        public FaresType fares_type { get; set; }
 
         [Column(TypeName = "varchar(100)")]
         public string fares { get; set; }
-
-        [Required]
-        public TaxiType type { get; set; }
 
     }
 }
