@@ -1,4 +1,9 @@
-﻿@page
+﻿@using personalised_concierge_m1.Models.Entities.FoodLeisureServices
+@using personalised_concierge_m1.Models.Entities.OtherServices
+@using personalised_concierge_m1.Models.Entities.UserDetails
+@model dynamic
+
+
 @{
 
 }
@@ -14,13 +19,20 @@
         <div class="row">
             <div class="col">
                 <div class="card" style="width: 25rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="@Url.Content(@Model.foodLeisure.foodleisure_image)" class="card-img-top" alt="@Model.foodLeisure.name">
                 </div>
             </div>
             <div class="col">
-                <h1> Title</h1>
-                <h2>Location </h2>
-                <p>Contact Here!</p>
+                <h1>@Model.foodLeisure.name</h1>
+                <h4>@Model.foodLeisure.address </h4>
+                <h5>Contact Number: @Model.foodLeisure.contact_num</h5>
+                <h5>Visit Reservation Page: <a href="@Model.foodLeisure.website_link">HERE!</a></h5>
+                <h6>Email Us: @Model.foodLeisure.email</h6>
+                <h6>Opening Hours: @Model.foodLeisure.businessHours1</h6>
+                <p>Category: @Model.foodLeisure.type</p>
+                <p>@Model.foodLeisure.description</p>
+                <br/>
+                <p>Nearest MRT Station: @Model.foodLeisure.nearestMRTStation</p>
             </div>
         </div>
     </div>
@@ -33,20 +45,19 @@
     </p>
     <div class="collapse" id="collapseExample">
         <div class="card card-body">
-            @using (Html.BeginForm("", ""))
+            @using (Html.BeginForm("SpecificFoodLeisure", "FoodLeisure"))
             {
-                <textarea id="w3review" name="w3review" rows="5" cols="100">
-                         At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies. 
-                </textarea>
+
+
+                @Html.TextArea("Review_Description",  new { @cols = "100", @rows = "8", @style = "width:100%;" })
+
                 <br />
-                <label for="cars">Ratings (out of 5)</label>
-                <select name="cars" id="cars">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+                @Html.DropDownList("Ratings",
+                    new SelectList(Enum.GetValues(typeof(Rating))),
+                    "Ratings (out of 5)",
+                    new { @class = "form-control" })
+
+                @Html.Hidden("foodLeisureID", (int)Model.foodLeisure.foodleisure_id)
                 <br><br>
                 <input type="submit" value="Submit">
             }
@@ -61,34 +72,36 @@
             <div class="col">
                 <hr />
                 <div class="review-block">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
-                            <div class="review-block-name"><a href="#">nktailor</a></div>
-                            <div class="review-block-date">January 29, 2016<br />1 day ago</div>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="review-block-rate">
-                                <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                            <div class="review-block-title">this was nice in buy</div>
-                            <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                        </div>
-                    </div>
+                    @foreach (Review review in Model.reviews)
+                    {
+                        @foreach (Account account in Model.accounts)
+                        {
+                            @if (account.account_id == review.account_id)
+                            {
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img style="width: 10rem; height: 10rem;" src="@Url.Content(@account.profile_pic)" class="img-rounded">
+                                        <div class="review-block-name"><a href="#">@account.full_name</a></div>
+
+                                        <div class="review-block-date">@account.email<br />Posted on: @review.Date</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <h6>Ratings: @review.rating out of Five</h6>
+
+                                        <div class="review-block-title">Review ID: @review.review_id</div>
+                                        <div class="review-block-description">@review.review</div>
+                                    </div>
+                                </div>
+                                <br />
+
+                            }
+
+
+                        }
+
+
+                    }
+
                     <hr />
                 </div>
             </div>
