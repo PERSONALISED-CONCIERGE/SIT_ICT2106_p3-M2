@@ -33,6 +33,11 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
         [Column(TypeName = "varchar(500)")]
         public string review  { get; set; }
 
+        [DataType(DataType.Date)]
+        public string Date { get; set; }
+
         public Rating rating { get; set; }
+
+
     }
 }

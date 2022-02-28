@@ -29,6 +29,7 @@ namespace personalised_concierge_m1.Models
                     role_id = 01,
                     username = "John Doe",
                     full_name = "John Doe",
+                    profile_pic = "~/images/PFP2.png",
                     password_hash = "123",
                     
                     request_id = 01,
@@ -56,6 +57,7 @@ namespace personalised_concierge_m1.Models
                     role_id = 02,
                     username = "sarahellis",
                     full_name = "Sarah Ellis",
+                    profile_pic = "~/images/PFP1.png",
                     password_hash = "123",
                     
                     request_id = 02,
@@ -75,6 +77,60 @@ namespace personalised_concierge_m1.Models
                     secret_hashpin = "very so secret",
                     facility_id = 02,
                     
+                },
+                new Account
+                {
+                    account_id = 03,
+                    role_id = 01,
+                    username = "wondergirl",
+                    full_name = "Wander Woman",
+                    profile_pic = "~/images/PFP3.png",
+                    password_hash = "123",
+
+                    request_id = 01,
+                    has_reservation = true,
+                    reservation_id = 01,
+                    phone_number = 98765432,
+                    phone_number_confirmed = true,
+                    two_factor_enabled = true,
+
+                    email = "sarah_ellis@gmail.com",
+                    email_confirmed = true,
+                    feedback_id = 02,
+
+                    location = "Singapore",
+                    currency = "sgd",
+                    position = "guest",
+                    secret_hashpin = "very so secret",
+                    facility_id = 02,
+
+                },
+                new Account
+                {
+                    account_id = 04,
+                    role_id = 01,
+                    username = "superboy",
+                    full_name = "Super Man",
+                    profile_pic = "~/images/PFP4.png",
+                    password_hash = "123",
+
+                    request_id = 02,
+                    has_reservation = true,
+                    reservation_id = 01,
+                    phone_number = 98765432,
+                    phone_number_confirmed = true,
+                    two_factor_enabled = true,
+
+                    email = "sarah_ellis@gmail.com",
+                    email_confirmed = true,
+                    feedback_id = 02,
+
+                    location = "Singapore",
+                    currency = "sgd",
+                    position = "guest",
+                    secret_hashpin = "very so secret",
+                    facility_id = 02,
+
                 }
             );
             
@@ -100,6 +156,26 @@ namespace personalised_concierge_m1.Models
                     end_date = new DateTime(2021, 10, 30)
                 }
             );
+            modelBuilder.Entity<Reservation>().HasData(
+                new Reservation
+                {
+                    reservation_id = 03,
+                    room_id = 03,
+                    account_id = 03,
+                    start_date = new DateTime(2021, 12, 21),
+                    end_date = new DateTime(2021, 12, 30)
+                }
+            );
+            modelBuilder.Entity<Reservation>().HasData(
+                new Reservation
+                {
+                    reservation_id = 04,
+                    room_id = 04,
+                    account_id = 04,
+                    start_date = new DateTime(2021, 11, 21),
+                    end_date = new DateTime(2021, 11, 30)
+                }
+            );
 
             modelBuilder.Entity<Room>().HasData(
                 new Room
@@ -115,6 +191,24 @@ namespace personalised_concierge_m1.Models
                 new Room
                 {
                     room_id = 02,
+                    room_num = "1",
+                    roomType_id = 02,
+                    vacancy = true
+                }
+            );
+            modelBuilder.Entity<Room>().HasData(
+                new Room
+                {
+                    room_id = 03,
+                    room_num = "1",
+                    roomType_id = 01,
+                    vacancy = true
+                }
+            );
+            modelBuilder.Entity<Room>().HasData(
+                new Room
+                {
+                    room_id = 04,
                     room_num = "1",
                     roomType_id = 02,
                     vacancy = true
@@ -327,26 +421,51 @@ namespace personalised_concierge_m1.Models
                 new FoodLeisure
                 {
                     foodleisure_id = 01,
-                    name = "Hong Kong Disneyland",
+                    name = "Universal Studios Singapore",
                     description = "The happiest place on earth!",
-                    website_link = "https://www.hongkongdisneyland.com/",
-                    contact_num = "+852 3550 3388",
+                    website_link = "https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore",
+                    contact_num = "+65 6577 8888",
                     type = FoodLeisureType.POI,
-                    address = "Lantau Island, Hong Kong",
+                    foodleisure_image= "~/images/USS.jpeg",
+                    address = "8 Sentosa Gateway, 098269",
                     featured = true
                 },
                 new FoodLeisure
                 {
                     foodleisure_id = 02,
-                    name = "Tunglok",
-                    description = "seasfood restaurant",
-                    website_link = "tunglok.com",
-                    contact_num = "89773448",
+                    name = "Maki-San (Bedok Town Square)",
+                    description = "ASIA'S FIRST D.I.Y SUSHI & SALAD RESTAURANT.",
+                    website_link = "https://www.makisan.com",
+                    contact_num = "+65 89773448",
                     type = FoodLeisureType.Restaurant,
-                    address = "Jurong East",
+                    foodleisure_image = "~/images/makisan.webp",
+                    address = "Blk 208D New Upper Changi Rd, Singapore 464208",
+                    featured = false
+                },
+                new FoodLeisure
+                {
+                    foodleisure_id = 03,
+                    name = "PS.Cafe at Raffles City",
+                    description = "PS.Cafe opened in 1999 as a cosy cafe hidden within Projectshop clothing store.",
+                    website_link = "https://www.pscafe.com",
+                    contact_num = "+65 6708 9288",
+                    type = FoodLeisureType.Restaurant,
+                    foodleisure_image = "~/images/PScafe.jpeg",
+                    address = "252 North Bridge Road, #03-37, Raffles City Shopping Centre, Singapore 179103",
+                    featured = false
+                },
+                new FoodLeisure
+                {
+                    foodleisure_id = 04,
+                    name = "Singapore Zoo",
+                    description = "The Singapore Zoo, formerly known as the Singapore Zoological Gardens or Mandai Zoo, occupies 28 hectares on the margins of Upper Seletar Reservoir within Singapore's heavily forested central catchment area.",
+                    website_link = "https://www.mandai.com/en/singapore-zoo.html",
+                    contact_num = "+65 6269 3411",
+                    type = FoodLeisureType.POI,
+                    foodleisure_image = "~/images/Zoo.jpeg",
+                    address = "80 Mandai Lake Rd, 729826",
                     featured = false
                 }
-                
             );
 
             #endregion

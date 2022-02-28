@@ -12,7 +12,7 @@ using personalised_concierge_m1.Models.Entities.OtherServices;
 namespace personalised_concierge_m1.Migrations
 {
     [DbContext(typeof(ConciergeContext))]
-    [Migration("20220224032147_InitialCreate")]
+    [Migration("20220226142652_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,8 +63,8 @@ namespace personalised_concierge_m1.Migrations
                             facility_id = 1,
                             hotel_id = 1,
                             name = "Basketball Court",
-                            operation_end_time = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(2940),
-                            operation_start_time = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(1920),
+                            operation_end_time = new DateTime(2022, 2, 26, 22, 26, 51, 97, DateTimeKind.Local).AddTicks(9210),
+                            operation_start_time = new DateTime(2022, 2, 26, 22, 26, 51, 97, DateTimeKind.Local).AddTicks(8250),
                             status = "Available"
                         },
                         new
@@ -72,8 +72,8 @@ namespace personalised_concierge_m1.Migrations
                             facility_id = 2,
                             hotel_id = 2,
                             name = "Tennis Court",
-                            operation_end_time = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4450),
-                            operation_start_time = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4370),
+                            operation_end_time = new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(810),
+                            operation_start_time = new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(730),
                             status = "Available"
                         });
                 });
@@ -110,16 +110,16 @@ namespace personalised_concierge_m1.Migrations
                         {
                             facilitybooking_id = 1,
                             account_id = 1,
-                            booking_end = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(9220),
-                            booking_start = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(8430),
+                            booking_end = new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(5640),
+                            booking_start = new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(4810),
                             facility_id = 1
                         },
                         new
                         {
                             facilitybooking_id = 2,
                             account_id = 2,
-                            booking_end = new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(750),
-                            booking_start = new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(670),
+                            booking_end = new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(7040),
+                            booking_start = new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(6960),
                             facility_id = 2
                         });
                 });
@@ -156,7 +156,7 @@ namespace personalised_concierge_m1.Migrations
                         {
                             feedback_id = 1,
                             account_id = 1,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(5620),
+                            created_at = new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(2820),
                             description = "Perfect dream hotel after a hard project",
                             type = "General"
                         },
@@ -164,7 +164,7 @@ namespace personalised_concierge_m1.Migrations
                         {
                             feedback_id = 2,
                             account_id = 2,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(7060),
+                            created_at = new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(4270),
                             description = "Perfect dream hotel after a hard project",
                             type = "General"
                         });
@@ -251,6 +251,9 @@ namespace personalised_concierge_m1.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(500)");
 
+                    b.Property<string>("businessHours")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<string>("contact_num")
                         .IsRequired()
                         .HasColumnType("varchar(20)");
@@ -259,12 +262,30 @@ namespace personalised_concierge_m1.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(500)");
 
+                    b.Property<string>("email")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<bool>("featured")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("foodleisure_image")
+                        .HasColumnType("varchar(500)");
+
+                    b.Property<string>("latitude")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("longtitude")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("nearestMRTStation")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("supportedLanguage")
+                        .HasColumnType("varchar(500)");
 
                     b.Property<FoodLeisureType>("type")
                         .HasColumnType("food_leisure_type");
@@ -280,24 +301,50 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             foodleisure_id = 1,
-                            address = "Lantau Island, Hong Kong",
-                            contact_num = "+852 3550 3388",
+                            address = "8 Sentosa Gateway, 098269",
+                            contact_num = "+65 6577 8888",
                             description = "The happiest place on earth!",
                             featured = true,
-                            name = "Hong Kong Disneyland",
+                            foodleisure_image = "~/images/USS.jpeg",
+                            name = "Universal Studios Singapore",
                             type = FoodLeisureType.POI,
-                            website_link = "https://www.hongkongdisneyland.com/"
+                            website_link = "https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore"
                         },
                         new
                         {
                             foodleisure_id = 2,
-                            address = "Jurong East",
-                            contact_num = "89773448",
-                            description = "seasfood restaurant",
+                            address = "Blk 208D New Upper Changi Rd, Singapore 464208",
+                            contact_num = "+65 89773448",
+                            description = "ASIA'S FIRST D.I.Y SUSHI & SALAD RESTAURANT.",
                             featured = false,
-                            name = "Tunglok",
+                            foodleisure_image = "~/images/makisan.webp",
+                            name = "Maki-San (Bedok Town Square)",
                             type = FoodLeisureType.Restaurant,
-                            website_link = "tunglok.com"
+                            website_link = "https://www.makisan.com"
+                        },
+                        new
+                        {
+                            foodleisure_id = 3,
+                            address = "252 North Bridge Road, #03-37, Raffles City Shopping Centre, Singapore 179103",
+                            contact_num = "+65 6708 9288",
+                            description = "PS.Cafe opened in 1999 as a cosy cafe hidden within Projectshop clothing store.",
+                            featured = false,
+                            foodleisure_image = "~/images/PScafe.jpeg",
+                            name = "PS.Cafe at Raffles City",
+                            type = FoodLeisureType.Restaurant,
+                            website_link = "https://www.pscafe.com"
+                        },
+                        new
+                        {
+                            foodleisure_id = 4,
+                            address = "80 Mandai Lake Rd, 729826",
+                            contact_num = "+65 6269 3411",
+                            description = "The Singapore Zoo, formerly known as the Singapore Zoological Gardens or Mandai Zoo, occupies 28 hectares on the margins of Upper Seletar Reservoir within Singapore's heavily forested central catchment area.",
+                            featured = false,
+                            foodleisure_image = "~/images/Zoo.jpeg",
+                            name = "Singapore Zoo",
+                            type = FoodLeisureType.POI,
+                            website_link = "https://www.mandai.com/en/singapore-zoo.html"
                         });
                 });
 
@@ -607,7 +654,7 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             checklist_id = 2,
-                            created_date = new DateTime(2022, 2, 24, 11, 21, 46, 189, DateTimeKind.Local).AddTicks(2510),
+                            created_date = new DateTime(2022, 2, 26, 22, 26, 51, 77, DateTimeKind.Local).AddTicks(3080),
                             description = "Alex dream holiday",
                             itinerary_id = 2,
                             name = "Alex Checklist"
@@ -862,6 +909,9 @@ namespace personalised_concierge_m1.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Date")
+                        .HasColumnType("text");
+
                     b.Property<int>("account_id")
                         .HasColumnType("integer");
 
@@ -1031,10 +1081,10 @@ namespace personalised_concierge_m1.Migrations
                         {
                             account_id = 1,
                             request_id = 1,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(1610),
-                            deleted_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(2360),
+                            created_at = new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(9230),
+                            deleted_at = new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(9990),
                             is_deleted = false,
-                            serviced_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(3060),
+                            serviced_at = new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(680),
                             serviced_by = 1,
                             status = "In progress"
                         },
@@ -1042,10 +1092,10 @@ namespace personalised_concierge_m1.Migrations
                         {
                             account_id = 2,
                             request_id = 2,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4380),
-                            deleted_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4460),
+                            created_at = new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(2040),
+                            deleted_at = new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(2150),
                             is_deleted = false,
-                            serviced_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4530),
+                            serviced_at = new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(2220),
                             serviced_by = 2,
                             status = "In progress"
                         });
@@ -1114,16 +1164,16 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             requesttype_id = 1,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(2760),
-                            deleted_at = new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(3550),
+                            created_at = new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(1120),
+                            deleted_at = new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(1920),
                             is_deleted = false,
                             type_value = "RoomService"
                         },
                         new
                         {
                             requesttype_id = 2,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(4960),
-                            deleted_at = new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(5050),
+                            created_at = new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(3340),
+                            deleted_at = new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(3410),
                             is_deleted = false,
                             type_value = "Bathroom replenishment"
                         });
@@ -1172,6 +1222,22 @@ namespace personalised_concierge_m1.Migrations
                             end_date = new DateTime(2021, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             room_id = 2,
                             start_date = new DateTime(2021, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            reservation_id = 3,
+                            account_id = 3,
+                            end_date = new DateTime(2021, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            room_id = 3,
+                            start_date = new DateTime(2021, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            reservation_id = 4,
+                            account_id = 4,
+                            end_date = new DateTime(2021, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            room_id = 4,
+                            start_date = new DateTime(2021, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -1209,6 +1275,20 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             room_id = 2,
+                            roomType_id = 2,
+                            room_num = "1",
+                            vacancy = true
+                        },
+                        new
+                        {
+                            room_id = 3,
+                            roomType_id = 1,
+                            room_num = "1",
+                            vacancy = true
+                        },
+                        new
+                        {
+                            room_id = 4,
                             roomType_id = 2,
                             room_num = "1",
                             vacancy = true
@@ -1309,6 +1389,9 @@ namespace personalised_concierge_m1.Migrations
                     b.Property<string>("position")
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("profile_pic")
+                        .HasColumnType("varchar(500)");
+
                     b.Property<int>("request_id")
                         .HasColumnType("integer");
 
@@ -1355,6 +1438,7 @@ namespace personalised_concierge_m1.Migrations
                             phone_number = 12345678,
                             phone_number_confirmed = true,
                             position = "guest",
+                            profile_pic = "~/images/PFP2.png",
                             request_id = 1,
                             reservation_id = 1,
                             role_id = 1,
@@ -1378,12 +1462,61 @@ namespace personalised_concierge_m1.Migrations
                             phone_number = 98765432,
                             phone_number_confirmed = true,
                             position = "guest",
+                            profile_pic = "~/images/PFP1.png",
                             request_id = 2,
                             reservation_id = 1,
                             role_id = 2,
                             secret_hashpin = "very so secret",
                             two_factor_enabled = true,
                             username = "sarahellis"
+                        },
+                        new
+                        {
+                            account_id = 3,
+                            currency = "sgd",
+                            distance_from_hotel = 0m,
+                            email = "sarah_ellis@gmail.com",
+                            email_confirmed = true,
+                            facility_id = 2,
+                            feedback_id = 2,
+                            full_name = "Wander Woman",
+                            has_reservation = true,
+                            location = "Singapore",
+                            password_hash = "123",
+                            phone_number = 98765432,
+                            phone_number_confirmed = true,
+                            position = "guest",
+                            profile_pic = "~/images/PFP3.png",
+                            request_id = 1,
+                            reservation_id = 1,
+                            role_id = 1,
+                            secret_hashpin = "very so secret",
+                            two_factor_enabled = true,
+                            username = "wondergirl"
+                        },
+                        new
+                        {
+                            account_id = 4,
+                            currency = "sgd",
+                            distance_from_hotel = 0m,
+                            email = "sarah_ellis@gmail.com",
+                            email_confirmed = true,
+                            facility_id = 2,
+                            feedback_id = 2,
+                            full_name = "Super Man",
+                            has_reservation = true,
+                            location = "Singapore",
+                            password_hash = "123",
+                            phone_number = 98765432,
+                            phone_number_confirmed = true,
+                            position = "guest",
+                            profile_pic = "~/images/PFP4.png",
+                            request_id = 2,
+                            reservation_id = 1,
+                            role_id = 1,
+                            secret_hashpin = "very so secret",
+                            two_factor_enabled = true,
+                            username = "superboy"
                         });
                 });
 

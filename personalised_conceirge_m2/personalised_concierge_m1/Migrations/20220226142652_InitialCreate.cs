@@ -66,9 +66,16 @@ namespace personalised_concierge_m1.Migrations
                     description = table.Column<string>(type: "varchar(500)", nullable: false),
                     website_link = table.Column<string>(type: "varchar(500)", nullable: true),
                     contact_num = table.Column<string>(type: "varchar(20)", nullable: false),
+                    foodleisure_image = table.Column<string>(type: "varchar(500)", nullable: true),
                     type = table.Column<FoodLeisureType>(type: "food_leisure_type", nullable: false),
                     address = table.Column<string>(type: "varchar(500)", nullable: false),
-                    featured = table.Column<bool>(type: "boolean", nullable: false)
+                    featured = table.Column<bool>(type: "boolean", nullable: false),
+                    businessHours = table.Column<string>(type: "varchar(100)", nullable: true),
+                    latitude = table.Column<string>(type: "varchar(100)", nullable: true),
+                    longtitude = table.Column<string>(type: "varchar(100)", nullable: true),
+                    email = table.Column<string>(type: "varchar(100)", nullable: true),
+                    supportedLanguage = table.Column<string>(type: "varchar(500)", nullable: true),
+                    nearestMRTStation = table.Column<string>(type: "varchar(100)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -325,6 +332,7 @@ namespace personalised_concierge_m1.Migrations
                     guest_type = table.Column<string>(type: "varchar(50)", nullable: true),
                     username = table.Column<string>(type: "varchar(100)", nullable: false),
                     full_name = table.Column<string>(type: "varchar(50)", nullable: false),
+                    profile_pic = table.Column<string>(type: "varchar(500)", nullable: true),
                     password_hash = table.Column<string>(type: "varchar(100)", nullable: false),
                     access_key = table.Column<string>(type: "varchar(50)", nullable: true),
                     request_id = table.Column<int>(type: "integer", nullable: false),
@@ -576,6 +584,7 @@ namespace personalised_concierge_m1.Migrations
                     account_id = table.Column<int>(type: "integer", nullable: false),
                     foodleisure_id = table.Column<int>(type: "integer", nullable: false),
                     review = table.Column<string>(type: "varchar(500)", nullable: true),
+                    Date = table.Column<string>(type: "text", nullable: true),
                     rating = table.Column<Rating>(type: "rating", nullable: false)
                 },
                 constraints: table =>
@@ -753,18 +762,20 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "facility_id", "hotel_id", "name", "operation_end_time", "operation_start_time", "status" },
                 values: new object[,]
                 {
-                    { 1, 1, "Basketball Court", new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(2940), new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(1920), "Available" },
-                    { 2, 2, "Tennis Court", new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4450), new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4370), "Available" }
+                    { 1, 1, "Basketball Court", new DateTime(2022, 2, 26, 22, 26, 51, 97, DateTimeKind.Local).AddTicks(9210), new DateTime(2022, 2, 26, 22, 26, 51, 97, DateTimeKind.Local).AddTicks(8250), "Available" },
+                    { 2, 2, "Tennis Court", new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(810), new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(730), "Available" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "FoodLeisures",
-                columns: new[] { "foodleisure_id", "address", "contact_num", "description", "featured", "name", "type", "website_link" },
+                columns: new[] { "foodleisure_id", "address", "businessHours1", "businessHours2", "businessHours3", "businessHours4", "businessHours5", "businessHours6", "businessHours7", "contact_num", "description", "email", "featured", "foodleisure_image", "latitude", "longtitude", "name", "nearestMRTStation", "supportedLanguage", "type", "website_link" },
                 values: new object[,]
                 {
-                    { 1, "Lantau Island, Hong Kong", "+852 3550 3388", "The happiest place on earth!", true, "Hong Kong Disneyland", FoodLeisureType.POI, "https://www.hongkongdisneyland.com/" },
-                    { 2, "Jurong East", "89773448", "seasfood restaurant", false, "Tunglok", FoodLeisureType.Restaurant, "tunglok.com" }
+                    { 3, "252 North Bridge Road, #03-37, Raffles City Shopping Centre, Singapore 179103", null, null, null, null, null, null, null, "+65 6708 9288", "PS.Cafe opened in 1999 as a cosy cafe hidden within Projectshop clothing store.", null, false, "~/images/PScafe.jpeg", null, null, "PS.Cafe at Raffles City", null, null, FoodLeisureType.Restaurant, "https://www.pscafe.com" },
+                    { 2, "Blk 208D New Upper Changi Rd, Singapore 464208", null, null, null, null, null, null, null, "+65 89773448", "ASIA'S FIRST D.I.Y SUSHI & SALAD RESTAURANT.", null, false, "~/images/makisan.webp", null, null, "Maki-San (Bedok Town Square)", null, null, FoodLeisureType.Restaurant, "https://www.makisan.com" },
+                    { 4, "80 Mandai Lake Rd, 729826", null, null, null, null, null, null, null, "+65 6269 3411", "The Singapore Zoo, formerly known as the Singapore Zoological Gardens or Mandai Zoo, occupies 28 hectares on the margins of Upper Seletar Reservoir within Singapore's heavily forested central catchment area.", null, false, "~/images/Zoo.jpeg", null, null, "Singapore Zoo", null, null, FoodLeisureType.POI, "https://www.mandai.com/en/singapore-zoo.html" },
+                    { 1, "8 Sentosa Gateway, 098269", null, null, null, null, null, null, null, "+65 6577 8888", "The happiest place on earth!", null, true, "~/images/USS.jpeg", null, null, "Universal Studios Singapore", null, null, FoodLeisureType.POI, "https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore" }
                 });
 
             migrationBuilder.InsertData(
@@ -773,8 +784,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "foodleisure_id", "cuisine" },
                 values: new object[,]
                 {
-                    { 1, CuisineType.Western },
-                    { 2, CuisineType.Chinese }
+                    { 2, CuisineType.Chinese },
+                    { 1, CuisineType.Western }
                 });
 
             migrationBuilder.InsertData(
@@ -783,8 +794,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "invcate_id", "cate_name" },
                 values: new object[,]
                 {
-                    { 2, "Bathroom Items" },
-                    { 1, "Red Wine" }
+                    { 1, "Red Wine" },
+                    { 2, "Bathroom Items" }
                 });
 
             migrationBuilder.InsertData(
@@ -793,8 +804,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "requesttype_id", "created_at", "deleted_at", "is_deleted", "type_value" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(2760), new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(3550), false, "RoomService" },
-                    { 2, new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(4960), new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(5050), false, "Bathroom replenishment" }
+                    { 1, new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(1120), new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(1920), false, "RoomService" },
+                    { 2, new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(3340), new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(3410), false, "Bathroom replenishment" }
                 });
 
             migrationBuilder.InsertData(
@@ -864,7 +875,9 @@ namespace personalised_concierge_m1.Migrations
                 values: new object[,]
                 {
                     { 1, 1, "1", true },
-                    { 2, 2, "1", true }
+                    { 3, 1, "1", true },
+                    { 2, 2, "1", true },
+                    { 4, 2, "1", true }
                 });
 
             migrationBuilder.InsertData(
@@ -881,11 +894,13 @@ namespace personalised_concierge_m1.Migrations
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "Accounts",
-                columns: new[] { "account_id", "access_key", "currency", "distance_from_hotel", "email", "email_confirmed", "facility_id", "feedback_id", "full_name", "guest_type", "has_reservation", "location", "password_hash", "phone_number", "phone_number_confirmed", "position", "request_id", "reservation_id", "role_id", "secret_hashpin", "two_factor_enabled", "username" },
+                columns: new[] { "account_id", "access_key", "currency", "distance_from_hotel", "email", "email_confirmed", "facility_id", "feedback_id", "full_name", "guest_type", "has_reservation", "location", "password_hash", "phone_number", "phone_number_confirmed", "position", "profile_pic", "request_id", "reservation_id", "role_id", "secret_hashpin", "two_factor_enabled", "username" },
                 values: new object[,]
                 {
-                    { 1, null, "sgd", 0m, "john_doe@gmail.com", true, 1, 1, "John Doe", null, true, "Singapore", "123", 12345678, true, "guest", 1, 1, 1, "not so secret", true, "John Doe" },
-                    { 2, null, "sgd", 0m, "sarah_ellis@gmail.com", true, 2, 2, "Sarah Ellis", null, true, "Singapore", "123", 98765432, true, "guest", 2, 1, 2, "very so secret", true, "sarahellis" }
+                    { 1, null, "sgd", 0m, "john_doe@gmail.com", true, 1, 1, "John Doe", null, true, "Singapore", "123", 12345678, true, "guest", "~/images/PFP2.png", 1, 1, 1, "not so secret", true, "John Doe" },
+                    { 3, null, "sgd", 0m, "sarah_ellis@gmail.com", true, 2, 2, "Wander Woman", null, true, "Singapore", "123", 98765432, true, "guest", "~/images/PFP3.png", 1, 1, 1, "very so secret", true, "wondergirl" },
+                    { 2, null, "sgd", 0m, "sarah_ellis@gmail.com", true, 2, 2, "Sarah Ellis", null, true, "Singapore", "123", 98765432, true, "guest", "~/images/PFP1.png", 2, 1, 2, "very so secret", true, "sarahellis" },
+                    { 4, null, "sgd", 0m, "sarah_ellis@gmail.com", true, 2, 2, "Super Man", null, true, "Singapore", "123", 98765432, true, "guest", "~/images/PFP4.png", 2, 1, 1, "very so secret", true, "superboy" }
                 });
 
             migrationBuilder.InsertData(
@@ -904,8 +919,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "facilitybooking_id", "account_id", "booking_end", "booking_start", "facility_id" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(9220), new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(8430), 1 },
-                    { 2, 2, new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(750), new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(670), 2 }
+                    { 1, 1, new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(5640), new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(4810), 1 },
+                    { 2, 2, new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(7040), new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(6960), 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -914,8 +929,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "feedback_id", "account_id", "created_at", "description", "type" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(5620), "Perfect dream hotel after a hard project", "General" },
-                    { 2, 2, new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(7060), "Perfect dream hotel after a hard project", "General" }
+                    { 1, 1, new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(2820), "Perfect dream hotel after a hard project", "General" },
+                    { 2, 2, new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(4270), "Perfect dream hotel after a hard project", "General" }
                 });
 
             migrationBuilder.InsertData(
@@ -934,8 +949,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "account_id", "request_id", "created_at", "deleted_at", "is_deleted", "serviced_at", "serviced_by", "status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(1610), new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(2360), false, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(3060), 1, "In progress" },
-                    { 2, 2, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4380), new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4460), false, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4530), 2, "In progress" }
+                    { 2, 2, new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(2040), new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(2150), false, new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(2220), 2, "In progress" },
+                    { 1, 1, new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(9230), new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(9990), false, new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(680), 1, "In progress" }
                 });
 
             migrationBuilder.InsertData(
@@ -964,18 +979,20 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "reservation_id", "account_id", "end_date", "room_id", "start_date" },
                 values: new object[,]
                 {
+                    { 3, 3, new DateTime(2021, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, new DateTime(2021, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 1, 1, new DateTime(2021, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2021, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 2, new DateTime(2021, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2021, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 2, 2, new DateTime(2021, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2021, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 4, new DateTime(2021, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, new DateTime(2021, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "Reviews",
-                columns: new[] { "review_id", "account_id", "foodleisure_id", "rating", "review" },
+                columns: new[] { "review_id", "Date", "account_id", "foodleisure_id", "rating", "review" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, Rating.One, "saizeriya sucks" },
-                    { 2, 2, 2, Rating.Five, "mcdonalds is awesome!" }
+                    { 2, null, 2, 2, Rating.Five, "mcdonalds is awesome!" },
+                    { 1, null, 1, 1, Rating.One, "saizeriya sucks" }
                 });
 
             migrationBuilder.InsertData(
@@ -1005,7 +1022,7 @@ namespace personalised_concierge_m1.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2022, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "10 Fun things to do in SG when you are on a budget", 1, "Things to Do in Singapore" },
-                    { 2, new DateTime(2022, 2, 24, 11, 21, 46, 189, DateTimeKind.Local).AddTicks(2510), "Alex dream holiday", 2, "Alex Checklist" }
+                    { 2, new DateTime(2022, 2, 26, 22, 26, 51, 77, DateTimeKind.Local).AddTicks(3080), "Alex dream holiday", 2, "Alex Checklist" }
                 });
 
             migrationBuilder.InsertData(
