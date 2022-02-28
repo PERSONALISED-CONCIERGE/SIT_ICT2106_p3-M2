@@ -29,6 +29,13 @@ namespace personalised_concierge_m1.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult featuredFoodLeisure()
+        {
+            return View();
+        }
+
+
 
 
         [HttpPost]
@@ -69,9 +76,9 @@ namespace personalised_concierge_m1.Controllers
         }
 
 
-    
 
-        
+
+
 
     }
 }
