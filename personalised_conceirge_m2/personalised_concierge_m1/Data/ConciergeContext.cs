@@ -18,7 +18,7 @@ namespace personalised_concierge_m1.Data
     {
         public ConciergeContext(DbContextOptions<ConciergeContext> options) : base(options)
         {
-            
+
         }
 
         public static ITransportationRepo Transportation { get; internal set; }
@@ -31,7 +31,7 @@ namespace personalised_concierge_m1.Data
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
-        
+
         //M1 Hotel Services
         public DbSet<HotelService> HotelServices { get; set; }
 
@@ -51,29 +51,29 @@ namespace personalised_concierge_m1.Data
         public DbSet<Attraction> Attractions { get; set; }
         public DbSet<FoodLeisure> FoodLeisures { get; set; }
         public DbSet<Food> Foods { get; set; }
-        
+
         //M2 Other Services
         public DbSet<FoodDelivery> FoodDeliveries { get; set; }
         public DbSet<Navigation> Navigations { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Transportation> Transportations { get; set; }
         public DbSet<TransportFares> TransportFares { get; set; }
-        
+
         //M3 Facilities
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<FacilityBooking> FacilityBookings { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
-        
+
         //M3 Inventories
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<InventoryCategory> InventoryCategories { get; set; }
         public DbSet<InventoryRequest> InventoryRequests { get; set; }
-        
+
         //M3 Requests
         public DbSet<GuestRequest> GuestRequests { get; set; }
         public DbSet<Request> Requests { get; set; }
         public DbSet<RequestType> RequestTypes { get; set; }
-        
+
         #endregion
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
@@ -83,11 +83,11 @@ namespace personalised_concierge_m1.Data
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FoodLeisureType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<NavigationType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FaresType>();
-            builder.UseNpgsql(connectionString: "Server=localhost; Database=maymadiaung; Port=5432; User Id=maymadiaung; Password=1234;");
+            builder.UseNpgsql(connectionString: "Server=PostgresSQLServer; Port=5432; Database=postgres; User Id=postgres; Password=yycK8-_SH:erf2f;");
         }
 
-        
-        
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("public");
@@ -101,17 +101,17 @@ namespace personalised_concierge_m1.Data
             modelBuilder.Entity<Food>()
                 .Property(u => u.cuisine)
                 .HasConversion<CuisineType>();
-            
+
             modelBuilder.Entity<FoodLeisure>()
                 .Property(u => u.type)
                 .HasConversion<FoodLeisureType>();
-            
-            
+
+
             modelBuilder.Entity<Review>()
                 .Property(u => u.rating)
                 .HasConversion<Rating>();
-            
-            
+
+
             modelBuilder.Entity<Navigation>()
                 .Property(u => u.type)
                 .HasConversion<NavigationType>();
@@ -119,13 +119,13 @@ namespace personalised_concierge_m1.Data
             modelBuilder.Entity<TransportFares>()
                 .Property(u => u.fares_type)
                 .HasConversion<FaresType>();
-            
-            
+
+
 
             //M3 model builder
             modelBuilder.Entity<GuestRequest>()
-                .HasKey(g => new {g.account_id, g.request_id}); //create composite key
-            
+                .HasKey(g => new { g.account_id, g.request_id }); //create composite key
+
             modelBuilder.Seed();
         }
     }
