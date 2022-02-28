@@ -70,13 +70,7 @@ namespace personalised_concierge_m1.Migrations
                     type = table.Column<FoodLeisureType>(type: "food_leisure_type", nullable: false),
                     address = table.Column<string>(type: "varchar(500)", nullable: false),
                     featured = table.Column<bool>(type: "boolean", nullable: false),
-                    businessHours1 = table.Column<string>(type: "varchar(100)", nullable: true),
-                    businessHours2 = table.Column<string>(type: "varchar(100)", nullable: true),
-                    businessHours3 = table.Column<string>(type: "varchar(100)", nullable: true),
-                    businessHours4 = table.Column<string>(type: "varchar(100)", nullable: true),
-                    businessHours5 = table.Column<string>(type: "varchar(100)", nullable: true),
-                    businessHours6 = table.Column<string>(type: "varchar(100)", nullable: true),
-                    businessHours7 = table.Column<string>(type: "varchar(100)", nullable: true),
+                    businessHours = table.Column<string>(type: "varchar(100)", nullable: true),
                     latitude = table.Column<string>(type: "varchar(100)", nullable: true),
                     longtitude = table.Column<string>(type: "varchar(100)", nullable: true),
                     email = table.Column<string>(type: "varchar(100)", nullable: true),
@@ -775,7 +769,7 @@ namespace personalised_concierge_m1.Migrations
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "FoodLeisures",
-                columns: new[] { "foodleisure_id", "address", "businessHours1", "businessHours2", "businessHours3", "businessHours4", "businessHours5", "businessHours6", "businessHours7", "contact_num", "description", "email", "featured", "foodleisure_image", "latitude", "longtitude", "name", "nearestMRTStation", "supportedLanguage", "type", "website_link" },
+                columns: new[] { "foodleisure_id", "address", "businessHours", "businessHours2", "businessHours3", "businessHours4", "businessHours5", "businessHours6", "businessHours7", "contact_num", "description", "email", "featured", "foodleisure_image", "latitude", "longtitude", "name", "nearestMRTStation", "supportedLanguage", "type", "website_link" },
                 values: new object[,]
                 {
                     { 3, "252 North Bridge Road, #03-37, Raffles City Shopping Centre, Singapore 179103", null, null, null, null, null, null, null, "+65 6708 9288", "PS.Cafe opened in 1999 as a cosy cafe hidden within Projectshop clothing store.", null, false, "~/images/PScafe.jpeg", null, null, "PS.Cafe at Raffles City", null, null, FoodLeisureType.Restaurant, "https://www.pscafe.com" },

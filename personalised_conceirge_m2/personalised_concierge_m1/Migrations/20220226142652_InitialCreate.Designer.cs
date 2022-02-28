@@ -251,25 +251,7 @@ namespace personalised_concierge_m1.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(500)");
 
-                    b.Property<string>("businessHours1")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("businessHours2")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("businessHours3")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("businessHours4")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("businessHours5")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("businessHours6")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("businessHours7")
+                    b.Property<string>("businessHours")
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("contact_num")
