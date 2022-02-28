@@ -61,8 +61,8 @@ namespace personalised_concierge_m1.Migrations
                             facility_id = 1,
                             hotel_id = 1,
                             name = "Basketball Court",
-                            operation_end_time = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(2940),
-                            operation_start_time = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(1920),
+                            operation_end_time = new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(7166),
+                            operation_start_time = new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(6925),
                             status = "Available"
                         },
                         new
@@ -70,8 +70,8 @@ namespace personalised_concierge_m1.Migrations
                             facility_id = 2,
                             hotel_id = 2,
                             name = "Tennis Court",
-                            operation_end_time = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4450),
-                            operation_start_time = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4370),
+                            operation_end_time = new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(7553),
+                            operation_start_time = new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(7549),
                             status = "Available"
                         });
                 });
@@ -108,16 +108,16 @@ namespace personalised_concierge_m1.Migrations
                         {
                             facilitybooking_id = 1,
                             account_id = 1,
-                            booking_end = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(9220),
-                            booking_start = new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(8430),
+                            booking_end = new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(8689),
+                            booking_start = new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(8468),
                             facility_id = 1
                         },
                         new
                         {
                             facilitybooking_id = 2,
                             account_id = 2,
-                            booking_end = new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(750),
-                            booking_start = new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(670),
+                            booking_end = new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(9030),
+                            booking_start = new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(9027),
                             facility_id = 2
                         });
                 });
@@ -154,7 +154,7 @@ namespace personalised_concierge_m1.Migrations
                         {
                             feedback_id = 1,
                             account_id = 1,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(5620),
+                            created_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(160),
                             description = "Perfect dream hotel after a hard project",
                             type = "General"
                         },
@@ -162,7 +162,7 @@ namespace personalised_concierge_m1.Migrations
                         {
                             feedback_id = 2,
                             account_id = 2,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(7060),
+                            created_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(501),
                             description = "Perfect dream hotel after a hard project",
                             type = "General"
                         });
@@ -605,7 +605,7 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             checklist_id = 2,
-                            created_date = new DateTime(2022, 2, 24, 11, 21, 46, 189, DateTimeKind.Local).AddTicks(2510),
+                            created_date = new DateTime(2022, 2, 25, 12, 38, 57, 296, DateTimeKind.Local).AddTicks(7711),
                             description = "Alex dream holiday",
                             itinerary_id = 2,
                             name = "Alex Checklist"
@@ -1029,10 +1029,10 @@ namespace personalised_concierge_m1.Migrations
                         {
                             account_id = 1,
                             request_id = 1,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(1610),
-                            deleted_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(2360),
+                            created_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(1712),
+                            deleted_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(1933),
                             is_deleted = false,
-                            serviced_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(3060),
+                            serviced_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(2148),
                             serviced_by = 1,
                             status = "In progress"
                         },
@@ -1040,10 +1040,10 @@ namespace personalised_concierge_m1.Migrations
                         {
                             account_id = 2,
                             request_id = 2,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4380),
-                            deleted_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4460),
+                            created_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(2487),
+                            deleted_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(2491),
                             is_deleted = false,
-                            serviced_at = new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4530),
+                            serviced_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(2492),
                             serviced_by = 2,
                             status = "In progress"
                         });
@@ -1112,16 +1112,16 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             requesttype_id = 1,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(2760),
-                            deleted_at = new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(3550),
+                            created_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(4485),
+                            deleted_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(4707),
                             is_deleted = false,
                             type_value = "RoomService"
                         },
                         new
                         {
                             requesttype_id = 2,
-                            created_at = new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(4960),
-                            deleted_at = new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(5050),
+                            created_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(5118),
+                            deleted_at = new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(5122),
                             is_deleted = false,
                             type_value = "Bathroom replenishment"
                         });

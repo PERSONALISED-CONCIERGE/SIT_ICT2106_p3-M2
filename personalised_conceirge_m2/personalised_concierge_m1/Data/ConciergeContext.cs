@@ -83,7 +83,7 @@ namespace personalised_concierge_m1.Data
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FoodLeisureType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<NavigationType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FaresType>();
-            builder.UseNpgsql(connectionString: "Server=localhost; Database=maymadiaung; Port=5432; User Id=maymadiaung; Password=1234;");
+            builder.UseNpgsql(connectionString: "Server=localhost; Database=postgres; Port=5432; User Id=postgres; Password=123456;");
         }
 
         

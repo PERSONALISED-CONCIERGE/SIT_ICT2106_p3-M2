@@ -753,8 +753,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "facility_id", "hotel_id", "name", "operation_end_time", "operation_start_time", "status" },
                 values: new object[,]
                 {
-                    { 1, 1, "Basketball Court", new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(2940), new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(1920), "Available" },
-                    { 2, 2, "Tennis Court", new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4450), new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(4370), "Available" }
+                    { 1, 1, "Basketball Court", new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(7166), new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(6925), "Available" },
+                    { 2, 2, "Tennis Court", new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(7553), new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(7549), "Available" }
                 });
 
             migrationBuilder.InsertData(
@@ -793,8 +793,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "requesttype_id", "created_at", "deleted_at", "is_deleted", "type_value" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(2760), new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(3550), false, "RoomService" },
-                    { 2, new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(4960), new DateTime(2022, 2, 24, 11, 21, 46, 213, DateTimeKind.Local).AddTicks(5050), false, "Bathroom replenishment" }
+                    { 1, new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(4485), new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(4707), false, "RoomService" },
+                    { 2, new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(5118), new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(5122), false, "Bathroom replenishment" }
                 });
 
             migrationBuilder.InsertData(
@@ -904,8 +904,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "facilitybooking_id", "account_id", "booking_end", "booking_start", "facility_id" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(9220), new DateTime(2022, 2, 24, 11, 21, 46, 210, DateTimeKind.Local).AddTicks(8430), 1 },
-                    { 2, 2, new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(750), new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(670), 2 }
+                    { 1, 1, new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(8689), new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(8468), 1 },
+                    { 2, 2, new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(9030), new DateTime(2022, 2, 25, 12, 38, 57, 298, DateTimeKind.Local).AddTicks(9027), 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -914,8 +914,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "feedback_id", "account_id", "created_at", "description", "type" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(5620), "Perfect dream hotel after a hard project", "General" },
-                    { 2, 2, new DateTime(2022, 2, 24, 11, 21, 46, 211, DateTimeKind.Local).AddTicks(7060), "Perfect dream hotel after a hard project", "General" }
+                    { 1, 1, new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(160), "Perfect dream hotel after a hard project", "General" },
+                    { 2, 2, new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(501), "Perfect dream hotel after a hard project", "General" }
                 });
 
             migrationBuilder.InsertData(
@@ -934,8 +934,8 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "account_id", "request_id", "created_at", "deleted_at", "is_deleted", "serviced_at", "serviced_by", "status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(1610), new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(2360), false, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(3060), 1, "In progress" },
-                    { 2, 2, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4380), new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4460), false, new DateTime(2022, 2, 24, 11, 21, 46, 212, DateTimeKind.Local).AddTicks(4530), 2, "In progress" }
+                    { 1, 1, new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(1712), new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(1933), false, new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(2148), 1, "In progress" },
+                    { 2, 2, new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(2487), new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(2491), false, new DateTime(2022, 2, 25, 12, 38, 57, 299, DateTimeKind.Local).AddTicks(2492), 2, "In progress" }
                 });
 
             migrationBuilder.InsertData(
@@ -1005,7 +1005,7 @@ namespace personalised_concierge_m1.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2022, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "10 Fun things to do in SG when you are on a budget", 1, "Things to Do in Singapore" },
-                    { 2, new DateTime(2022, 2, 24, 11, 21, 46, 189, DateTimeKind.Local).AddTicks(2510), "Alex dream holiday", 2, "Alex Checklist" }
+                    { 2, new DateTime(2022, 2, 25, 12, 38, 57, 296, DateTimeKind.Local).AddTicks(7711), "Alex dream holiday", 2, "Alex Checklist" }
                 });
 
             migrationBuilder.InsertData(
