@@ -39,7 +39,25 @@ namespace personalised_concierge_m1.Controllers
             mymodel.reviews = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
             mymodel.accounts = _unitOfWork.AccountDetails.GetAll();
             string review = Request.Form["Review_Description"];
-            //remove 
+
+            //Get sum of all ratings
+            double totalratings = 0;
+            double avgrating = 0.0;
+            var count = 0;
+            foreach (Review areview in mymodel.reviews)
+            {
+
+                count++;
+                int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
+                totalratings += ratingInt;
+                avgrating = Math.Round(totalratings / count, 3);
+
+                mymodel.totalrating = totalratings;
+                mymodel.avgrating = avgrating;
+            }
+            
+
+            //display even if there is no submision from review form 
             if (review != null)
             {
 
@@ -55,13 +73,33 @@ namespace personalised_concierge_m1.Controllers
                 _m2UnitOfWork.ReviewDetails.Add(newReview);
                 Boolean result = _m2UnitOfWork.ReviewDetails.Save();
 
+                // if cannot submit review 
                 if (!result)
                 {
                     return NotFound();
                 }
                 else
                 {
+                    // all these for display after submit 
                     mymodel.reviews = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
+                    
+                    //count rating again on refresh ah!
+                    totalratings = 0;
+                    avgrating = 0.0;
+                    count = 0;
+                    foreach (Review areview in mymodel.reviews)
+                    {
+                        count++;
+                        int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
+                        totalratings += ratingInt;
+                        avgrating =  Math.Round(totalratings / count, 3);
+
+                        mymodel.totalrating = totalratings;
+                        mymodel.avgrating = avgrating;
+                    }
+
+
+
                     return View(mymodel);
                 }
             }
