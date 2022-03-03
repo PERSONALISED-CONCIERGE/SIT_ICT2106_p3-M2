@@ -51,7 +51,6 @@ namespace personalised_concierge_m1.Models.Entities.FoodLeisureServices
         [Column(TypeName = "varchar(100)")]
         public string businessHours { get; set; }
 
-
         [Column(TypeName = "varchar(100)")]
         public string latitude { get; set; }
 

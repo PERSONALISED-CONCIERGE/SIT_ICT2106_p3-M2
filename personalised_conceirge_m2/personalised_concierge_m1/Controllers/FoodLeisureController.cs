@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Dynamic;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using personalised_concierge_m1.Models.Interfaces;
 using personalised_concierge_m1.Models.Entities.OtherServices;
+using personalised_concierge_m1.Models.Entities.FoodLeisureServices;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -28,6 +30,27 @@ namespace personalised_concierge_m1.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult featuredFoodLeisure()
+        {
+            dynamic model = new ExpandoObject();
+            model.featuredFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAll();
+            // @Model.featuredFoodLeisure[1].featured
+            List<FoodLeisure> featuredFoodLeisure = new List<FoodLeisure>();
+            //! Check for the number of properties in the object
+            // Type type = typeof(YourClassName);
+            // int NumberOfRecords = type.GetProperties().Length;
+            foreach (var item in model.featuredFoodLeisure)
+            {
+                if (item.featured == true)
+                {
+                    featuredFoodLeisure.Add(item);
+                }
+            }
+            return View(featuredFoodLeisure);
+        }
+
 
 
 
@@ -67,11 +90,5 @@ namespace personalised_concierge_m1.Controllers
             }
             return View(mymodel);
         }
-
-
-    
-
-        
-
     }
 }

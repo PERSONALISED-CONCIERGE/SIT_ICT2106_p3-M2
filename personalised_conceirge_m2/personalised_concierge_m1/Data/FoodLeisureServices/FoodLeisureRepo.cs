@@ -5,9 +5,9 @@ using personalised_concierge_m1.Models.Entities.FoodLeisureServices;
 using personalised_concierge_m1.Models.Interfaces.FoodLeisureServices;
 
 namespace personalised_concierge_m1.Data.FoodLeisureServices
-{ 
+{
 
-      public class FoodLeisureRepo : GenericRepo<FoodLeisure>, IFoodLeisureRepo
+    public class FoodLeisureRepo : GenericRepo<FoodLeisure>, IFoodLeisureRepo
     {
         public FoodLeisureRepo(ConciergeContext context) : base(context)
         {
@@ -18,5 +18,9 @@ namespace personalised_concierge_m1.Data.FoodLeisureServices
             throw new System.NotImplementedException();
         }
 
+        public IFoodLeisureRepo getFeaturedFooDLeisure()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
