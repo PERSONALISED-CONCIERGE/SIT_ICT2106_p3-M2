@@ -16,7 +16,7 @@
             Just query and do the for loop
         *@
 
-        <img src="@Model.foodleisure_image">
+        <img src="@Url.Content(@Model[0].foodleisure_image)">
         @* @foreach (var item in Model)
             {
             <div>This is the properties: @item</div>
