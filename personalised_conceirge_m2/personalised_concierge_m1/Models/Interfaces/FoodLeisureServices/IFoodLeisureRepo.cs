@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using personalised_concierge_m1.Models.Entities.FoodLeisureServices;
 
 
@@ -7,5 +7,6 @@ namespace personalised_concierge_m1.Models.Interfaces.FoodLeisureServices
     public interface IFoodLeisureRepo : IGenericRepo<FoodLeisure>
     {
         IFoodLeisureRepo getFooDLeisureByID(int foodleisure_id);
+        IEnumerable<FoodLeisure> GetLimitedFoodLeisureBytype(FoodLeisureType foodleisuretype);
     }
 }

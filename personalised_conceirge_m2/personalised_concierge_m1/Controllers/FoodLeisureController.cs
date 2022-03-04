@@ -3,6 +3,7 @@ using System.Dynamic;
 using Microsoft.AspNetCore.Mvc;
 using personalised_concierge_m1.Models.Interfaces;
 using personalised_concierge_m1.Models.Entities.OtherServices;
+using personalised_concierge_m1.Models.Entities.FoodLeisureServices;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -26,9 +27,14 @@ namespace personalised_concierge_m1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            dynamic mymodel = new ExpandoObject();
+            mymodel.restaurants = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.Restaurant);
+
+
+            return View(mymodel);
         }
 
+       
 
 
         [HttpPost]
@@ -51,9 +57,6 @@ namespace personalised_concierge_m1.Controllers
                 int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
                 totalratings += ratingInt;
                 avgrating = Math.Round(totalratings / count, 3);
-
-                mymodel.totalrating = totalratings;
-                mymodel.avgrating = avgrating;
             }
             
 
@@ -93,16 +96,18 @@ namespace personalised_concierge_m1.Controllers
                         int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
                         totalratings += ratingInt;
                         avgrating =  Math.Round(totalratings / count, 3);
-
-                        mymodel.totalrating = totalratings;
-                        mymodel.avgrating = avgrating;
                     }
 
 
 
+                    mymodel.totalrating = totalratings;
+                    mymodel.avgrating = avgrating;
                     return View(mymodel);
                 }
             }
+
+            mymodel.totalrating = totalratings;
+            mymodel.avgrating = avgrating;
             return View(mymodel);
         }
 

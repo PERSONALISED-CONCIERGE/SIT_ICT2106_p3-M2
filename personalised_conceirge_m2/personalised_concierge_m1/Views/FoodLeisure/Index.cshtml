@@ -1,4 +1,6 @@
-﻿@page
+﻿@using personalised_concierge_m1.Models.Entities.FoodLeisureServices
+@model dynamic
+
 @{}
 
 <!DOCTYPE html>
@@ -12,18 +14,94 @@
         <div class="card-body">
             @using (Html.BeginForm("SpecificFoodLeisure", "FoodLeisure"))
             {
-                <input type="number" name="FoodLeisureID"/>
-                <br/>
+                <input type="number" name="FoodLeisureID" />
+                <br/><br/>
 
-                <input type="submit" value="Go Specific View"/>
+                <input type="submit" value="Go Specific View" />
             }
             This is some text within a card body.
         </div>
     </div>
+
+    <br />
+    <ul class="nav nav-tabs" id="myTab" role="tablist" style="background-color: #fff9d9;">
+        <li class="nav-item">
+            <a class="nav-link active" id="restaurants-tab" data-toggle="tab" href="#restaurants" role="tab" aria-controls="restaurants" aria-selected="true">Restaurants</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="hawkers-tab" data-toggle="tab" href="#hawkers" role="tab" aria-controls="hawkers" aria-selected="false">Local Food (Hawkers)</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="attractions-tab" data-toggle="tab" href="#attractions" role="tab" aria-controls="attractions" aria-selected="false">Tourist Attractions</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
+            <h2>Restaurants</h2>
+            <div class="row">
+                @foreach (FoodLeisure foodLeisure in Model.restaurants)
+                {
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="@Url.Content(@foodLeisure.foodleisure_image)" alt="@foodLeisure.name">
+                            <div class="card-body">
+                                <h5 class="card-title">@foodLeisure.name</h5>
+                                <p>Contact Number: @foodLeisure.contact_num</p>
+                                <p>Visit Reservation Page: <a href="@foodLeisure.website_link">HERE!</a></p>
+                                @using (Html.BeginForm("SpecificFoodLeisure", "FoodLeisure"))
+                                {
+                                   
+                                    @Html.Hidden("FoodLeisureID", (int)foodLeisure.foodleisure_id)
+
+                                    <input type="submit" value="Go Specific View" style="background-color: #fff9d9;"/>
+                                }
+                                
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                 }
+
+                <br/>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="hawkers" role="tabpanel" aria-labelledby="hawkers-tab">
+                <h2>Hawkers</h2>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+            <div class="tab-pane fade" id="attractions" role="tabpanel" aria-labelledby="attractions-tab">
+                <h2>Tourist Attractions</h2>
+
+
+            </div>
+        </div>
+
+
+
 
 </body>
 </html>
 
 
 
-     
