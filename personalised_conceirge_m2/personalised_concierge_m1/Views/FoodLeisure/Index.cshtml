@@ -37,7 +37,9 @@
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="restaurants" role="tabpanel" aria-labelledby="restaurants-tab">
+            <br />
             <h2>Restaurants</h2>
+            <br />
             <div class="row">
                 @foreach (FoodLeisure foodLeisure in Model.restaurants)
                 {
@@ -50,51 +52,87 @@
                                 <p>Visit Reservation Page: <a href="@foodLeisure.website_link">HERE!</a></p>
                                 @using (Html.BeginForm("SpecificFoodLeisure", "FoodLeisure"))
                                 {
-                                   
+
                                     @Html.Hidden("FoodLeisureID", (int)foodLeisure.foodleisure_id)
 
-                                    <input type="submit" value="Go Specific View" style="background-color: #fff9d9;"/>
+                                    <input type="submit" value="Go Specific View" style="background-color: #fff9d9;" />
                                 }
-                                
+
                             </div>
                         </div>
-                        <br/>
+                        <br />
                     </div>
-                 }
+                }
 
-                <br/>
+                <br />
             </div>
         </div>
 
         <div class="tab-pane fade" id="hawkers" role="tabpanel" aria-labelledby="hawkers-tab">
-                <h2>Hawkers</h2>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="card">
+            <br />
+            <h2>Hawkers</h2>
+            <br />
+            <div class="row">
+                @foreach (FoodLeisure foodLeisure in Model.hawkers)
+                {
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="@Url.Content(@foodLeisure.foodleisure_image)" alt="@foodLeisure.name">
                             <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h5 class="card-title">@foodLeisure.name</h5>
+                                <p>Contact Number: @foodLeisure.contact_num</p>
+                                <p>Visit Reservation Page: <a href="@foodLeisure.website_link">HERE!</a></p>
+                                @using (Html.BeginForm("SpecificFoodLeisure", "FoodLeisure"))
+                                {
+
+                                    @Html.Hidden("FoodLeisureID", (int)foodLeisure.foodleisure_id)
+
+                                    <input type="submit" value="Go Specific View" style="background-color: #fff9d9;" />
+                                }
+
                             </div>
                         </div>
+                        <br />
                     </div>
-                    <div class="col-sm-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
+
+                <br />
+            </div>
 
         </div>
-            <div class="tab-pane fade" id="attractions" role="tabpanel" aria-labelledby="attractions-tab">
-                <h2>Tourist Attractions</h2>
+        <div class="tab-pane fade" id="attractions" role="tabpanel" aria-labelledby="attractions-tab">
+            <br />
+            <h2>Places Of Interest</h2>
+            <br />
+            <div class="row">
+                @foreach (FoodLeisure foodLeisure in Model.pois)
+                {
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="@Url.Content(@foodLeisure.foodleisure_image)" alt="@foodLeisure.name">
+                            <div class="card-body">
+                                <h5 class="card-title">@foodLeisure.name</h5>
+                                <p>Contact Number: @foodLeisure.contact_num</p>
+                                <p>Visit Reservation Page: <a href="@foodLeisure.website_link">HERE!</a></p>
+                                @using (Html.BeginForm("SpecificFoodLeisure", "FoodLeisure"))
+                                {
 
+                                    @Html.Hidden("FoodLeisureID", (int)foodLeisure.foodleisure_id)
 
+                                    <input type="submit" value="Go Specific View" style="background-color: #fff9d9;" />
+                                }
+
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                }
+
+                <br />
             </div>
+
+
+        </div>
         </div>
 
 
