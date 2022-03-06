@@ -30,7 +30,7 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
         [ForeignKey("foodleisure_id")]
         public FoodLeisure FoodLeisure { get; set; }
 
-        [Column(TypeName = "varchar(500)")]
+        [Column(TypeName = "varchar(10000)")]
         public string review { get; set; }
 
         [DataType(DataType.Date)]
