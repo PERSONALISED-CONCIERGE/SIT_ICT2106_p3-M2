@@ -48,6 +48,7 @@ namespace personalised_concierge_m1
         {
             services.AddDbContext<ConciergeContext>(options =>
                 {
+
                     options.UseNpgsql(Configuration.GetConnectionString("P306Database"));
                     options.EnableSensitiveDataLogging();
                 }

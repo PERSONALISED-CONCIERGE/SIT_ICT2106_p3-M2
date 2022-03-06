@@ -1,0 +1,89 @@
+@using personalised_concierge_m1.Models.Entities.FoodLeisureServices
+
+@model dynamic
+
+
+<!DOCTYPE html>
+ <html>
+
+ <body>
+     <div style="overflow-x:auto;">
+         <table class="table table-striped">
+             <thead>
+                 <tr>
+                     <th scope="col">#</th>
+                     <th scope="col">Name</th>
+                     <th scope="col">Description</th>
+                     <th scope="col">Website Link</th>
+                     <th scope="col">Contact Number</th>
+                     <th scope="col">Type</th>
+                     <th scope="col">Address</th>
+                     <th scope="col">Featured</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 @foreach (FoodLeisure foodleisure in Model.myLeisure)
+                 {
+
+                     <tr>
+                         <td>@foodleisure.foodleisure_id</td>
+                         <td>@foodleisure.name</td>
+                         <td>@foodleisure.description</td>
+                         <td>@foodleisure.website_link</td>
+                         <td>@foodleisure.contact_num</td>
+                         <td>@foodleisure.type</td>
+                         <td>@foodleisure.address</td>
+
+                         <td>
+                             @using (Html.BeginForm("Edit", "FeaturedFoodLeisure"))
+                             {
+                                 @Html.Hidden("FoodLeisureID", @foodleisure.foodleisure_id)
+                                 @Html.Hidden("featured", false)
+                                 <input type="submit" value="remove" />
+                             }
+                         </td>
+
+
+
+                     </tr>
+                 }
+             </tbody>
+         </table>
+     </div>
+
+     <hr />
+     <p>
+         <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample"
+                 aria-expanded="false" aria-controls="collapseExample">
+             Add New Featured Item 
+         </button>
+     </p>
+     <div class="collapse" id="collapseExample">
+         <div class="card card-body">
+
+           
+                 @using (Html.BeginForm("Edit", "FeaturedFoodLeisure"))
+                 {
+
+                     @Html.DropDownList("FoodLeisureName", new SelectList(Model.nameList),
+                       "Select FoodLeisure Item ",
+                       new { @class = "form-control" })
+
+                     @Html.Hidden("featured", true)
+
+                     <input type="submit" value="Submit">
+
+
+                 }
+             
+
+
+         </div>
+     </div>
+
+
+ </body>
+</html>
+
+
+        
