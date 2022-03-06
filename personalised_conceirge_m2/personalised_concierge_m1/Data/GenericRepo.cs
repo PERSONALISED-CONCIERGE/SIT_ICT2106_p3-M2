@@ -8,7 +8,7 @@ namespace personalised_concierge_m1.Data
 {
     public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
-        private readonly ConciergeContext _context;
+        public readonly ConciergeContext _context;
         public GenericRepo(ConciergeContext context)
         {
             this._context = context;

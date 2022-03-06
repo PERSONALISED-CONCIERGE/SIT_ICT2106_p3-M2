@@ -1,0 +1,64 @@
+@using personalised_concierge_m1.Models.Entities.FoodLeisureServices
+@model dynamic
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "FeaturedFoodLeisure"))
+{
+<h3 style="padding:30px;">Edit Featured Food Leisure</h3>
+
+<div align="center">
+    <div class="form">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <input type="hidden" @Model.foodLeisure.foodleisure_id />
+                <!--<p>Featured Food Leisure @Model.foodLeisure.foodleisure_id</p>-->
+                <div class="form-group" style="text-align:left;">
+                    <label class="control-label">Name</label>
+                    @Html.TextArea("foodLeisure.name", new { @class = "form-control", @readonly = "readonly"})
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6" style="text-align:left;">
+                        <label class-="control-label">Description</label>
+                        @Html.TextArea("foodLeisure.description", new { @class = "form-control", @readonly = "readonly"})
+                    </div>
+                    <div class="form-group col-md-6" style="text-align:left;">
+                        <label class="control-label">Website Link</label>
+                        @Html.TextArea("foodLeisure.website_link", new { @class = "form-control", @readonly = "readonly"})
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6" style="text-align:left;">
+                        <label class-="control-label">Contact Number</label>
+                        @Html.TextArea("foodLeisure.contact_num", new { @class = "form-control", @readonly = "readonly"})
+                    </div>
+                    <div class="form-group col-md-6" style="text-align:left;">
+                        <label class="control-label">Type</label>
+                        @Html.TextArea("foodLeisure.type", new { @class = "form-control", @readonly = "readonly"})
+                    </div>
+                </div>
+                <div class="form-group" style="text-align:left;">
+                    <label class="control-label">Address</label>
+                    @Html.TextArea("foodLeisure.address", new { @class = "form-control", @readonly = "readonly"})
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6" style="text-align:left;">
+                        <label class="control-label">Featured</label>
+                        @Html.RadioButton("featured", true, new { })
+                    </div>
+                    <div class="form-group col-md-6" style="text-align:left;">
+                        <label class="control-label">Not Featured</label>
+                        @Html.RadioButton("featured", false, new { })
+                    </div>
+                </div>
+                @using (Html.BeginForm("Edit","FeaturedFoodLeisure")){
+                @Html.Hidden("FoodLeisureID", @foodleisure.foodleisure_id)
+                <input type="submit" value="Update" />
+                }
+            </form>
+        </div>
+    </div>
+</div>
+}
