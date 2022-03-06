@@ -10,6 +10,7 @@ namespace personalised_concierge_m1.Models.Interfaces.FoodLeisureServices
         //RoomType Entity
         IFoodLeisureRepo getAllFoodLeisure();
         IFoodLeisureRepo getFoodLeisureById(int foodleisure_id);
-        IEnumerable<FoodLeisure> UpdateFeatured(FoodLeisure foodLeisure);
+        void UpdateFeatured(FoodLeisure foodLeisure);
+        IEnumerable<FoodLeisure> GetFeaturedFoodLeisure(bool featured);
     }
 }

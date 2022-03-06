@@ -19,9 +19,16 @@ namespace personalised_concierge_m1.Data.FoodLeisureServices
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<FoodLeisure> UpdateFeatured(FoodLeisure foodLeisure)
+        public void UpdateFeatured(FoodLeisure foodLeisure)
         {
-            return _context.FoodLeisures.(Entry(foodLeisure).Property("featured").IsModified = true).SaveChanges();
+            var foodLeisure_id = foodLeisure.foodleisure_id;
+            _context.FoodLeisures.Attach(foodLeisure).Property(foodLeisure => foodLeisure.featured).IsModified = true;
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<FoodLeisure> GetFeaturedFoodLeisure(bool featured)
+        {
+            return _context.FoodLeisures.Where(FoodLeisure => FoodLeisure.featured == featured).ToList();
         }
     }
 }
