@@ -12,7 +12,7 @@ using personalised_concierge_m1.Models.Entities.OtherServices;
 using personalised_concierge_m1.Models.Entities.Requests;
 using personalised_concierge_m1.Models.Interfaces.OtherServices;
 using System.Collections.Generic;
-using System;
+
 
 namespace personalised_concierge_m1.Data
 {
@@ -26,6 +26,7 @@ namespace personalised_concierge_m1.Data
 
 
         public static ITransportationRepo Transportation { get; internal set; }
+        public static IEnumerable<FoodLeisure> FoodLeisure { get; internal set; }
 
         //Entities need to be set in DB using DBSet so that EF knows where to look for the data.
         #region DBSetting Entities
@@ -87,7 +88,9 @@ namespace personalised_concierge_m1.Data
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FoodLeisureType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<NavigationType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FaresType>();
-            builder.UseNpgsql(connectionString:"Server=ec2-50-19-32-96.compute-1.amazonaws.com; Database=d1oj5mvl9l9lk1;Port=5432; User Id=zzzdwyspgzgwfy; Password=785618b138278c89939f83e523bf40609a490d176ab401f29a97c125c2feeb3e; SslMode=Require; Trust Server Certificate = true; ");
+
+            builder.UseNpgsql(connectionString: "Server=db2106.crpbbktmz3yf.us-east-1.rds.amazonaws.com; Database=postgres; Port=5432; User Id=postgres; Password=yycK8-_SH:erf2f; SslMode=Prefer; Trust Server Certificate = true; ");
+
         }
 
         
