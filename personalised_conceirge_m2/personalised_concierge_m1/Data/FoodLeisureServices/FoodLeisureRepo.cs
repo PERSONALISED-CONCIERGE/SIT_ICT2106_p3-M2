@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using personalised_concierge_m1.Models.Entities.FoodLeisureServices;
 using personalised_concierge_m1.Models.Interfaces.FoodLeisureServices;
 using System.Linq;
@@ -17,6 +19,7 @@ namespace personalised_concierge_m1.Data.FoodLeisureServices
             throw new System.NotImplementedException();
         }
 
+
         public void UpdateFeatured(FoodLeisure foodLeisure)
         {
             _context.FoodLeisures.Attach(foodLeisure).Property(foodLeisure => foodLeisure.featured).IsModified = true;
@@ -31,6 +34,11 @@ namespace personalised_concierge_m1.Data.FoodLeisureServices
         public FoodLeisure GetFoodLeisureByName(string name)
         {
             return _context.Set<FoodLeisure>().First(FoodLeisure => FoodLeisure.name == name); ;
+        }
+        
+        public IEnumerable<FoodLeisure> GetLimitedFoodLeisureBytype(FoodLeisureType foodleisuretype)
+        {
+            return _context.FoodLeisures.Where(FoodLeisure => FoodLeisure.type == foodleisuretype).Take(100).ToList();
         }
 
     }

@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using personalised_concierge_m1.Models.Entities.FoodLeisureServices;
 using System.Linq;
 using System.Collections.Generic;
@@ -14,5 +14,6 @@ namespace personalised_concierge_m1.Models.Interfaces.FoodLeisureServices
         void UpdateFeatured(FoodLeisure foodLeisure);
         IEnumerable<FoodLeisure> GetFeaturedFoodLeisure(bool featured);
         FoodLeisure GetFoodLeisureByName(string name);
+        IEnumerable<FoodLeisure> GetLimitedFoodLeisureBytype(FoodLeisureType foodleisuretype);
     }
 }
