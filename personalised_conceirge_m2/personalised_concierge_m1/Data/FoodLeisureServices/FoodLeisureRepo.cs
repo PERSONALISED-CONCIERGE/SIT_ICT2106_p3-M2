@@ -42,7 +42,7 @@ namespace personalised_concierge_m1.Data.FoodLeisureServices
 
         public IEnumerable<FoodLeisure> GetLimitedFoodLeisureBytype(FoodLeisureType foodleisuretype)
         {
-            return _context.FoodLeisures.Where(FoodLeisure => FoodLeisure.type == foodleisuretype).Take(100).ToList();
+            return _context.FoodLeisures.Where(FoodLeisure => FoodLeisure.type == foodleisuretype).OrderBy(FoodLeisure => FoodLeisure.foodleisure_id).Take(100).ToList();
         }
 
     }

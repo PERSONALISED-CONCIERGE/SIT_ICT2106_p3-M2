@@ -33,15 +33,7 @@ namespace personalised_concierge_m1.Controllers
             mymodel.pois = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.POI);
             mymodel.hawkers = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.Hawker);
 
-
-            return View(mymodel);
-        }
-
-        [HttpGet]
-        public IActionResult featuredFoodLeisure()
-        {
-            dynamic model = new ExpandoObject();
-            model.featuredFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAll();
+            mymodel.featuredFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAll();
 
             // Create the empty list of objects to store the featured foodleisure items
             List<FoodLeisure> featuredFoodLeisure = new List<FoodLeisure>();
@@ -51,19 +43,20 @@ namespace personalised_concierge_m1.Controllers
             // int NumberOfRecords = type.GetProperties().Length;
 
             //! Loop through the dynamic model and add the object that has featured == true to the list
-            foreach (var item in model.featuredFoodLeisure)
+            foreach (var item in mymodel.featuredFoodLeisure)
             {
                 if (item.featured == true)
                 {
                     featuredFoodLeisure.Add(item);
                 }
             }
-            //! Return the list of featured foodleisure items
-            return View(featuredFoodLeisure);
+            mymodel.featuredFoodLeisure = featuredFoodLeisure;
+
+
+            return View(mymodel);
         }
 
-
-
+       
 
         [HttpPost]
         public IActionResult SpecificFoodLeisure(int FoodLeisureID)
