@@ -36,11 +36,15 @@ namespace personalised_concierge_m1.Controllers
         {
             dynamic model = new ExpandoObject();
             model.featuredFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAll();
-            // @Model.featuredFoodLeisure[1].featured
+
+            // Create the empty list of objects to store the featured foodleisure items
             List<FoodLeisure> featuredFoodLeisure = new List<FoodLeisure>();
+
             //! Check for the number of properties in the object
             // Type type = typeof(YourClassName);
             // int NumberOfRecords = type.GetProperties().Length;
+
+            //! Loop through the dynamic model and add the object that has featured == true to the list
             foreach (var item in model.featuredFoodLeisure)
             {
                 if (item.featured == true)
@@ -48,6 +52,7 @@ namespace personalised_concierge_m1.Controllers
                     featuredFoodLeisure.Add(item);
                 }
             }
+            //! Return the list of featured foodleisure items
             return View(featuredFoodLeisure);
         }
 
@@ -78,7 +83,7 @@ namespace personalised_concierge_m1.Controllers
                 mymodel.totalrating = totalratings;
                 mymodel.avgrating = avgrating;
             }
-            
+
 
             //display even if there is no submision from review form 
             if (review != null)
@@ -105,7 +110,7 @@ namespace personalised_concierge_m1.Controllers
                 {
                     // all these for display after submit 
                     mymodel.reviews = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
-                    
+
                     //count rating again on refresh ah!
                     totalratings = 0;
                     avgrating = 0.0;
@@ -115,7 +120,7 @@ namespace personalised_concierge_m1.Controllers
                         count++;
                         int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
                         totalratings += ratingInt;
-                        avgrating =  Math.Round(totalratings / count, 3);
+                        avgrating = Math.Round(totalratings / count, 3);
 
                         mymodel.totalrating = totalratings;
                         mymodel.avgrating = avgrating;
