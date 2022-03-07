@@ -62,7 +62,7 @@ namespace personalised_concierge_m1
             services.AddTransient<IReservationRepo, ReservationRepo>();
             services.AddTransient<IRoomRepo, RoomRepo>();
             services.AddTransient<IRoomTypeRepo, RoomTypeRepo>();
-            
+
             // M1 Hotel Services
             services.AddTransient<IHotelServiceRepo, HotelServiceRepo>();
 
@@ -77,35 +77,35 @@ namespace personalised_concierge_m1
             services.AddTransient<IExpensesRepo, ExpensesRepo>();
             services.AddTransient<IItineraryItemRepo, ItineraryItemRepo>();
             services.AddTransient<IItineraryRepo, ItineraryRepo>();
-            
+
             // M2 Food Leisure Services
             services.AddTransient<IAttractionRepo, AttractionRepo>();
             services.AddTransient<IFoodLeisureRepo, FoodLeisureRepo>();
             services.AddTransient<IFoodRepo, FoodRepo>();
-            
+
             // M2 Other Services
             services.AddTransient<IFoodDeliveryRepo, FoodDeliveryRepo>();
             services.AddTransient<INavigationRepo, NavigationRepo>();
             services.AddTransient<IReviewRepo, ReviewRepo>();
-            services.AddTransient<ITransportationRepo,TransportationRepo>();
+            services.AddTransient<ITransportationRepo, TransportationRepo>();
 
             // M3 Facilities
             services.AddTransient<IFacilityRepo, FacilityRepo>();
             services.AddTransient<IFacilityBookingRepo, FacilityBookingRepo>();
             services.AddTransient<IFeedbackRepo, FeedbackRepo>();
-            
+
             // M3 Inventories 
             services.AddTransient<IInventoryRepo, InventoryRepo>();
             services.AddTransient<IInventoryCategoryRepo, InventoryCategoryRepo>();
             services.AddTransient<IInventoryRequestRepo, InventoryRequestRepo>();
-            
+
             // M3 Guest Requests
             services.AddTransient<IGuestRequestRepo, GuestRequestRepo>();
             services.AddTransient<IRequestRepo, RequestRepo>();
-            services.AddTransient<IRequestTypeRepo,RequestTypeRepo>();
-            
+            services.AddTransient<IRequestTypeRepo, RequestTypeRepo>();
+
             #endregion
-            
+
             // UnitOfWork Registration
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IM2UnitOfWork, M2UnitOfWork>();

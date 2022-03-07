@@ -6,9 +6,9 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace personalised_concierge_m1.Data.FoodLeisureServices
-{ 
+{
 
-      public class FoodLeisureRepo : GenericRepo<FoodLeisure>, IFoodLeisureRepo
+    public class FoodLeisureRepo : GenericRepo<FoodLeisure>, IFoodLeisureRepo
     {
         public FoodLeisureRepo(ConciergeContext context) : base(context)
         {
@@ -19,6 +19,10 @@ namespace personalised_concierge_m1.Data.FoodLeisureServices
             throw new System.NotImplementedException();
         }
 
+        public IFoodLeisureRepo getFeaturedFooDLeisure()
+        {
+            throw new System.NotImplementedException();
+        }
 
         public void UpdateFeatured(FoodLeisure foodLeisure)
         {
@@ -35,7 +39,7 @@ namespace personalised_concierge_m1.Data.FoodLeisureServices
         {
             return _context.Set<FoodLeisure>().First(FoodLeisure => FoodLeisure.name == name); ;
         }
-        
+
         public IEnumerable<FoodLeisure> GetLimitedFoodLeisureBytype(FoodLeisureType foodleisuretype)
         {
             return _context.FoodLeisures.Where(FoodLeisure => FoodLeisure.type == foodleisuretype).Take(100).ToList();

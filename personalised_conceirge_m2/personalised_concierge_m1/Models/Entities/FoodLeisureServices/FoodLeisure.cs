@@ -23,7 +23,7 @@ namespace personalised_concierge_m1.Models.Entities.FoodLeisureServices
         public string name { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(500)")]
+        [Column(TypeName = "varchar(10000)")]
         public string description { get; set; }
 
         [Column(TypeName = "varchar(500)")]
@@ -50,7 +50,6 @@ namespace personalised_concierge_m1.Models.Entities.FoodLeisureServices
 
         [Column(TypeName = "varchar(100)")]
         public string businessHours { get; set; }
-
 
         [Column(TypeName = "varchar(100)")]
         public string latitude { get; set; }
