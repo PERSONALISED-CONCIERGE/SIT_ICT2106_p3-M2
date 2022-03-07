@@ -13,6 +13,7 @@ using personalised_concierge_m1.Models.Entities.Requests;
 using personalised_concierge_m1.Models.Interfaces.OtherServices;
 using System.Collections.Generic;
 
+
 namespace personalised_concierge_m1.Data
 {
     public class ConciergeContext : DbContext
@@ -21,6 +22,8 @@ namespace personalised_concierge_m1.Data
         {
 
         }
+
+
 
         public static ITransportationRepo Transportation { get; internal set; }
         public static IEnumerable<FoodLeisure> FoodLeisure { get; internal set; }
@@ -85,7 +88,9 @@ namespace personalised_concierge_m1.Data
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FoodLeisureType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<NavigationType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FaresType>();
+
             builder.UseNpgsql(connectionString: "Server=db2106.crpbbktmz3yf.us-east-1.rds.amazonaws.com; Database=postgres; Port=5432; User Id=postgres; Password=yycK8-_SH:erf2f; SslMode=Prefer; Trust Server Certificate = true; ");
+
         }
 
 

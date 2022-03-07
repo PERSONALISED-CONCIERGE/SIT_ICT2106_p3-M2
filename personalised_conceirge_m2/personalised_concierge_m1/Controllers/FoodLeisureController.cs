@@ -28,7 +28,13 @@ namespace personalised_concierge_m1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            dynamic mymodel = new ExpandoObject();
+            mymodel.restaurants = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.Restaurant);
+            mymodel.pois = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.POI);
+            mymodel.hawkers = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.Hawker);
+
+
+            return View(mymodel);
         }
 
         [HttpGet]
@@ -79,9 +85,6 @@ namespace personalised_concierge_m1.Controllers
                 int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
                 totalratings += ratingInt;
                 avgrating = Math.Round(totalratings / count, 3);
-
-                mymodel.totalrating = totalratings;
-                mymodel.avgrating = avgrating;
             }
 
 
@@ -128,9 +131,14 @@ namespace personalised_concierge_m1.Controllers
 
 
 
+                    mymodel.totalrating = totalratings;
+                    mymodel.avgrating = avgrating;
                     return View(mymodel);
                 }
             }
+
+            mymodel.totalrating = totalratings;
+            mymodel.avgrating = avgrating;
             return View(mymodel);
         }
     }

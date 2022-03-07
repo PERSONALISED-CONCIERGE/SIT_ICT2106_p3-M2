@@ -10,7 +10,6 @@ namespace personalised_concierge_m1.Data
     {
         public readonly ConciergeContext _context;
 
-
         public GenericRepo(ConciergeContext context)
         {
             this._context = context;

@@ -12,6 +12,7 @@ namespace personalised_concierge_m1.Models.Entities.FoodLeisureServices
         POI,
         HotelFacilities
     }
+
     public class FoodLeisure
     {
         [Key]
@@ -41,7 +42,6 @@ namespace personalised_concierge_m1.Models.Entities.FoodLeisureServices
         [Required]
         [Column(TypeName = "varchar(500)")]
         public string address { get; set; }
-
 
         [Required]
         [Column(TypeName = "boolean")]
