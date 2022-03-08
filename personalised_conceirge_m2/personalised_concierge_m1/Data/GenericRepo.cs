@@ -8,7 +8,8 @@ namespace personalised_concierge_m1.Data
 {
     public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
-        private readonly ConciergeContext _context;
+        public readonly ConciergeContext _context;
+
         public GenericRepo(ConciergeContext context)
         {
             this._context = context;
@@ -30,10 +31,13 @@ namespace personalised_concierge_m1.Data
         {
             return _context.Set<T>().ToList();
         }
+
         public T GetById(int id)
         {
             return _context.Set<T>().Find(id);
         }
+
+
         public void Remove(T entity)
         {
             _context.Set<T>().Remove(entity);
@@ -42,9 +46,17 @@ namespace personalised_concierge_m1.Data
         {
             _context.Set<T>().RemoveRange(entities);
         }
-        public void Save()
+        public Boolean Save()
         {
-            _context.SaveChanges();
+            int returnValue = _context.SaveChanges();
+            if (returnValue <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
     }

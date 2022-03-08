@@ -13,7 +13,7 @@ namespace personalised_concierge_m1.Models.Interfaces
         void AddRange(IEnumerable<T> entities);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
-        void Save();
+        Boolean Save();
 
     }
 }

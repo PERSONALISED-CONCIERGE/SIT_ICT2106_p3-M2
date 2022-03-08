@@ -21,12 +21,12 @@
     <ItemGroup>
       <Folder Include="Data\UserDetails\" />
       <Folder Include="Migrations" />
-      <Folder Include="Views\Transportation\" />
       <Folder Include="wwwroot\images\" />
+      <Folder Include="Views\FoodLeisure\" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Views\Transportation\" />
+      <None Remove="Views\FoodLeisure\" />
     </ItemGroup>
     <ItemGroup>
       <Content Remove="wwwroot\images\" />

@@ -27,6 +27,9 @@ namespace personalised_concierge_m1.Models.Entities.UserDetails
         [Column(TypeName = "varchar(50)")]
         public string full_name { get; set; }
 
+        [Column(TypeName = "varchar(500)")]
+        public string profile_pic { get; set; }
+
         [Required]
         [Column(TypeName = "varchar(100)")]
         public string password_hash { get; set; }
