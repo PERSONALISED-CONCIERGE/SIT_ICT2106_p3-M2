@@ -60,123 +60,121 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Hello, world!</title>
   </head>
-  <body>
+<body>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script>
-        $(function () 
-        {
+    <script>$(function () {
             $(".pop-show").popover
-            ({
-                html: true,
-                trigger: "focus",
-                content: function() 
-                {
-                    return $('.pop-inn').html();
-                }
-            });
-        })
+                ({
+                    html: true,
+                    trigger: "focus",
+                    content: function () {
+                        return $('.pop-inn').html();
+                    }
+                });
+        })</script>
 
-    </script>
-    
     <div class="container">
         <div class="row">
 
         </div>
-        
+
         <div class="row">
             <div class="row" id="banner">
-                <h2>Book a transportation</h2> <button>Create new row</button>
+                <h1 style="color: #0b65a1;">Book A Taxi</h1> 
             </div>
-            
+
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">Taxi Company</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Fare Type</th>
-                    <th scope="col">Fare Price</th>
-                    <th scope="col">Phone Numbers</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-            <tbody>
-                @foreach (Transportation atransport in (dynamic) transport)
-                {
                     <tr>
-                    <td style="display: none;">@atransport.transport_id</td>
-                    <td>@atransport.company_name</td>
-                    <td>@atransport.description</td>
-                    <td></td>
-                    <td></td>
-                    <td>@atransport.contact_num</td>
-                    <td><a href="">IOS</a> | <a href="">Android</a></td>
-                    <td><button class="pop-show"data-toggle="popover" data-content="">Show @atransport.company_name</button></td> <! hardcode distance then diplay avg cost />
-                    </tr>   
-
-                     foreach ( TransportFares afare in (dynamic) transportfare)
+                        <th scope="col" style="color: #0b65a1;">Taxi Company</th>
+                        <th scope="col" style="color: #0b65a1;">Description</th>
+                        <th scope="col" style="color: #0b65a1;">Fare Type</th>
+                        <th scope="col" style="color: #0b65a1;">Fare Price</th>
+                        <th scope="col" style="color: #0b65a1;">Phone Numbers</th>
+                        <th scope="col" style="color: #0b65a1;"></th>
+                        <th scope="col" style="color: #0b65a1;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Transportation atransport in (dynamic)transport)
                     {
-                        if (atransport.transport_id == afare.transport_id)
-                        {
-                            <tr>
+                        <tr>
+                            <td style="display: none;">@atransport.transport_id</td>
+                            <td>@atransport.company_name</td>
+                            <td>@atransport.description</td>
                             <td></td>
                             <td></td>
-                            <td>@afare.fares_type</td>
-                            <td>@afare.fares</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            </tr>
-                        }
-                    }
-                    <div class="pop-inn" style="display:none;">
-                    
-                    @{
-                        int tid =  1;
-                        string fareType = "Standard";
-                        double totalDist = 4.0;
+                            <td>@atransport.contact_num</td>
+                            <td><a href="">IOS</a> | <a href="">Android</a></td>
+                            <td><button class="pop-show" data-toggle="popover" data-content="">Show @atransport.company_name</button></td> <! hardcode distance then diplay avg cost />
+                        </tr>
 
-                        
-                        foreach(TransportFares bfare in (dynamic) transportfare)
-                        { 
-                            if(tid == bfare.transport_id)
+
+
+                        foreach (TransportFares afare in (dynamic)transportfare)
+                        {
+                            if (atransport.transport_id == afare.transport_id)
                             {
-                                <p>@bfare.fares_type: @bfare.fares</p>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>@afare.fares_type</td>
+                                    <td>@afare.fares</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
                             }
                         }
-                        <p>Est Cost (@fareType): @estCost(tid, totalDist, fareType)</p>
-                        
-                        
-                    }
-                    </div> 
-                    @functions
+                        <div class="pop-inn" style="display:none;">
+
+                            @{
+                                int tid = 1;
+                                string fareType = "Standard";
+                                double totalDist = 4.0;
+
+
+                                foreach (TransportFares bfare in (dynamic)transportfare)
+                                {
+                                    if (tid == bfare.transport_id)
+                                    {
+                                        <p>@bfare.fares_type: @bfare.fares</p>
+                                    }
+                                }
+                                <p>Est Cost (@fareType): @estCost(tid, totalDist, fareType)</p>
+
+
+                            }
+                        </div>
+
+                        @functions
                     {
-                        private double estCost(int tid, double totalDist, string fareType)
-                        {
-                            double cost = 0;
-                            double standardFare = 0;
-                            double flagDown = 0;
-                            double initFare = 0;
-                            double costPerDist = 0;
-                            double initDist = 0;
-
-                            switch(tid)
+                            private double estCost(int tid, double totalDist, string fareType)
                             {
-                                case 1:
-                                    standardFare = 3.00;
-                                    flagDown = 10.00;
-                                    initFare = 0.22;
-                                    costPerDist = 0.4;
-                                    initDist = 10.00;
+                                double cost = 0;
+                                double standardFare = 0;
+                                double flagDown = 0;
+                                double initFare = 0;
+                                double costPerDist = 0;
+                                double initDist = 0;
 
-                                        if(totalDist <= initDist || totalDist > initDist)
+                                switch (tid)
+                                {
+                                    case 1:
+                                        standardFare = 3.00;
+                                        flagDown = 10.00;
+                                        initFare = 0.22;
+                                        costPerDist = 0.4;
+                                        initDist = 10.00;
+
+                                        if (totalDist <= initDist || totalDist > initDist)
                                         {
-                                            cost = (totalDist/costPerDist) * initFare;
-                                            if(fareType == "Standard")
+                                            cost = (totalDist / costPerDist) * initFare;
+                                            if (fareType == "Standard")
                                             {
                                                 cost += standardFare;
                                             }
@@ -184,29 +182,29 @@
                                             {
                                                 cost += flagDown;
                                             }
-                                            
+
                                         }
-                                    break;
-                                
-                                case 2:
-                                    standardFare = 4.00;
-                                    initFare = 0.70;
-                                            cost = totalDist * initFare;
-                                            cost += standardFare;   
-                                    break;
+                                        break;
 
-                                case 3:
-                                    standardFare = 4.00;
-                                    flagDown = 10.00;
-                                    initFare = 0.24;
-                                    costPerDist = 0.4;
-                                    double aftCostPerDist = 0.35;
-                                    initDist = 10.00;
+                                    case 2:
+                                        standardFare = 4.00;
+                                        initFare = 0.70;
+                                        cost = totalDist * initFare;
+                                        cost += standardFare;
+                                        break;
 
-                                        if(totalDist <= initDist)
+                                    case 3:
+                                        standardFare = 4.00;
+                                        flagDown = 10.00;
+                                        initFare = 0.24;
+                                        costPerDist = 0.4;
+                                        double aftCostPerDist = 0.35;
+                                        initDist = 10.00;
+
+                                        if (totalDist <= initDist)
                                         {
-                                            cost = (totalDist/costPerDist) * initFare;
-                                            if(fareType == "Standard")
+                                            cost = (totalDist / costPerDist) * initFare;
+                                            if (fareType == "Standard")
                                             {
                                                 cost += standardFare;
                                             }
@@ -214,14 +212,14 @@
                                             {
                                                 cost += flagDown;
                                             }
-                                            
+
                                         }
                                         else
                                         {
                                             cost = initDist * initFare;
-                                            cost += ((totalDist - initDist)/aftCostPerDist) * initFare;
-                                            cost = Math.Round(cost,2);
-                                            if(fareType == "Standard")
+                                            cost += ((totalDist - initDist) / aftCostPerDist) * initFare;
+                                            cost = Math.Round(cost, 2);
+                                            if (fareType == "Standard")
                                             {
                                                 cost += standardFare;
                                             }
@@ -230,16 +228,16 @@
                                                 cost += flagDown;
                                             }
                                         }
-                                    break;
+                                        break;
+                                }
+                                return cost;
                             }
-                            return cost;
                         }
                     }
-                }
-            </tbody>
+                </tbody>
             </table>
-            
-             <p><b>General steps for making a transportation Booking</b></p>
+
+            <p><b>General steps for making a transportation Booking</b></p>
             <ol>
                 <li>Download Grab/Confort Del gro app</li>
                 <li>Enter destination and pick up point destination</li>
@@ -249,4 +247,7 @@
             </ol>
         </div>
     </div>
-  </body>
+    <br />
+    <br />
+
+</body>
