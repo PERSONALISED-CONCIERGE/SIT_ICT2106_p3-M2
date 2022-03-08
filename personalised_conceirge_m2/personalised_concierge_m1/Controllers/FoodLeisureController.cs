@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Dynamic;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using personalised_concierge_m1.Models.Interfaces;
 using personalised_concierge_m1.Models.Entities.OtherServices;
+using personalised_concierge_m1.Models.Entities.FoodLeisureServices;
 
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -26,10 +28,35 @@ namespace personalised_concierge_m1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            dynamic mymodel = new ExpandoObject();
+            mymodel.restaurants = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.Restaurant);
+            mymodel.pois = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.POI);
+            mymodel.hawkers = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.Hawker);
+
+            mymodel.featuredFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAll();
+
+            // Create the empty list of objects to store the featured foodleisure items
+            List<FoodLeisure> featuredFoodLeisure = new List<FoodLeisure>();
+
+            //! Check for the number of properties in the object
+            // Type type = typeof(YourClassName);
+            // int NumberOfRecords = type.GetProperties().Length;
+
+            //! Loop through the dynamic model and add the object that has featured == true to the list
+            foreach (var item in mymodel.featuredFoodLeisure)
+            {
+                if (item.featured == true)
+                {
+                    featuredFoodLeisure.Add(item);
+                }
+            }
+            mymodel.featuredFoodLeisure = featuredFoodLeisure;
+
+
+            return View(mymodel);
         }
 
-
+       
 
         [HttpPost]
         public IActionResult SpecificFoodLeisure(int FoodLeisureID)
@@ -51,11 +78,8 @@ namespace personalised_concierge_m1.Controllers
                 int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
                 totalratings += ratingInt;
                 avgrating = Math.Round(totalratings / count, 3);
-
-                mymodel.totalrating = totalratings;
-                mymodel.avgrating = avgrating;
             }
-            
+
 
             //display even if there is no submision from review form 
             if (review != null)
@@ -82,7 +106,7 @@ namespace personalised_concierge_m1.Controllers
                 {
                     // all these for display after submit 
                     mymodel.reviews = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
-                    
+
                     //count rating again on refresh ah!
                     totalratings = 0;
                     avgrating = 0.0;
@@ -92,7 +116,7 @@ namespace personalised_concierge_m1.Controllers
                         count++;
                         int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
                         totalratings += ratingInt;
-                        avgrating =  Math.Round(totalratings / count, 3);
+                        avgrating = Math.Round(totalratings / count, 3);
 
                         mymodel.totalrating = totalratings;
                         mymodel.avgrating = avgrating;
@@ -100,16 +124,15 @@ namespace personalised_concierge_m1.Controllers
 
 
 
+                    mymodel.totalrating = totalratings;
+                    mymodel.avgrating = avgrating;
                     return View(mymodel);
                 }
             }
+
+            mymodel.totalrating = totalratings;
+            mymodel.avgrating = avgrating;
             return View(mymodel);
         }
-
-
-    
-
-        
-
     }
 }

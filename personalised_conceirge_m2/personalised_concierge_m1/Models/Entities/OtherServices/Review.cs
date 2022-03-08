@@ -20,18 +20,18 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
         public int review_id { get; set; }
         [Required]
         public int account_id { get; set; }
-        
+
         [ForeignKey("account_id")]
         public Account Account { get; set; }
-        
+
         [Required]
         public int foodleisure_id { get; set; }
-        
+
         [ForeignKey("foodleisure_id")]
         public FoodLeisure FoodLeisure { get; set; }
 
-        [Column(TypeName = "varchar(500)")]
-        public string review  { get; set; }
+        [Column(TypeName = "varchar(10000)")]
+        public string review { get; set; }
 
         [DataType(DataType.Date)]
         public string Date { get; set; }
