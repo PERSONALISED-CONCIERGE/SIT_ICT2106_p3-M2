@@ -140,22 +140,46 @@
                                         <div>
                                             @foreach (Review bisreview in Model.businessreviews)
                                             {
-                                                @if (bisreview.refrence_review == review.review_id.ToString())
+                                                @foreach (Account account2 in Model.accounts)
                                                 {
-                                            <h6>Business User: @Model.foodLeisure.name Business Account</h6>
+                                                    @if (bisreview.refrence_review == review.review_id.ToString())
+                                                    {
+                                                        @if (account2.account_id == bisreview.account_id)
+                                                        {
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img style="width: 10rem; height: 10rem;" src="@Url.Content(@account2.profile_pic)"
+                                                                         class="img-rounded">
+                                                                    <div class="review-block-name"><a href="#">@account2.full_name</a></div>
 
-                                                    <div class="review-block-title">Review ID: @bisreview.review_id</div>
-                                                    <div class="review-block-description">@bisreview.review</div>
-                                                    <br />
+                                                                    <div class="review-block-date">@account2.email<br />Posted on: @bisreview.Date</div>
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6>Business User: @Model.foodLeisure.name Business Account</h6>
+                                                                    <div class="review-block-title">Review ID: @bisreview.review_id</div>
+                                                                    <div class="review-block-description">@bisreview.review</div>
+                                                                    <br />
+                                                                </div>
+                                                            </div>
+                                                            <br />
+                                                        }
+
+
+
+
+                                                    }
                                                 }
+
+
+
 
                                             }
 
 
                                         </div>
-                                     
-                                        
-                                    </div>
+
+
+                                                </div>
                                 </div>
                                 <br />
 
