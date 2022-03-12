@@ -119,6 +119,8 @@ namespace personalised_concierge_m1.Data
                 .HasConversion<Rating>();
 
 
+
+
             modelBuilder.Entity<Navigation>()
                 .Property(u => u.type)
                 .HasConversion<NavigationType>();

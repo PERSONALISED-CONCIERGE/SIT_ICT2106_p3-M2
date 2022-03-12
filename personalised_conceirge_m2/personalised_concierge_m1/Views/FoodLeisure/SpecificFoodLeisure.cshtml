@@ -56,9 +56,9 @@
 
                 <br />
                 @Html.DropDownList("Ratings",
-            new SelectList(Enum.GetValues(typeof(Rating))),
-            "Ratings (out of 5)",
-            new { @class = "form-control" })
+     new SelectList(Enum.GetValues(typeof(Rating))),
+     "Ratings (out of 5)",
+     new { @class = "form-control" })
 
                 @Html.Hidden("foodLeisureID", (int)Model.foodLeisure.foodleisure_id)
                 <br><br>
@@ -77,16 +77,20 @@
                 <h2> Average ratings: @Model.avgrating / 5</h2>
                 <hr />
                 <div class="review-block">
+                    @{int count = 0; }
                     @foreach (Review review in Model.reviews)
                     {
                         @foreach (Account account in Model.accounts)
                         {
                             @if (account.account_id == review.account_id)
                             {
+                                string countString = count.ToString();
+                                string target = "dataLine" + countString;
+                                string trigger = "#" + target;
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <img style="width: 10rem; height: 10rem;" src="@Url.Content(@account.profile_pic)"
-                                class="img-rounded">
+                                             class="img-rounded">
                                         <div class="review-block-name"><a href="#">@account.full_name</a></div>
 
                                         <div class="review-block-date">@account.email<br />Posted on: @review.Date</div>
@@ -96,9 +100,91 @@
 
                                         <div class="review-block-title">Review ID: @review.review_id</div>
                                         <div class="review-block-description">@review.review</div>
-                                    </div>
+                                        <br />
+
+
+                                        <p>
+                                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="@trigger"
+                                                    aria-expanded="false" aria-controls="@review.review_id">
+                                                Reply
+                                            </button>
+                                        </p>
+
+
+
+
+                                        <!--Reply stuff-->
+
+                                        <div class="collapse" id=@target>
+                                            <div class="card card-body">
+                                                @using (Html.BeginForm("SpecificFoodLeisure", "FoodLeisure"))
+                                                {
+
+
+                                                    @Html.TextArea("Review_Description", new { @cols = "100", @rows = "8", @style = "width:100%;" })
+
+                                                    <br />
+
+
+                                                    @Html.Hidden("foodLeisureID", (int)Model.foodLeisure.foodleisure_id)
+                                                    @Html.Hidden("Ratings", 1)
+                                                    @Html.Hidden("ref_review", @review.review_id)
+                                                    <br><br>
+                                                    <input type="submit" value="Submit">
+                                                }
+
+                                            </div>
+                                        </div>
+                                        <!--end of reply stuff-->
+                                        <br />
+                                        <div>
+                                            @foreach (Review bisreview in Model.businessreviews)
+                                            {
+                                                @foreach (Account account2 in Model.accounts)
+                                                {
+                                                    @if (bisreview.refrence_review == review.review_id.ToString())
+                                                    {
+                                                        @if (account2.account_id == bisreview.account_id)
+                                                        {
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <img style="width: 10rem; height: 10rem;" src="@Url.Content(@account2.profile_pic)"
+                                                                         class="img-rounded">
+                                                                    <div class="review-block-name"><a href="#">@account2.full_name</a></div>
+
+                                                                    <div class="review-block-date">@account2.email<br />Posted on: @bisreview.Date</div>
+                                                                </div>
+                                                                <div class="col-sm-9">
+                                                                    <h6>Business User: @Model.foodLeisure.name Business Account</h6>
+                                                                    <div class="review-block-title">Review ID: @bisreview.review_id</div>
+                                                                    <div class="review-block-description">@bisreview.review</div>
+                                                                    <br />
+                                                                </div>
+                                                            </div>
+                                                            <br />
+                                                        }
+
+
+
+
+                                                    }
+                                                }
+
+
+
+
+                                            }
+
+
+                                        </div>
+
+
+                                                </div>
                                 </div>
                                 <br />
+
+                                <hr />
+                                count++;
 
                             }
 

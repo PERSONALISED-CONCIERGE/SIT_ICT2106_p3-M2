@@ -12,14 +12,14 @@ namespace personalised_concierge_m1.Data.FoodLeisureServices
         {
         }
 
-        public IFoodLeisureRepo getFooDLeisureByID(int foodleisure_id)
+        public FoodLeisure GetFoodLeisureByID(int foodleisure_id)
         {
-            throw new System.NotImplementedException();
+            return _context.Set<FoodLeisure>().Find(foodleisure_id);
         }
 
-        public IFoodLeisureRepo getFeaturedFooDLeisure()
+        public IEnumerable<FoodLeisure> GetAllFoodLeisure()
         {
-            throw new System.NotImplementedException();
+            return _context.Set<FoodLeisure>().ToList();
         }
 
         public void UpdateFeatured(FoodLeisure foodLeisure)
@@ -35,7 +35,7 @@ namespace personalised_concierge_m1.Data.FoodLeisureServices
 
         public FoodLeisure GetFoodLeisureByName(string name)
         {
-            return _context.Set<FoodLeisure>().First(FoodLeisure => FoodLeisure.name == name); ;
+            return _context.Set<FoodLeisure>().First(FoodLeisure => FoodLeisure.name == name); 
         }
 
         public IEnumerable<FoodLeisure> GetLimitedFoodLeisureBytype(FoodLeisureType foodleisuretype)

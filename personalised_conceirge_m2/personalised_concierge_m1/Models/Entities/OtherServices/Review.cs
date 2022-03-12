@@ -38,6 +38,6 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
 
         public Rating rating { get; set; }
 
-
+        public string refrence_review { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace personalised_concierge_m1.Controllers
         public IActionResult BlogList()
         {
             dynamic mymodel = new ExpandoObject();
-            mymodel.myBlog = _m2UnitOfWork.BlogDetails.GetAll();
+            mymodel.myBlog = _m2UnitOfWork.BlogDetails.GetAllBlogs();
             return View(mymodel);
         }
 
@@ -32,8 +32,8 @@ namespace personalised_concierge_m1.Controllers
         {
             dynamic mymodel = new ExpandoObject();
             mymodel.myItineraryItem = _m2UnitOfWork.ItineraryItemDetails.GetByItineraryID(itinerary_id);
-            mymodel.myFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAll();
-            mymodel.myBlog = _m2UnitOfWork.BlogDetails.GetAll();
+            mymodel.myFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAllFoodLeisure();
+            mymodel.myBlog = _m2UnitOfWork.BlogDetails.GetAllBlogs();
             return View(mymodel);
         }
 

@@ -20,8 +20,8 @@ namespace personalised_concierge_m1.Controllers
         // GET: /<controller>/
         public IActionResult ViewTransportation()
         {
-            var transport = _m2UnitOfWork.TransportationDetails.GetAll();
-            var transportfare = _m2UnitOfWork.TransportFareDetails.GetAll();
+            var transport = _m2UnitOfWork.TransportationDetails.GetAllTransportations();
+            var transportfare = _m2UnitOfWork.TransportFareDetails.GetAllTransportFares();
 
             ViewData["Transport"] = transport;
             ViewData["TransportFare"] = transportfare;
