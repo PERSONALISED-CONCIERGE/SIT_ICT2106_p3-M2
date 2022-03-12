@@ -33,7 +33,7 @@ namespace personalised_concierge_m1.Controllers
             mymodel.pois = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.POI);
             mymodel.hawkers = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.Hawker);
 
-            mymodel.featuredFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAll();
+            mymodel.featuredFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAllFoodLeisure();
 
             // Create the empty list of objects to store the featured foodleisure items
             List<FoodLeisure> featuredFoodLeisure = new List<FoodLeisure>();
@@ -62,8 +62,9 @@ namespace personalised_concierge_m1.Controllers
         public IActionResult SpecificFoodLeisure(int FoodLeisureID)
         {
             dynamic mymodel = new ExpandoObject();
-            mymodel.foodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetById(FoodLeisureID);
+            mymodel.foodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetFoodLeisureByID(FoodLeisureID);
             mymodel.reviews = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
+            mymodel.businessreviews = _m2UnitOfWork.ReviewDetails.GetBusinessReviewByFoodLeisure(FoodLeisureID);
             mymodel.accounts = _unitOfWork.AccountDetails.GetAll();
             string review = Request.Form["Review_Description"];
 
@@ -88,12 +89,10 @@ namespace personalised_concierge_m1.Controllers
                 string foodleisureID = Request.Form["foodLeisureID"];
                 string ratings = Request.Form["Ratings"];
                 var dateAsString = DateTime.Now.ToString("yyyy-MM-dd");
-                Review newReview = new Review();
-                newReview.review = review;
-                newReview.rating = (Rating)Enum.Parse(typeof(Rating), ratings, true);
-                newReview.account_id = 1;
-                newReview.foodleisure_id = Int32.Parse(foodleisureID);
-                newReview.Date = dateAsString;
+                string refreviewid = Request.Form["ref_review"];
+                var rating = (Rating)Enum.Parse(typeof(Rating), ratings, true);
+                IReview myReview = ReviewFactory.makeReview(refreviewid);
+                var newReview = myReview.setReview(3, Int32.Parse(foodleisureID), review, dateAsString, rating, refreviewid);
                 _m2UnitOfWork.ReviewDetails.Add(newReview);
                 Boolean result = _m2UnitOfWork.ReviewDetails.Save();
 
@@ -106,7 +105,7 @@ namespace personalised_concierge_m1.Controllers
                 {
                     // all these for display after submit 
                     mymodel.reviews = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
-
+                    mymodel.businessreviews = _m2UnitOfWork.ReviewDetails.GetBusinessReviewByFoodLeisure(FoodLeisureID);
                     //count rating again on refresh ah!
                     totalratings = 0;
                     avgrating = 0.0;

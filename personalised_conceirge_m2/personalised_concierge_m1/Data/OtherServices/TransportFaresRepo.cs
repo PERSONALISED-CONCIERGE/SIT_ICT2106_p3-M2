@@ -1,4 +1,6 @@
-﻿using personalised_concierge_m1.Models.Entities.OtherServices;
+﻿using System.Collections.Generic;
+using System.Linq;
+using personalised_concierge_m1.Models.Entities.OtherServices;
 using personalised_concierge_m1.Models.Interfaces.OtherServices;
 
 namespace personalised_concierge_m1.Data.OtherServices
@@ -9,15 +11,13 @@ namespace personalised_concierge_m1.Data.OtherServices
         {
         }
 
-        //implementation of non-generic interface methods
-        public ITransportFaresRepo getAllTransportFares()
+        public IEnumerable<TransportFares> GetAllTransportFares()
         {
-            throw new System.NotImplementedException();
+            return _context.Set<TransportFares>().ToList();
         }
-
-        public ITransportFaresRepo getTransportFaresRepoById(int fare_id)
+        public TransportFares GetTransportFareByID(int transportfare_id)
         {
-            throw new System.NotImplementedException();
+            return _context.Set<TransportFares>().Find(transportfare_id);
         }
 
 
