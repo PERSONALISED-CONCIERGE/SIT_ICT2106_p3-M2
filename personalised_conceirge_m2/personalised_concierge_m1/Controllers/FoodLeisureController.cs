@@ -56,7 +56,7 @@ namespace personalised_concierge_m1.Controllers
             return View(mymodel);
         }
 
-       
+
 
         [HttpPost]
         public IActionResult SpecificFoodLeisure(int FoodLeisureID)
@@ -67,6 +67,7 @@ namespace personalised_concierge_m1.Controllers
             mymodel.businessreviews = _m2UnitOfWork.ReviewDetails.GetBusinessReviewByFoodLeisure(FoodLeisureID);
             mymodel.accounts = _unitOfWork.AccountDetails.GetAll();
             string review = Request.Form["Review_Description"];
+            string sortsubmit = Request.Form["SortSubmit"];
 
             //Get sum of all ratings
             double totalratings = 0;
@@ -81,6 +82,32 @@ namespace personalised_concierge_m1.Controllers
                 avgrating = Math.Round(totalratings / count, 3);
             }
 
+            //Sort request received 
+            if(sortsubmit != null)
+            {
+                string sort = Request.Form["sort"];
+                string sortType = Request.Form["sort_type"];
+
+                // The client code picks a concrete strategy and passes it to the
+                // context. The client should be aware of the differences between
+                // strategies in order to make the right choice.
+                var context = new Context();
+                var sortReview = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
+
+                if (sort == "reviewid")
+                {
+                   context.SetStrategy(new SortReviewIDStrategy());
+                    mymodel.reviews = context.DoSomeSortingLogic(sortType, sortReview);  
+                }else if (sort == "ratings")
+                {
+                    context.SetStrategy(new SortRatingsStrategy());
+                    mymodel.reviews = context.DoSomeSortingLogic(sortType, sortReview);
+                }else if (sort == "date")
+                {
+                    context.SetStrategy(new SortReviewDateStrategy());
+                    mymodel.reviews = context.DoSomeSortingLogic(sortType, sortReview);
+                }
+            }
 
             //display even if there is no submision from review form 
             if (review != null)
