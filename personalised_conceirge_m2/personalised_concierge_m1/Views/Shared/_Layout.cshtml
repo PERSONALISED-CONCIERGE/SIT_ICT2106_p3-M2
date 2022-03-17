@@ -6,16 +6,12 @@
     <title>@ViewData["Title"] - personalised_concierge_m1</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/main.css" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div id="main" class="w-10 p-3 d-inline-block">
-                <button class="openbtn" onclick="openNav()">☰</button>
-            </div>
             <div class="container">
-                <a class="navbar-brand px-3" asp-area="" asp-controller="Home" asp-action="Index"><u>Home</u></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">personalised_concierge_m1</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,24 +19,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark px-3" asp-area="" asp-controller="Home" asp-action="Index"><u>Itinerary</u></a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark px-3" asp-area="" asp-controller="Home" asp-action="Privacy"><u>Recommendations</u></a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Itinerary" asp-action="Index">Privacy</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a href="">Home</a>
-        <a href="#">Itinerary</a>
-        <a href="#">Checklist</a>
-        <a href="/budget">Budget</a>
-    </div>
-
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -58,15 +46,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
-<script>
-    function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-    }
-
-    function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft = "0";
-    }
-</script>
