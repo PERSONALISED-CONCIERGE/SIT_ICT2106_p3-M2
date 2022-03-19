@@ -7,25 +7,67 @@ using Microsoft.VisualBasic;
 
 namespace personalised_concierge_m1.Models.Entities.Itineraries
 {
-    public class ExpensesList
-    {
-        public List<Expenses> Expenses { get; set; }
-    }
     public class Budget
     {
+        [Column("Budgetid")]
         [Key]
-        public int budget_id{ get; set; }
+        private int budgetid;
 
-        [ForeignKey("itinerary_id")]
-        public int itinerary_id { get; set; }
-        
-        [ForeignKey("itinerary_id")]
-        public Itinerary Itinerary { get; set; }
+        [Column("Budgetlimit")]
+        private double budgetlimit;
 
-        [Required]
-        public double budget_estimate { get; set; }
+        [NotMapped]
+        private List<Expenses> expensesList = new List<Expenses>();
+        [NotMapped]
+        private Expenses expenses;
+        [NotMapped]
+        private string currency = "SGD";
+        [NotMapped]
+        private double totalExpensesAmount = 0.00;
+        [NotMapped]
+        private int budgetRatio = 0;
 
-        //[Required]
-        //public List<Expenses> list_of_expenses { get; set; } 
+
+        public int Budgetid
+        {
+            get { return budgetid; }
+            set { budgetid = value; }
+        }
+
+        public double Budgetlimit
+        {
+            get { return budgetlimit; }
+            set { budgetlimit = value; }
+        }
+        [NotMapped]
+        public List<Expenses> ExpensesList
+        {
+            set { expensesList = value; }
+            get { return expensesList; }
+        }
+        [NotMapped]
+        public Expenses Expenses
+        {
+            set { expenses = value; }
+            get { return expenses; }
+        }
+        [NotMapped]
+        public string Currency
+        {
+            set { currency = value; }
+            get { return currency; }
+        }
+        [NotMapped]
+        public double TotalExpensesAmount
+        {
+            set { totalExpensesAmount = value; }
+            get { return totalExpensesAmount; }
+        }
+        [NotMapped]
+        public int BudgetRatio
+        {
+            set { budgetRatio = value; }
+            get { return budgetRatio; }
+        }
     }
 }
