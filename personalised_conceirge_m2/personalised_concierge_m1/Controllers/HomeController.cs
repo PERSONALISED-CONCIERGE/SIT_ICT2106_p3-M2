@@ -59,37 +59,5 @@ namespace personalised_concierge_m1.Controllers
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
-        public ActionResult Details()
-        {
-            return View();
-        }
-        public ActionResult Animate()
-        {
-            return View();
-        }
-        public ActionResult Icon()
-        {
-            return View();
-        }
-        public ActionResult Steet()
-        {
-            return View();
-        }
-        public ActionResult ModeTravel()
-        {
-            return View();
-        }
-        public ActionResult Traffic()
-        {
-            return View();
-        }
-        public ActionResult RouteColor()
-        {
-            return View();
-        }
-        public ActionResult DistanceCalculation()
-        {
-            return View();
-        }
     }
 }
