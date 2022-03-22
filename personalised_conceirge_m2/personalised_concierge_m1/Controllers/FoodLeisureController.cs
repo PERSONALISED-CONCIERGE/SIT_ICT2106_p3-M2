@@ -87,25 +87,31 @@ namespace personalised_concierge_m1.Controllers
             {
                 string sort = Request.Form["sort"];
                 string sortType = Request.Form["sort_type"];
+                string searchstr = Request.Form["search_str"];
 
                 // The client code picks a concrete strategy and passes it to the
                 // context. The client should be aware of the differences between
                 // strategies in order to make the right choice.
                 var context = new Context();
+
                 var sortReview = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
 
                 if (sort == "reviewid")
                 {
-                   context.SetStrategy(new SortReviewIDStrategy());
-                    mymodel.reviews = context.DoSomeSortingLogic(sortType, sortReview);  
+                   context.SetStrategy(new SearchSortReviewIDStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);  
                 }else if (sort == "ratings")
                 {
-                    context.SetStrategy(new SortRatingsStrategy());
-                    mymodel.reviews = context.DoSomeSortingLogic(sortType, sortReview);
+                    context.SetStrategy(new SearchSortRatingsStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);
                 }else if (sort == "date")
                 {
-                    context.SetStrategy(new SortReviewDateStrategy());
-                    mymodel.reviews = context.DoSomeSortingLogic(sortType, sortReview);
+                    context.SetStrategy(new SearchSortReviewDateStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);
+                }else if(sort == "description")
+                {
+                    context.SetStrategy(new SearchSortDescriptionStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);
                 }
             }
 

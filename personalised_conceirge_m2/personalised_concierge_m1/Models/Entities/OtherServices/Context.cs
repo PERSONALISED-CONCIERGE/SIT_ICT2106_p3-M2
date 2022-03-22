@@ -31,18 +31,22 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
 
         // The Context delegates some work to the Strategy object instead of
         // implementing multiple versions of the algorithm on its own.
-        public IEnumerable<Review> DoSomeSortingLogic(string type, object data)
+        public IEnumerable<Review> DoSomeSearchSortingLogic(string type, int FoodLeisureID, string searchstr)
         {
             if(type == "ascending")
             {
-                var result = this._strategy.SortASC(data);
+                var result = this._strategy.SortASC(FoodLeisureID);
                 return result;
             }
             else if(type == "descending")
             {
-                var result = this._strategy.SortDSC(data);
+                var result = this._strategy.SortDSC(FoodLeisureID);
                 return result;
             
+            }else if(type == "search")
+            {
+                var result = this._strategy.Search(FoodLeisureID, searchstr);
+                return result;
             }
             return null;
             

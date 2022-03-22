@@ -10,7 +10,8 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
     // Strategies.
     public interface IStrategy
     {
-        IEnumerable<Review> SortASC(object data);
-        IEnumerable<Review> SortDSC(object data);
+        IEnumerable<Review> SortASC(int FoodLeisureID);
+        IEnumerable<Review> SortDSC(int FoodLeisureID);
+        IEnumerable<Review> Search(int FoodLeisureID, string searchstr);
     }
 }
