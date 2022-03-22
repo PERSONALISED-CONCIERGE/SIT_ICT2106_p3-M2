@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+      
+<head>
+    <script language="javascript" type="text/javascript">
+
+        // JavaScript code
+        function search_attraction() {
+            let input = document.getElementById('searchbar').value
+            input=input.toLowerCase();
+            let x = document.getElementsByClassName('attraction');
+      
+            for (i = 0; i < x.length; i++) { 
+                if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                    x[i].style.display="none";
+                }
+                else {
+                    x[i].style.display="list-item";                 
+                }
+            }
+        }
+
+    </script>
+      
+    <!-- linking the stylesheet(CSS) -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <style>
+
+     #searchbar{
+         margin-left: 15%;
+         padding:15px;
+         border-radius: 10px;
+     }
+ 
+     input[type=text] {
+          width: 70%;
+          -webkit-transition: width 0.15s ease-in-out;
+          transition: width 0.15s ease-in-out;
+     }
+ 
+      #list{
+        font-size:  1.5em;
+        margin-left: 90px;
+       }
+ 
+    .attraction{
+       display: list-item;    
+      }
+
+    </style>
+</head>
+  
+<body>
+      
+    <!-- input tag -->
+    <input id="searchbar" onkeyup="search_attraction()" type="text"
+        name="search" placeholder="Search attractions...">
+      
+    <!-- ordered list -->
+    <ul id='list'>
+        <li class="attraction">Universal Studios Singapore, 20KM</li>
+        <li class="attraction">Changi Airport, 30KM</li>
+        <li class="attraction">Jurong Bird Park, 40KM</li>
+        <li class="attraction">Singapore Zoo, 20KM</li>
+        <li class="attraction">Marina Bay Sands, 10KM</li>
+        <li class="attraction">Gardens by the Bay, 5KM</li>
+        <li class="attraction">Singapore Botanic Gardens, 10KM</li>
+        <li class="attraction">National Orchid Garden, 10KM</li>
+        <li class="attraction">Cloud Forest, 2KM</li>
+        <li class="attraction">Marina Barrage, 3KM</li>
+        <li class="attraction">ArtScience Museum, 15KM</li>
+    </ul>
+      
+    <!-- linking javascript -->
+    <script src="./attraction.js"></script>
+
+</body>
+  
+</html>
