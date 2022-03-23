@@ -6,25 +6,7 @@
     var transportfare = (ViewData["TransportFare"]);
 }
 
-@* <div class="text-center">
-    <h1> Transport</h1>
-    <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>Company Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Transportation atransport in (dynamic) transport)
-                {
-                    @atransport.company_name;
-                }
-            </tbody>
-        </table>
-    </body>
-</div> *@
-<head>
+@* <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -152,7 +134,7 @@
                         </div>
 
                         @functions
-                    {
+                        {
                             private double estCost(int tid, double totalDist, string fareType)
                             {
                                 double cost = 0;
@@ -250,4 +232,185 @@
     <br />
     <br />
 
+</body> *@
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        $(function () 
+        {
+            $(".pop-show").popover
+                ({
+                    html: true,
+                    trigger: "focus",
+                    content: function () {
+                        return $('.pop-inn').html();
+                    }
+                });
+
+            
+        })
+    </script>
+
+    <div class="container border">
+            <div class="row" id="banner">
+                <h1 style="color: #0b65a1;">Transportation</h1> 
+            </div>
+        <div class="row">
+                <img src="~/images/MapPlaceholder.png" class="mx-auto" height="300px" width="300px">
+        </div>
+             <div class="form-row">
+                <label for="staticLocationTitle" class="col col-form-label">Location</label>
+            </div>
+            <div class="form-row">
+                <label for="staticTo" class="col col-form-label">To:</label>
+                <input type="text" readonly class="col-5 form-control-plaintext" id="staticToName" value="Choa Chu Kang, Singapore 680288">
+                <label for="staticFrom" class="col col-form-label">From:</label>
+                <input type="text" readonly class="col-5 form-control-plaintext" id="staticFromName" value="Jurong East, 10 Jurong East Street 12, Singapore 609690">
+            </div>
+            <div class="form-row">
+                <label for="staticDist" class="col-sm-1 col-form-label">Distance:</label>
+                <input type="text" class="col-sm-1 align-self-start" id="staticDistInfo" value="11.7">KM
+            </div>
+            <div class="form-row">
+                <label for="staticTransportType" class="col-sm-2 col-form-label">Transportation Type: </label>
+                <select class="col-sm-2 form-control" id ="transportType">
+                    @foreach (Transportation atransport in (dynamic)transport)
+                    {
+                        <option value="@atransport.transport_id">@atransport.company_name</option>
+                    }
+                </select>
+                <label for="staticFareType" class="col-sm-2 col-form-label">Fare Type: </label>
+                <select class="col-sm-2 form-control  align-self-start" id ="fareType">
+                    <option value="Standard">Standard</option>
+                    <option value="Flagdown">Flagdown</option>
+                </select>
+            </div>
+                <button onclick="checkCost()" class="pop-show" id="click" data-toggle="popover" data-content="">Estimate Cost</button>
+                <div class="pop-inn" style="display:none;">
+                    <script>
+                            function estCost(trid, trtype, trdistance)
+                            {
+                                transportId= parseInt(trid);
+                                transportType = trtype;
+                                transportDistance = parseFloat(trdistance);
+                                cost = 0;
+                                standardFare = 0;
+                                flagDown = 0;
+                                initFare = 0;
+                                costPerDist = 0;
+                                initDist = 0;
+
+                                console.log("OwO "+transportId);
+                                console.log(transportType);
+                                console.log(transportDistance);
+
+                                switch (transportId)
+                                {
+                                    case 1:
+                                        standardFare = 3.00;
+                                        flagDown = 10.00;
+                                        initFare = 0.22;
+                                        costPerDist = 0.4;
+                                        initDist = 10.00;
+
+                                        console.log(standardFare);
+                                        console.log(flagDown);
+                                        console.log(initFare);
+                                        console.log(costPerDist);
+                                        console.log(initDist);
+
+                                        if (transportDistance <= initDist || transportDistance > initDist)
+                                        {
+                                            cost += (transportDistance / costPerDist) * initFare;
+                                             console.log("OwO cost is: "+cost);
+                                            if (transportType == "Standard")
+                                            {
+                                                cost += standardFare;
+                                                console.log("est cost is: "+parseFloat(cost).toFixed(2));
+                                                return parseFloat(cost).toFixed(2);
+                                            }
+                                            else
+                                            {
+                                                cost += flagDown;
+                                                console.log("est cost is: "+cost);
+                                                return parseFloat(cost).toFixed(2);
+                                            }
+
+                                        }
+
+                                    case 2:
+                                        standardFare = 4.00;
+                                        initFare = 0.70;
+                                        cost = transportDistance * initFare;
+                                        return cost += standardFare;
+ 
+                                    case 3:
+                                        standardFare = 4.00;
+                                        flagDown = 10.00;
+                                        initFare = 0.24;
+                                        costPerDist = 0.4;
+                                        aftCostPerDist = 0.35;
+                                        initDist = 10.00;
+
+                                        if (transportDistance <= initDist)
+                                        {
+                                            cost = (transportDistance / costPerDist) * initFare;
+                                            if (transportType == "Standard")
+                                            {
+                                                return cost += standardFare;
+                                            }
+                                            else
+                                            {
+                                                return cost += flagDown;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            cost = initDist * initFare;
+                                            cost += ((transportDistance - initDist) / aftCostPerDist) * initFare;
+                                            cost = Math.Round(cost, 2);
+                                            if (transportType == "Standard")
+                                            {
+                                                return cost += standardFare;
+                                            }
+                                            else
+                                            {
+                                                return cost += flagDown;
+                                            }
+                                        }
+                                }                      
+                            }
+
+                            function checkCost()
+                            {
+                                tid = document.getElementById("transportType").value;
+                                tname = document.getElementById("transportType").options[document.getElementById("transportType").selectedIndex].text;
+                                fareType = document.getElementById("fareType").value;
+                                dist = document.getElementById("staticDistInfo").value;
+                                //console.log(tname);
+                                //console.log(fareType);
+                                //console.log(dist);
+                                totalCost = estCost(tid,fareType,dist);
+                                //console.log(totalCost);
+
+                                document.getElementById("getType").textContent=tname +": "+ fareType;
+                                document.getElementById("cost").innerHTML = "Estimated Cost is: $"+ totalCost;
+                            
+                            }
+                            
+                            
+                        
+                    </script>
+                    <p id="getType"></p>
+                    <p id="cost"></p>
+
+                </div>
+    </div>
 </body>
