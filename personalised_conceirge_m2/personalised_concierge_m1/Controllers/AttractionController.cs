@@ -3,9 +3,9 @@ using personalised_concierge_m1.Models.Entities.Attraction;
 
 namespace personalised_concierge_m1.Controllers
 {
-    public class AtttractionController : Controller
+    public class AttractionController : Controller
     {
-        private Atttraction attraction = new Attraction();
+        private Attraction attraction = new Attraction();
 
         public IActionResult Index()
         {
