@@ -1,0 +1,73 @@
+@using personalised_concierge_m1.Models.Entities.FoodLeisureServices
+@using personalised_concierge_m1.Models.Entities.Itineraries
+
+@model dynamic
+
+@{
+
+}
+<!DOCTYPE html>
+<style>
+    .row {
+        border: 1px solid #C4C4C4;
+        border-radius: 8px;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .col {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    h1 {
+        color: #23305E;
+    }
+
+    .btn btn-success {
+        background-color: #23305E;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 30px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        margin: 4px 2px;
+    }
+</style>
+
+<html>
+<body>
+    <div class="container">
+        @foreach (ItineraryItem aItineraryItem in Model.myItineraryItem){
+        @foreach (FoodLeisure aFoodLeisure in Model.myFoodLeisure){
+        @if (aItineraryItem.foodleisure_id == aFoodLeisure.foodleisure_id){
+
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="card" style="width: 15rem;">
+                    <img src="@Url.Content(@aFoodLeisure.foodleisure_image)" class="card-img-top"
+                         alt="@aFoodLeisure.name">
+                </div>
+            </div>
+
+            <div class="col">
+                <h1>@aFoodLeisure.name</h1>
+                <h6>@aFoodLeisure.address </h6>
+                <p>@aFoodLeisure.description</p>
+            </div>
+        </div>
+        }
+        }
+        }
+    </div>
+
+    <p>
+        <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Add to itinerary
+        </button>
+    </p>
+
+</body>
+</html>

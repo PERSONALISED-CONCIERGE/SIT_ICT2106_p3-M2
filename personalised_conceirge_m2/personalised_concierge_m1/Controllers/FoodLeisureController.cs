@@ -1,0 +1,170 @@
+﻿using System;
+using System.Dynamic;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using personalised_concierge_m1.Models.Interfaces;
+using personalised_concierge_m1.Models.Entities.OtherServices;
+using personalised_concierge_m1.Models.Entities.FoodLeisureServices;
+
+
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace personalised_concierge_m1.Controllers
+{
+    public class FoodLeisureController : Controller
+    {
+        //Model Class will create a UnitOfWork to talk to Db.
+        private readonly IM2UnitOfWork _m2UnitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
+
+
+        public FoodLeisureController(IM2UnitOfWork m2UnitOfWork, IUnitOfWork m1UnitOfWork)
+        {
+
+            this._m2UnitOfWork = m2UnitOfWork;
+            this._unitOfWork = m1UnitOfWork;
+
+        }
+        [HttpGet]
+        public IActionResult Index()
+        {
+            dynamic mymodel = new ExpandoObject();
+            mymodel.restaurants = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.Restaurant);
+            mymodel.pois = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.POI);
+            mymodel.hawkers = _m2UnitOfWork.FoodLeisureDetails.GetLimitedFoodLeisureBytype(FoodLeisureType.Hawker);
+
+            mymodel.featuredFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAllFoodLeisure();
+
+            // Create the empty list of objects to store the featured foodleisure items
+            List<FoodLeisure> featuredFoodLeisure = new List<FoodLeisure>();
+
+            //! Check for the number of properties in the object
+            // Type type = typeof(YourClassName);
+            // int NumberOfRecords = type.GetProperties().Length;
+
+            //! Loop through the dynamic model and add the object that has featured == true to the list
+            foreach (var item in mymodel.featuredFoodLeisure)
+            {
+                if (item.featured == true)
+                {
+                    featuredFoodLeisure.Add(item);
+                }
+            }
+            mymodel.featuredFoodLeisure = featuredFoodLeisure;
+
+
+            return View(mymodel);
+        }
+
+
+
+        [HttpPost]
+        public IActionResult SpecificFoodLeisure(int FoodLeisureID)
+        {
+            dynamic mymodel = new ExpandoObject();
+            mymodel.foodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetFoodLeisureByID(FoodLeisureID);
+            mymodel.reviews = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
+            mymodel.businessreviews = _m2UnitOfWork.ReviewDetails.GetBusinessReviewByFoodLeisure(FoodLeisureID);
+            mymodel.accounts = _unitOfWork.AccountDetails.GetAll();
+            string review = Request.Form["Review_Description"];
+            string sortsubmit = Request.Form["SortSubmit"];
+
+            //Get sum of all ratings
+            double totalratings = 0;
+            double avgrating = 0.0;
+            var count = 0;
+            foreach (Review areview in mymodel.reviews)
+            {
+
+                count++;
+                int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
+                totalratings += ratingInt;
+                avgrating = Math.Round(totalratings / count, 3);
+            }
+
+            //Sort request received 
+            if(sortsubmit != null)
+            {
+                string sort = Request.Form["sort"];
+                string sortType = Request.Form["sort_type"];
+                string searchstr = Request.Form["search_str"];
+
+                // The client code picks a concrete strategy and passes it to the
+                // context. The client should be aware of the differences between
+                // strategies in order to make the right choice.
+                var context = new Context();
+
+                var sortReview = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
+
+                if (sort == "reviewid")
+                {
+                   context.SetStrategy(new SearchSortReviewIDStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);  
+                }else if (sort == "ratings")
+                {
+                    context.SetStrategy(new SearchSortRatingsStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);
+                }else if (sort == "date")
+                {
+                    context.SetStrategy(new SearchSortReviewDateStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);
+                }else if(sort == "description")
+                {
+                    context.SetStrategy(new SearchSortDescriptionStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);
+                }
+            }
+
+            //display even if there is no submision from review form 
+            if (review != null)
+            {
+
+                string foodleisureID = Request.Form["foodLeisureID"];
+                string ratings = Request.Form["Ratings"];
+                var dateAsString = DateTime.Now.ToString("yyyy-MM-dd");
+                string refreviewid = Request.Form["ref_review"];
+                var rating = (Rating)Enum.Parse(typeof(Rating), ratings, true);
+                IReview myReview = ReviewFactory.makeReview(refreviewid);
+                var newReview = myReview.setReview(3, Int32.Parse(foodleisureID), review, dateAsString, rating, refreviewid);
+                _m2UnitOfWork.ReviewDetails.Add(newReview);
+                Boolean result = _m2UnitOfWork.ReviewDetails.Save();
+
+                // if cannot submit review 
+                if (!result)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    // all these for display after submit 
+                    mymodel.reviews = _m2UnitOfWork.ReviewDetails.GetReviewByFoodLeisure(FoodLeisureID);
+                    mymodel.businessreviews = _m2UnitOfWork.ReviewDetails.GetBusinessReviewByFoodLeisure(FoodLeisureID);
+                    //count rating again on refresh ah!
+                    totalratings = 0;
+                    avgrating = 0.0;
+                    count = 0;
+                    foreach (Review areview in mymodel.reviews)
+                    {
+                        count++;
+                        int ratingInt = (int)(Rating)Enum.Parse(typeof(Rating), areview.rating.ToString());
+                        totalratings += ratingInt;
+                        avgrating = Math.Round(totalratings / count, 3);
+
+                        mymodel.totalrating = totalratings;
+                        mymodel.avgrating = avgrating;
+                    }
+
+
+
+                    mymodel.totalrating = totalratings;
+                    mymodel.avgrating = avgrating;
+                    return View(mymodel);
+                }
+            }
+
+            mymodel.totalrating = totalratings;
+            mymodel.avgrating = avgrating;
+            return View(mymodel);
+        }
+    }
+}
