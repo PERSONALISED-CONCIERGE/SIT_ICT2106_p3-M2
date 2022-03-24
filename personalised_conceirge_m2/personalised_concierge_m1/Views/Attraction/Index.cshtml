@@ -8,22 +8,24 @@
         function search_attraction() {
             let input = document.getElementById('searchbar').value
             input=input.toLowerCase();
-            let x = document.getElementsByClassName('attraction');
+            let attractionName = document.getElementsByClassName('attractionName');
+            let box = document.getElementsByClassName('sgLi');
+            let attractionDist = document.getElementsByClassName('attractionDist');
 
             split = input.split(" ")
       
-            for (i = 0; i < x.length; i++) { 
+            for (i = 0; i < attractionName.length; i++) { 
                 count = 0
                 for (a = 0; a < split.length; a++){
-                    if (x[i].innerHTML.toLowerCase().includes(split[a])) {
+                    if (attractionName[i].innerHTML.toLowerCase().includes(split[a]) || attractionDist[i].innerHTML.toLowerCase().includes(split[a])) {
                         count += 1
                     }
                 }
                 if (count != split.length){
-                    x[i].style.display="none";
+                    box[i].style.display="none";
                 }
-                else {
-                    x[i].style.display="list-item";                             
+                else{
+                    box[i].style.display="inline-flex";
                 }
             }
         }
@@ -55,33 +57,120 @@
        display: list-item;    
       }
 
+
+    .X{
+          margin: auto;
+          padding: 1% 2%;
+          max-width: 1440px;
+          border-radius: 5px;
+          background: #ecf0f1;
+          box-shadow: 0 2px 6px 0 rgba(0,0,0, .3);
+    }
+    h1,h2,h3{
+      text-align: center;
+      font-family: 'Baloo Tamma', cursive;
+    }
+    
+    /*SG = style grid*/
+    .SG{
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .SG .sgLi{
+      min-width: 24%;
+      margin: 2% .35%;
+      display: inline-flex;
+      box-shadow: 0 2px 4px rgba(0,0,0, .2);
+    }
+    .SG .sgLi:hover{
+      box-shadow:0 5px 10px rgba(0,0,0,.15);}
+
+    .SG .box{
+      width: 300px;
+      height: 300px;
+      padding: 1% 2%;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
     </style>
 </head>
   
 <body>
       
-    <!-- input tag -->
-    <input id="searchbar" onkeyup="search_attraction()" type="text"
-        name="search" placeholder="Search attractions here...">
+    <div class="X">
+        <!-- input tag -->
+        <input id="searchbar" onkeyup="search_attraction()" type="text"
+            name="search" placeholder="Search attractions here...">
       
-    <!-- ordered list -->
-    <ol id='list'>
-        <li class="attraction">Universal Studios Singapore, 20KM</li>
-        <li class="attraction">Changi Airport, 30KM</li>
-        <li class="attraction">Jurong Bird Park, 40KM</li>
-        <li class="attraction">Singapore Zoo, 20KM</li>
-        <li class="attraction">Marina Bay Sands, 10KM</li>
-        <li class="attraction">Gardens by the Bay, 5KM</li>
-        <li class="attraction">Singapore Botanic Gardens, 10KM</li>
-        <li class="attraction">National Orchid Garden, 10KM</li>
-        <li class="attraction">Cloud Forest, 2KM</li>
-        <li class="attraction">Marina Barrage, 3KM</li>
-        <li class="attraction">ArtScience Museum, 15KM</li>
-    </ol>
+        <ul class="SG">
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Universal Studios Singapore</h4>
+                    <h7 class="attractionDist">20 KM</h7>
+                </div>
+            </li> 
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Changi Airport</h4>
+                    <h7 class="attractionDist">30 KM</h7>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Jurong Bird Park</h4>
+                    <h7 class="attractionDist">40 KM</h7>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Singapore Zoo</h4>
+                    <h7 class="attractionDist">20 KM</h7>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Marina Bay Sands</h4>
+                    <h7 class="attractionDist">10 KM</h7>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Gardens by the Bay</h4>
+                    <h7 class="attractionDist">5 KM</h7>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Singapore Botanic Gardens</h4>
+                    <h7 class="attractionDist">10 KM</h7>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">National Orchid Garden</h4>
+                    <h7 class="attractionDist">10 KM</h7>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Marina Barrage</h4>
+                    <h7 class="attractionDist">3 KM</h7>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">ArtScience Museum</h4>
+                    <h7 class="attractionDist">15 KM</h7>
+                </div>
+            </li>
+        </ul>
       
-    <!-- linking javascript -->
-    <script src="./attraction.js"></script>
-
+        <!-- linking javascript -->
+        <script src="./attraction.js"></script>
+    </div>
 </body>
+
   
 </html>
