@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Content Remove="Views\Itinerary\ItineraryItem.cshtml" />
       <Content Remove="wwwroot\assets\css\animate.min.css" />
       <Content Remove="wwwroot\assets\css\bootstrap.min.css" />
       <Content Remove="wwwroot\assets\css\cropper.min.css" />
@@ -99,6 +100,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Include="Views\ItineraryItem\Index.cshtml" />
       <None Include="wwwroot\assets\css\animate.min.css" />
       <None Include="wwwroot\assets\css\bootstrap.min.css" />
       <None Include="wwwroot\assets\css\cropper.min.css" />
