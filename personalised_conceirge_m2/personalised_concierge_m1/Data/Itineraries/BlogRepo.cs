@@ -1,4 +1,6 @@
-﻿using personalised_concierge_m1.Models.Entities.Itineraries;
+﻿using System.Collections.Generic;
+using System.Linq;
+using personalised_concierge_m1.Models.Entities.Itineraries;
 using personalised_concierge_m1.Models.Interfaces.Itineraries;
 
 namespace personalised_concierge_m1.Data.Itineraries
@@ -8,13 +10,13 @@ namespace personalised_concierge_m1.Data.Itineraries
         public BlogRepo(ConciergeContext context) : base(context)
         {
         }
-        public IBlogRepo getAllBlogs()
+        public IEnumerable<Blog> GetAllBlogs()
         {
-            throw new System.NotImplementedException();
+            return _context.Set<Blog>().ToList();
         }
-        public IBlogRepo getBlogById(int blog_id)
+        public Blog GetBlogByID(int blog_id)
         {
-            throw new System.NotImplementedException();
+            return _context.Set<Blog>().Find(blog_id);
         }
     }
 }
