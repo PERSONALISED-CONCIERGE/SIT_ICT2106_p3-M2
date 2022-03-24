@@ -11,5 +11,10 @@ namespace personalised_concierge_m1.Models.Interfaces.OtherServices
         IEnumerable<Review> GetAllReviews();
         IEnumerable<Review> GetReviewByFoodLeisure(int foodleisure_id);
         IEnumerable<Review> GetBusinessReviewByFoodLeisure(int foodleisure_id);
+
+        IEnumerable<Review> GetReviewByDateNFoodLiesure(int foodleisure_id, string date);
+        IEnumerable<Review> GetReviewByIDNFoodLiesure(int foodleisure_id, int id);
+        IEnumerable<Review> GetReviewByRateNFoodLiesure(int foodleisure_id, Rating rating);
+        IEnumerable<Review> GetReviewByDescriptionNFoodLiesure(int foodleisure_id, string description);
     }
 }
