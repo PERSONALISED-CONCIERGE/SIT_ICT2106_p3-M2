@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+      
+<head>
+    <script language="javascript" type="text/javascript">
+
+        // JavaScript code
+        function search_attraction() {
+            let input = document.getElementById('searchbar').value
+            input=input.toLowerCase();
+            let attractionName = document.getElementsByClassName('attractionName');
+            let box = document.getElementsByClassName('sgLi');
+            let attractionDist = document.getElementsByClassName('attractionDist');
+
+            split = input.split(" ")
+      
+            for (i = 0; i < attractionName.length; i++) { 
+                count = 0
+                for (a = 0; a < split.length; a++){
+                    if (attractionName[i].innerHTML.toLowerCase().includes(split[a]) || attractionDist[i].innerHTML.toLowerCase().includes(split[a])) {
+                        count += 1
+                    }
+                }
+                if (count != split.length){
+                    box[i].style.display="none";
+                }
+                else{
+                    box[i].style.display="inline-flex";
+                }
+            }
+        }
+
+    </script>
+      
+    <!-- linking the stylesheet(CSS) -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <style>
+
+     #searchbar{
+         margin-left: 15%;
+         padding:15px;
+         border-radius: 10px;
+     }
+ 
+     input[type=text] {
+          width: 70%;
+          -webkit-transition: width 0.15s ease-in-out;
+          transition: width 0.15s ease-in-out;
+     }
+ 
+      #list{
+        font-size:  1.2em;
+        margin-left: 90px;
+       }
+ 
+    .attraction{
+       display: list-item;    
+      }
+
+
+    .X{
+          margin: auto;
+          padding: 1% 2%;
+          max-width: 1440px;
+          border-radius: 5px;
+          background: #ecf0f1;
+          box-shadow: 0 2px 6px 0 rgba(0,0,0, .3);
+    }
+    h1,h2,h3{
+      text-align: center;
+      font-family: 'Baloo Tamma', cursive;
+    }
+    
+    /*SG = style grid*/
+    .SG{
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .SG .sgLi{
+      min-width: 24%;
+      margin: 2% .35%;
+      display: inline-flex;
+      box-shadow: 0 2px 4px rgba(0,0,0, .2);
+    }
+    .SG .sgLi:hover{
+      box-shadow:0 5px 10px rgba(0,0,0,.15);}
+
+    .SG .box{
+      width: 300px;
+      height: 300px;
+      padding: 1% 2%;
+      background: #fff;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .box img {
+        position: absolute;
+        bottom: 8.33%;
+        left: 8.33%;
+    }
+
+    </style>
+</head>
+  
+<body>
+      
+    <div class="X">
+        <!-- input tag -->
+        <input id="searchbar" onkeyup="search_attraction()" type="text"
+            name="search" placeholder="Search attractions here...">
+      
+        <ul class="SG">
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Universal Studios Singapore</h4>
+                    <h7 class="attractionDist">20 KM</h7>
+                    <p><img src="https://coveringmiles.com/wp-content/uploads/Universal-Studio-Singapore/uss-singapore.jpg" width="250" height="150"/></p>
+                </div>
+            </li> 
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Changi Airport</h4>
+                    <h7 class="attractionDist">30 KM</h7>
+                    <p><img src="https://wallpapercave.com/wp/wp4706740.jpg" width="250" height="150"/></p>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Jurong Bird Park</h4>
+                    <h7 class="attractionDist">40 KM</h7>
+                    <p><img src="https://th.bing.com/th/id/R.1f1bf7056975fd71e503a15cfef4b00b?rik=Bq0FHjx3OwWirA&riu=http%3a%2f%2fimg.hulutrip.com%2f2016%2f0912%2f20160912051648928.jpg&ehk=YurTVEiVktxaOXhmxi58XnL5YHEj%2fB8rAVDUB5LN8D8%3d&risl=&pid=ImgRaw&r=0" width="250" height="150"/></p>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Singapore Zoo</h4>
+                    <h7 class="attractionDist">20 KM</h7>
+                    <p><img src="https://th.bing.com/th/id/R.06aa49218323a2e9e828de57411fd1b1?rik=Hr4SOwkUW5DdwA&riu=http%3a%2f%2fwww.wheninmanila.com%2fwp-content%2fuploads%2f2015%2f11%2fIMG_20151019_182918-01-e1447168453303.jpeg&ehk=t0kAYaRCr8sL%2fY2s%2fbrNU5jNfdJJ6zSusAC8ykKS%2fyY%3d&risl=&pid=ImgRaw&r=0" width="250" height="150"/></p>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Marina Bay Sands</h4>
+                    <h7 class="attractionDist">10 KM</h7>
+                    <p><img src="https://backiee.com/static/wpdb/wallpapers/1920x1080/239533.jpg" width="250" height="150"/></p>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Gardens by the Bay</h4>
+                    <h7 class="attractionDist">5 KM</h7>
+                    <p><img src="https://th.bing.com/th/id/R.e5637d0360bc83a02b5caf201185a608?rik=SxtD%2fWQzVRiXzg&riu=http%3a%2f%2fwww.marriedtoplants.com%2fwp-content%2fuploads%2f2016%2f08%2fgardens-by-the-bay-supertree-walk_.jpg&ehk=yruJFhWouk2KyIQfqDy5l83xZ6w9NnfauYigouKDvXc%3d&risl=&pid=ImgRaw&r=0" width="250" height="150"/></p>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Singapore Botanic Gardens</h4>
+                    <h7 class="attractionDist">10 KM</h7>
+                    <p><img src="https://mustsharenews.com/wp-content/uploads/2015/07/THIS.jpg" width="250" height="150"/></p>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">National Orchid Garden</h4>
+                    <h7 class="attractionDist">10 KM</h7>
+                    <p><img src="https://www.singaporetravelhub.com/wp-content/uploads/2017/08/National-Orchid-Garden-05.jpg?x47978" width="250" height="150"/></p>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">Marina Barrage</h4>
+                    <h7 class="attractionDist">3 KM</h7>
+                    <p><img src="https://i.ytimg.com/vi/ith1yDFzVcc/maxresdefault.jpg" width="250" height="150"/></p>
+                </div>
+            </li>
+            <li class="sgLi">
+                <div class="box">
+                    <h4 class="attractionName">ArtScience Museum</h4>
+                    <h7 class="attractionDist">15 KM</h7>
+                    <p><img src="https://live.staticflickr.com/6064/6140047055_7d12ff66c2_b.jpg" width="250" height="150"/></p>
+                </div>
+            </li>
+        </ul>
+      
+        <!-- linking javascript -->
+        <script src="./attraction.js"></script>
+    </div>
+</body>
+
+  
+</html>
