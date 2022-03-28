@@ -8,17 +8,21 @@ namespace personalised_concierge_m1.Models.Entities.Attraction
     public class Attraction
     {
 
-        [Key]
-        public int attraction_id { get; set; }
+        //[Key]
+        public int attractionId { get; set; }
 
-        [Required]
-        public string attraction_name { get; set; }
+        //[Required]
+        public string attractionName { get; set; }
 
-        [Required]
-        public string attraction_dist { get; set; }
+        //[Required]
+        public string attractionImage { get; set; }
 
-        [Required]
-        public string attraction_location { get; set; }
+        public string attractionDescription { get; set; }
+
+        public double attractionPrice { get; set; }
+
+        //[Required]
+        //public string attraction_location { get; set; }
 
 
     }
