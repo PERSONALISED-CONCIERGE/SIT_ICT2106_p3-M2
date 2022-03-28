@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using personalised_concierge_m1.Models.Entities.Attraction;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace personalised_concierge_m1.Controllers
 {
@@ -29,21 +29,19 @@ namespace personalised_concierge_m1.Controllers
         }
 
         // GET: FoodEvents/Details/5
-        public IActionResult ViewDetails(int? id)
+        public async Task<IActionResult> ViewDetails(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
+            //var attraction = attractionList.FindIndex(m => m.attractionID == id);
+            if (attraction == null)
+            {
+                return NotFound();
+            }
 
-            // var foodEvents = await _context.FoodEvents
-            //     .FirstOrDefaultAsync(m => m.ID == id);
-            // if (foodEvents == null)
-            // {
-            //     return NotFound();
-            // }
-
-            return View(attractionList);
+            return View(attractionList[id]);
         }
     }
 }
