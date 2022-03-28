@@ -176,6 +176,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="index.html" />
       <None Remove="Views\FoodLeisure\" />
     </ItemGroup>
     <ItemGroup>

@@ -7,12 +7,13 @@
 @{
     ViewData["Title"] = "Home Page";
     var myLeisure = (FoodLeisure)(ViewData["myLeisure"]);
-    var myFood = (FoodDelivery)(ViewData["myfood"]);
-    var myRoom = (Room)(ViewData["myRoom"]);
-    var myAccount = (Account)(ViewData["myAccount"]);
-    var myEnum = (Review)(ViewData["myenum"]);
+    var myFood = (FoodDelivery) (ViewData["myfood"]);
+    var myRoom = (Room) (ViewData["myRoom"]);
+    var myAccount = (Account) (ViewData["myAccount"]);
+    var myEnum = (Review) (ViewData["myenum"]);
 
 }
+
  <form id="form1" runat="server">
     <div>
         <h2>Navigation</h2>
@@ -104,23 +105,3 @@
 </table>
     </div>
     </form>
-=======
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    
-    <ul>
-        My Details after finding student by ID is :
-
-        <li>@myLeisure.address</li>
-        @* <li>@myEnum.room_num</li> *@
-        @* <li>@myEnum.vacancy</li> *@
-        <li>@myRoom.roomType_id</li>
-        <li>@myRoom.room_num</li>
-        <li>@myRoom.vacancy</li>
-        @* <li>@(myEnum.rating == Rating.One)</li> *@
-
-
-    </ul>
-        </div>
->>>>>>> 51a8de7a348b5c70336e300512de3ba5c373de32
