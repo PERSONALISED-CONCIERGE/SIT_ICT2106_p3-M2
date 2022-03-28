@@ -84,10 +84,10 @@
     <div class="card">
         <div class="card-body">
 
-            <h2 style="color: #0b65a1;">Search & Sort Review!</h2>
+            <h2>Filter & Sort Review!</h2>
             @using (Html.BeginForm("SpecificFoodLeisure", "FoodLeisure"))
             {
-                <p>Search:</p>
+                <p>Filter:</p>
                 <input type="text" name="search_str" />
 
 
@@ -101,10 +101,10 @@
 
 
                 <input type="radio" id="search" name="sort_type" value="search">
-                <label for="search">Search</label>
+                <label for="search">Filter</label>
 
                 <div class="form-group .col-">
-                    <label for="sel1">Sort/Search By:</label>
+                    <label for="sel1">Sort/Filter By:</label>
                     <select class="form-control" name="sort" id="sel1">
                         <option value="reviewid">Review ID</option>
                         <option value="ratings">Ratings</option>
