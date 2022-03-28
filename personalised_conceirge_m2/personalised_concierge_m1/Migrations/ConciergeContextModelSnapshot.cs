@@ -584,35 +584,28 @@ namespace personalised_concierge_m1.Migrations
 
             modelBuilder.Entity("personalised_concierge_m1.Models.Entities.Itineraries.Budget", b =>
                 {
-                    b.Property<int>("budget_id")
+                    b.Property<int>("Budgetid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<double>("budget_estimate")
+                    b.Property<double>("Budgetlimit")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("itinerary_id")
-                        .HasColumnType("integer");
-
-                    b.HasKey("budget_id");
-
-                    b.HasIndex("itinerary_id");
+                    b.HasKey("Budgetid");
 
                     b.ToTable("Budgets");
 
                     b.HasData(
                         new
                         {
-                            budget_id = 1,
-                            budget_estimate = 120.5,
-                            itinerary_id = 1
+                            Budgetid = 1,
+                            Budgetlimit = 120.5,
                         },
                         new
                         {
-                            budget_id = 2,
-                            budget_estimate = 231.30000000000001,
-                            itinerary_id = 2
+                            Budgetid = 2,
+                            Budgetlimit = 231.30000000000001,
                         });
                 });
 
@@ -664,47 +657,48 @@ namespace personalised_concierge_m1.Migrations
 
             modelBuilder.Entity("personalised_concierge_m1.Models.Entities.Itineraries.Expenses", b =>
                 {
-                    b.Property<int>("expenses_id")
+                    b.Property<int>("ExpensesId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("budget_id")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("category")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<double>("cost")
+                    b.Property<double>("Amount")
                         .HasColumnType("double precision");
 
-                    b.Property<string>("description")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
+                    b.Property<string>("Category")
+                        .HasColumnType("text");
 
-                    b.HasKey("expenses_id");
+                    b.Property<string>("Currency")
+                        .HasColumnType("text");
 
-                    b.HasIndex("budget_id");
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("ExpensesId");
 
                     b.ToTable("Expenses");
 
                     b.HasData(
                         new
                         {
-                            expenses_id = 1,
-                            budget_id = 1,
-                            category = "Food&Drinks",
-                            cost = 1.0,
-                            description = "My Singapore Expenses"
+                            ExpensesId = 1,
+                            UserId = 1,
+                            Currency = "SGD",
+                            Category = "Food",
+                            Amount = 50,
+                            Description = "My first meal in singapore"
                         },
                         new
                         {
-                            expenses_id = 2,
-                            budget_id = 2,
-                            category = "Food&Drinks",
-                            cost = 23.489999999999998,
-                            description = "nasi lemak"
+                            ExpensesId = 2,
+                            UserId = 2,
+                            Currency = "SGD",
+                            Category = "Food",
+                            Amount = 50,
+                            Description = "My second meal in singapore"
                         });
                 });
 

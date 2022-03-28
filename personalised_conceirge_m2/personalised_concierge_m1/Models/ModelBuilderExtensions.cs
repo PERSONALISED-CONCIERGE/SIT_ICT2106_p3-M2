@@ -474,19 +474,21 @@ namespace personalised_concierge_m1.Models
             modelBuilder.Entity<Expenses>().HasData(
                 new Expenses
                 {
-                    expenses_id = 01,
-                    budget_id = 01,
-                    cost = 01,
-                    category = "Food&Drinks",
-                    description = "My Singapore Expenses"
+                    ExpensesId = 1,
+                    UserId = 1,
+                    Currency = "SGD",
+                    Category = "Food",
+                    Amount = 50,
+                    Description = "My first meal in singapore"
                 },
                 new Expenses
                 {
-                    expenses_id = 02,
-                    budget_id = 02,
-                    cost = 23.49,
-                    category = "Food&Drinks",
-                    description = "nasi lemak"
+                    ExpensesId = 2,
+                    UserId = 2,
+                    Currency = "SGD",
+                    Category = "Food",
+                    Amount = 50,
+                    Description = "My second meal in singapore"
                 }
             );
             #endregion Expenses Data Seed END
@@ -517,15 +519,13 @@ namespace personalised_concierge_m1.Models
             modelBuilder.Entity<Budget>().HasData(
                 new Budget()
                 {
-                    budget_id = 01,
-                    itinerary_id = 01,
-                    budget_estimate = 120.50,
+                    Budgetid = 1,
+                    Budgetlimit = 120.5,
                 },
                 new Budget
                 {
-                    budget_id = 02,
-                    itinerary_id = 02,
-                    budget_estimate = 231.30
+                    Budgetid = 2,
+                    Budgetlimit = 231.30000000000001,
                 }
             );
             #endregion Budget Data Seed END
