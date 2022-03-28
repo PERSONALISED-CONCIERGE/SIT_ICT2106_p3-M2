@@ -4,11 +4,33 @@
 }
 
 <h1>Details</h1>
-<div>
-    <h4>@Html.DisplayFor(model => model.attractionName)</h4>
-    <hr />
- 
-</div>
+<ul class="SG">
+    <li class="sgLi">
+    <div class="box">
+        <p><img src = "@Html.DisplayFor(model => model.attractionImage)" width="250" height="150"/></p>
+        <h4>@Html.DisplayFor(model => model.attractionName)</h4>
+    </div>
+    </li>
+</ul>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+<link rel="stylesheet" type="text/css" href="./style.css">
+    <style>
+        /*SG = style grid*/
+    .SG{
+      margin: 0;
+      padding: 0;
+      text-align: left;
+    }
+    .SG .sgLi{
+      min-width: 24%;
+      margin: 2% .35%;
+      display: inline-flex;
+      box-shadow: 0 2px 4px rgba(0,0,0, .2);
+    }
+    .SG .sgLi:hover{
+      box-shadow:0 5px 10px rgba(0,0,0,.15);}
+    </style>
