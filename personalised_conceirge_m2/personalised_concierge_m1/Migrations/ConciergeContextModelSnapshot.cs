@@ -609,6 +609,90 @@ namespace personalised_concierge_m1.Migrations
                         });
                 });
 
+            modelBuilder.Entity("personalised_concierge_m1.Models.AttractionDemo", b =>
+            {
+                b.Property<int>("AttractionDemoId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("integer")
+                    .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                b.Property<string>("Description")
+                    .HasColumnType("text");
+
+                b.Property<string>("Location")
+                    .HasColumnType("text");
+
+                b.Property<string>("Name")
+                    .HasColumnType("text");
+
+                b.HasKey("AttractionDemoId");
+
+                b.ToTable("attractionDemo");
+            });
+
+            modelBuilder.Entity("personalised_concierge_m1.Models.Calendar", b =>
+            {
+                b.Property<int>("CalendarId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("integer")
+                    .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                b.Property<DateTime>("CreatedDate")
+                    .HasColumnType("timestamp without time zone");
+
+                b.Property<DateTime>("EndDate")
+                    .HasColumnType("timestamp without time zone");
+
+                b.Property<DateTime>("StartDate")
+                    .HasColumnType("timestamp without time zone");
+
+                b.HasKey("CalendarId");
+
+                b.ToTable("calendar");
+            });
+
+            modelBuilder.Entity("personalised_concierge_m1.Models.CalendarEvent", b =>
+            {
+                b.Property<int>("CalendarEventId")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("integer")
+                    .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                b.Property<int>("CalendarId")
+                    .HasColumnType("integer");
+
+                b.Property<DateTime>("Date")
+                    .HasColumnType("timestamp without time zone");
+
+                b.Property<string>("Description")
+                    .HasColumnType("text");
+
+                b.Property<DateTime>("EndTime")
+                    .HasColumnType("timestamp without time zone");
+
+                b.Property<string>("Location")
+                    .HasColumnType("text");
+
+                b.Property<string>("Name")
+                    .HasColumnType("text");
+
+                b.Property<string>("Note")
+                    .HasColumnType("text");
+
+                b.Property<int>("OtherId")
+                    .HasColumnType("integer");
+
+                b.Property<DateTime>("StartTime")
+                    .HasColumnType("timestamp without time zone");
+
+                b.Property<string>("Type")
+                    .HasColumnType("text");
+
+                b.HasKey("CalendarEventId");
+
+                b.ToTable("calendarEvent");
+            });
+
             modelBuilder.Entity("personalised_concierge_m1.Models.Entities.Itineraries.Checklist", b =>
                 {
                     b.Property<int>("checklist_id")

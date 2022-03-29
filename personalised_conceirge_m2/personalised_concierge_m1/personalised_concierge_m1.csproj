@@ -7,73 +7,6 @@
     <PropertyGroup Condition=" '$(RunConfiguration)' == 'personalised_conceirge_m1' " />
     <ItemGroup>
       <Content Remove="Views\Itinerary\ItineraryItem.cshtml" />
-      <Content Remove="wwwroot\assets\css\animate.min.css" />
-      <Content Remove="wwwroot\assets\css\bootstrap.min.css" />
-      <Content Remove="wwwroot\assets\css\cropper.min.css" />
-      <Content Remove="wwwroot\assets\css\datatables.min.css" />
-      <Content Remove="wwwroot\assets\css\driver.min.css" />
-      <Content Remove="wwwroot\assets\css\ion.rangeSlider.min.css" />
-      <Content Remove="wwwroot\assets\css\jquery-jvectormap-2.0.3.css" />
-      <Content Remove="wwwroot\assets\css\jquery-ui.min.css" />
-      <Content Remove="wwwroot\assets\css\morris.css" />
-      <Content Remove="wwwroot\assets\css\slick.css" />
-      <Content Remove="wwwroot\assets\css\style.css" />
-      <Content Remove="wwwroot\assets\css\sweetalert2.min.css" />
-      <Content Remove="wwwroot\assets\css\toastr.min.css" />
-      <Content Remove="wwwroot\assets\fonts\Roboto-Bold.ttf" />
-      <Content Remove="wwwroot\assets\fonts\Roboto-Italic.ttf" />
-      <Content Remove="wwwroot\assets\fonts\Roboto-Medium.ttf" />
-      <Content Remove="wwwroot\assets\fonts\Roboto-Regular.ttf" />
-      <Content Remove="wwwroot\assets\js\animate.js" />
-      <Content Remove="wwwroot\assets\js\bootstrap.min.js" />
-      <Content Remove="wwwroot\assets\js\Chart.bundle.min.js" />
-      <Content Remove="wwwroot\assets\js\Chart.Financial.js" />
-      <Content Remove="wwwroot\assets\js\charts.js" />
-      <Content Remove="wwwroot\assets\js\client-managemenet.js" />
-      <Content Remove="wwwroot\assets\js\clients.js" />
-      <Content Remove="wwwroot\assets\js\coming-soon.js" />
-      <Content Remove="wwwroot\assets\js\crop.js" />
-      <Content Remove="wwwroot\assets\js\cropper.min.js" />
-      <Content Remove="wwwroot\assets\js\cryptocurrency.js" />
-      <Content Remove="wwwroot\assets\js\customer-review.js" />
-      <Content Remove="wwwroot\assets\js\d3.v3.min.js" />
-      <Content Remove="wwwroot\assets\js\data-tables.js" />
-      <Content Remove="wwwroot\assets\js\datamaps.all.min.js" />
-      <Content Remove="wwwroot\assets\js\datatables.min.js" />
-      <Content Remove="wwwroot\assets\js\driver.min.js" />
-      <Content Remove="wwwroot\assets\js\form-wizard.js" />
-      <Content Remove="wwwroot\assets\js\framework.js" />
-      <Content Remove="wwwroot\assets\js\google-maps.js" />
-      <Content Remove="wwwroot\assets\js\ion.rangeSlider.min.js" />
-      <Content Remove="wwwroot\assets\js\jquery-3.3.1.min.js" />
-      <Content Remove="wwwroot\assets\js\jquery-ui.min.js" />
-      <Content Remove="wwwroot\assets\js\jquery.countdown.min.js" />
-      <Content Remove="wwwroot\assets\js\jquery.steps.min.js" />
-      <Content Remove="wwwroot\assets\js\jquery.webticker.min.js" />
-      <Content Remove="wwwroot\assets\js\moment.js" />
-      <Content Remove="wwwroot\assets\js\morris-charts.js" />
-      <Content Remove="wwwroot\assets\js\morris.min.js" />
-      <Content Remove="wwwroot\assets\js\perfect-scrollbar.js" />
-      <Content Remove="wwwroot\assets\js\popper.min.js" />
-      <Content Remove="wwwroot\assets\js\project-management.js" />
-      <Content Remove="wwwroot\assets\js\promise.min.js" />
-      <Content Remove="wwwroot\assets\js\range-slider.js" />
-      <Content Remove="wwwroot\assets\js\raphael.min.js" />
-      <Content Remove="wwwroot\assets\js\Resturant.js" />
-      <Content Remove="wwwroot\assets\js\sales-bar.js" />
-      <Content Remove="wwwroot\assets\js\settings.js" />
-      <Content Remove="wwwroot\assets\js\slick.min.js" />
-      <Content Remove="wwwroot\assets\js\social-media.js" />
-      <Content Remove="wwwroot\assets\js\social.js" />
-      <Content Remove="wwwroot\assets\js\sweet-alerts.js" />
-      <Content Remove="wwwroot\assets\js\sweetalert2.min.js" />
-      <Content Remove="wwwroot\assets\js\toast.js" />
-      <Content Remove="wwwroot\assets\js\toastr.min.js" />
-      <Content Remove="wwwroot\assets\js\topojson.v1.min.js" />
-      <Content Remove="wwwroot\assets\js\tour.js" />
-      <Content Remove="wwwroot\assets\js\vector-maps.js" />
-      <Content Remove="wwwroot\assets\js\web-analytics.js" />
-      <Content Remove="wwwroot\assets\js\widgets.js" />
     </ItemGroup>
 
     <ItemGroup>
@@ -94,31 +27,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="assets\img\" />
       <Folder Include="Data\UserDetails\" />
       <Folder Include="Migrations" />
-      <Folder Include="wwwroot\assets\img\" />
     </ItemGroup>
 
     <ItemGroup>
       <None Include="Views\ItineraryItem\Index.cshtml" />
-      <None Include="wwwroot\assets\css\animate.min.css" />
-      <None Include="wwwroot\assets\css\bootstrap.min.css" />
-      <None Include="wwwroot\assets\css\cropper.min.css" />
-      <None Include="wwwroot\assets\css\datatables.min.css" />
-      <None Include="wwwroot\assets\css\driver.min.css" />
-      <None Include="wwwroot\assets\css\ion.rangeSlider.min.css" />
-      <None Include="wwwroot\assets\css\jquery-jvectormap-2.0.3.css" />
-      <None Include="wwwroot\assets\css\jquery-ui.min.css" />
-      <None Include="wwwroot\assets\css\morris.css" />
-      <None Include="wwwroot\assets\css\slick.css" />
-      <None Include="wwwroot\assets\css\style.css" />
-      <None Include="wwwroot\assets\css\sweetalert2.min.css" />
-      <None Include="wwwroot\assets\css\toastr.min.css" />
-      <None Include="wwwroot\assets\fonts\Roboto-Bold.ttf" />
-      <None Include="wwwroot\assets\fonts\Roboto-Italic.ttf" />
-      <None Include="wwwroot\assets\fonts\Roboto-Medium.ttf" />
-      <None Include="wwwroot\assets\fonts\Roboto-Regular.ttf" />
       <None Include="wwwroot\assets\js\animate.js" />
       <None Include="wwwroot\assets\js\bootstrap.min.js" />
       <None Include="wwwroot\assets\js\Chart.bundle.min.js" />
@@ -169,8 +83,6 @@
       <None Include="wwwroot\assets\js\vector-maps.js" />
       <None Include="wwwroot\assets\js\web-analytics.js" />
       <None Include="wwwroot\assets\js\widgets.js" />
-
-      <Folder Include="wwwroot\images\" />
       <Folder Include="Views\FoodLeisure\" />
 
     </ItemGroup>
