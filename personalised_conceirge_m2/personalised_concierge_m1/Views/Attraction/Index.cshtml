@@ -98,7 +98,7 @@ marker7.setMap(map);
 marker8.setMap(map);
 marker9.setMap(map);
 marker10.setMap(map);
-var infowindow = new google.maps.InfoWindow({ content: "My Current Location" });
+var infowindow = new google.maps.InfoWindow({  content: "<b>My Current Location</b><br/> Latitude:"+lat+"<br /> Longitude:"+long+""});
 infowindow.open(map, marker);
 var infowindow2 = new google.maps.InfoWindow({ content: "Universal Studios" });
 infowindow2.open(map, marker2);
@@ -115,15 +115,15 @@ infowindow7.open(map, marker7);
 var infowindow8 = new google.maps.InfoWindow({ content: "National Orchird Garden" });
 infowindow8.open(map, marker8);
 var infowindow9 = new google.maps.InfoWindow({ content: "Marina Barrage" });
-infowindow8.open(map, marker9);
+infowindow9.open(map, marker9);
 var infowindow10 = new google.maps.InfoWindow({ content: "Art Science Museum" });
-infowindow8.open(map, marker10);
+infowindow10.open(map, marker10);
 }
 </script>
 </head>
 <body >
 <h3>My Current Location</h3>
-<p>Distance : @ViewBag.Title</p>
+<p>Current Location to Sentosa : @ViewBag.Title</p>
 <form id="form1" runat="server">
 <div id="map_canvas" style="width: 500px; height: 400px"></div>
 <asp:Label ID="Long" runat="server" Text=""></asp:Label>

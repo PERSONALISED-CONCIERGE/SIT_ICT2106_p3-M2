@@ -4,19 +4,26 @@ using System;
 using System.IO;
 using System.Net;
 using System.Xml;
+using System.Device.Location;
+
 
 namespace personalised_concierge_m1.Controllers
 {
 
     public class AttractionController : Controller
-    {
-        private Attraction attraction = new Attraction();
 
+    {
+       
+        private Attraction attraction = new Attraction();
+        //private string latitude;
+        //private string longitute;
+        //private GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+        GeoCoordinateWatcher geo = null;
         public double GetDrivingDistanceInMiles(string origin, string destination)
         {
 
-            string url = "https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + origin + "&destinations=" + destination + "&mode=driving&sensor=false&language=en-EN&units=imperial&key=AIzaSyDTTYqC1kZafWB0Ewsobhe05TyHGzl40qA"; 
-           
+            string url = "https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + origin + "&destinations=" + destination + "&mode=driving&sensor=false&language=en-EN&units=imperial&key=AIzaSyDTTYqC1kZafWB0Ewsobhe05TyHGzl40qA";
+
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             WebResponse response = request.GetResponse();
             Stream dataStream = response.GetResponseStream();
@@ -53,12 +60,16 @@ namespace personalised_concierge_m1.Controllers
             return "";
         }
 
-
         public IActionResult Index()
         {
-            string origin = GetLocation(1.3397, 103.7067);
-            string destination = GetLocation(1.2494, 103.8303);
-            ViewBag.Title = GetDrivingDistanceInMiles(origin, destination).ToString();
+            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
+
+            // Do not suppress prompt, and wait 1000 milliseconds to start.
+            watcher.TryStart(false, TimeSpan.FromMilliseconds(1000));
+
+            GeoCoordinate coord = watcher.Position.Location;
+            string Sentosa = GetLocation(1.2494, 103.8303);
+            ViewBag.Title = (GetDrivingDistanceInMiles((watcher.Position.Location).ToString(), Sentosa).ToString());
             return View(attraction);
         }
     }
