@@ -1,0 +1,151 @@
+﻿@model personalised_concierge_m1.Models.Entities.Navigation.Navigation
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+
+    <div class="ms-content-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="db-header-title">Welcome, Anny</h1>
+            </div>
+
+            <!-- Food Orders -->
+            <div class="col-md-12">
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>Navigation</h6>
+                    </div>
+                    <div class="ms-panel-body">
+                        <div class="row">
+                            <!-- Google maps part -->
+                            <input id="btnDirections" type="button" value="Get Directions" onclick="return btnDirections_onclick()" hidden />
+                            <div id="Gmap" style="height: 400px; width: 1200px"></div>
+                            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTYqC1kZafWB0Ewsobhe05TyHGzl40qA"></script>
+                            <script type="text/javascript">
+                                var directionsDisplay;
+                                var directionsService = new google.maps.DirectionsService();
+                                var totalDistance = 0;
+                                var start;
+
+                                if (navigator.geolocation) {
+navigator.geolocation.getCurrentPosition(success);
+} else {
+alert("Geo Location is not supported on your current browser!");
+}
+function success(position) {
+    start = position.coords.latitude + "," + position.coords.longitude;
+console.log("laylng " , start);
+InitializeMap();
+}
+
+                                function InitializeMap() {
+
+                                    console.log("InitializeMap")
+                                    directionsDisplay = new google.maps.DirectionsRenderer();
+                                    var latlng = new google.maps.LatLng(1.3521, 103.8198);
+                                    var myOptions =
+                                    {
+                                        zoom: 11,
+                                        center: latlng,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    };
+                                    var map = new google.maps.Map(document.getElementById("Gmap"), myOptions);
+
+                                    directionsDisplay.setMap(map);
+                                    directionsDisplay.setPanel(document.getElementById('directionpanel'));
+
+                                    var control = document.getElementById('control');
+
+                                    // CalcRoute
+                                    document.getElementById('btnDirections').click();
+                                }
+
+
+
+                                function calcRoute() {
+                                    console.log("calcRoute");
+                                    console.log("start " , start);
+                                    var end = "600002";
+                                    var request = {
+                                        origin: start,
+                                        destination: end,
+                                        travelMode: google.maps.DirectionsTravelMode.WALKING
+                                    };
+                                    directionsService.route(request, function (response, status) {
+                                        console.log("Distance" + JSON.stringify(response.routes[0].legs[0].distance.value));
+                                        totalDistance = response.routes[0].legs[0].distance.value;
+                                        console.log("Total Distance = " + totalDistance);
+                                    calculateFinalRoute(); 
+                                    });
+                                }
+
+                                    function calculateFinalRoute() {
+                                         console.log("calcRoute");
+                                    var end = "600002";
+                                        console.log("Final");
+                                        console.log("Distance == " + totalDistance);
+                                        if (totalDistance > 5000) {
+                                           console.log(">5000");
+                                        var finalRequest = {
+                                            origin: start,
+                                            destination: end,
+                                            travelMode: google.maps.DirectionsTravelMode.DRIVING
+                                        };
+                                        console.log("request " + JSON.stringify(finalRequest));
+                                        } else {
+                                           console.log("<5000");
+                                        var finalRequest = {
+                                            origin: start,
+                                            destination: end,
+                                            travelMode: google.maps.DirectionsTravelMode.WALKING
+                                        };
+                                        console.log("request " + JSON.stringify(finalRequest));
+                                        }
+                                        directionsService.route(finalRequest, function (response, status) {
+                                        if (status == google.maps.DirectionsStatus.OK) {
+                                            directionsDisplay.setDirections(response);
+                                        }
+                                    });
+                                    
+                                    }
+                                
+
+                                function btnDirections_onclick() {
+                                    calcRoute();
+                                }
+
+                                window.onload = InitializeMap;
+                            </script>
+                            <!-- End of google maps-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Directions -->
+            <div class="col-md-12">
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>Directions</h6>
+                    </div>
+                    <div class="ms-panel-body">
+                        <div class="row">
+                            <div id="directionpanel" style="height: 400px; width: 1200px;overflow: auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END/Directions -->
+
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using personalised_concierge_m1.Data;
 using personalised_concierge_m1.Models;
-using personalised_concierge_m1.Models.Entities.OtherServices;
 using personalised_concierge_m1.Models.Interfaces;
 
 namespace personalised_concierge_m1.Controllers
@@ -35,13 +28,13 @@ namespace personalised_concierge_m1.Controllers
             var myReservation = _unitOfWork.ReservationDetails.GetById(1);
             var myAccount = _unitOfWork.AccountDetails.GetById(1);
             var myLeisure = _m2UnitOfWork.FoodLeisureDetails.GetById(1);
-            var myEnum = _m2UnitOfWork.ReviewDetails.GetById(1);
+            //var myEnum = _m2UnitOfWork.ReviewDetails.GetById(1);
             var myRequest = _m3UnitOfWork.RequestDetails.GetById(1);
             
             ViewData["myRoom"] = myRoom;
             ViewData["myAccount"] = myAccount;
             ViewData["myLeisure"] = myLeisure;
-            ViewData["myenum"] = myEnum;
+            //ViewData["myenum"] = myEnum;
             ViewData["myrequest"] = myRequest;
 
             
@@ -58,38 +51,6 @@ namespace personalised_concierge_m1.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
-        }
-        public ActionResult Details()
-        {
-            return View();
-        }
-        public ActionResult Animate()
-        {
-            return View();
-        }
-        public ActionResult Icon()
-        {
-            return View();
-        }
-        public ActionResult Steet()
-        {
-            return View();
-        }
-        public ActionResult ModeTravel()
-        {
-            return View();
-        }
-        public ActionResult Traffic()
-        {
-            return View();
-        }
-        public ActionResult RouteColor()
-        {
-            return View();
-        }
-        public ActionResult DistanceCalculation()
-        {
-            return View();
         }
     }
 }
