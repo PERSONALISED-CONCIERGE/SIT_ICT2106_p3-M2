@@ -125,7 +125,8 @@
                 <li class="sgLi">
                 <div class="box">
                     <h4 class="attractionName">@Html.DisplayFor(modelItem => item.attractionName)</h4>
-                    <h7 class="attractionDist">@Html.DisplayFor(modelItem => item.attractionDescription)</h7>
+                    @* <h7 class="attractionDist">@Html.DisplayFor(modelItem => item.attractionDescription)</h7> *@
+                    <h7 class="attractionDist">10km</h7>
                     <p><img src = "@Html.DisplayFor(modelItem => item.attractionImage)" width="250" height="150"/></p>
                     <a class="attractionDetailBtn" asp-route-id = "@item.attractionId" asp-controller="Attraction" asp-action="ViewDetails">View Details</a>
                 </div>
