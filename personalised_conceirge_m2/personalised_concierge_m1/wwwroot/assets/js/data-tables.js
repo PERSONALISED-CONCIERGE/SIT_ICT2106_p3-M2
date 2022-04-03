@@ -79,70 +79,83 @@ var dataSet1= [
     [ "14451", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Dum sum",  "Hall Street", "bbc@gfail.com", " Pizza" ,"$43" ]
   ];
 
+    var dataset2 = [
+        ["001", "Sentosa Siloso Beach", "Sentosa", "2022/03/31", "$40"],
+        ["002", "Rooftop Swimming Pool", "Marina Bay Sands Hotel","2022/04/01", "$75"],
+        ["003", "Picnic at Marina Barrage", "Marina Barrage", "2022/04/01", "$0"],
+        ["004", "Hiking at Macritchie", "Macritchie", "2022/04/02", "$20"],
+        ["005", "Tour At Puala Ubin", "Puala Ubin", "2022/04/04", "$40"],
+        ["006", "Singapore Flyer", "Singapore Flyer", "2022/04/04", "$35"],
+        ["007", "Gardens by The Bay", "Bayfront", "2022/04/01", "$50"],
+        ["008", "Bungee Jumping at Sentosa", "Sentosa", "2022/03/31", "$80"],
+        ["009", "Singapore Arts Museum", "Tanjong Pagar", "2022/04/03", "$45"],
+        ["010", "DuckTour", "Suntec Convention Centre", "2022/04/02", "$40"]
+    ];
 
 
 
 
-  var tableOne = $('#data-table-1').DataTable( {
+  var tableOne = $('#data-table-1').dataTable( {
     data: dataSet,
     columns: [
       { title: "Product ID" },
       { title: "Product Name" },
-
       { title: "Quantity" },
       { title: "Status" },
       { title: "Price" }
     ],
   });
-  var tableTwo = $('#data-table-2').DataTable( {
+  var tableTwo = $('#data-table-2').dataTable( {
     data: dataSet,
     columns: [
       { title: "Product ID" },
       { title: "Product Name" },
-
       { title: "Quantity" },
       { title: "Status" },
       { title: "Price" }
     ],
   });
-  var tableThree = $('#data-table-3').DataTable( {
+  var tableThree = $('#data-table-3').dataTable( {
     data: dataSet,
     columns: [
       { title: "Product ID" },
       { title: "Product Name" },
-
       { title: "Quantity" },
       { title: "Status" },
       { title: "Price" }
     ],
     scrollY: 400
   });
-  var tableFour = $('#data-table-4').DataTable( {
-    data: dataSet1,
-    columns: [
-      { title: "Customer ID" },
-      { title: "Customer Name" },
+     
+    var tableFour = $('#data-table-4').dataTable({
+        data: dataset2,
+        columns: [
+            { title: "Item ID" },
+            { title: "Event Name" },
+            { title: "Location" },
+            { title: "Date" },
+            { title: "Budget" }
 
-      { title: "Location" },
-      { title: "Email ID" },
-      { title: "Ordered Item" },
-      { title: "Bill" }
-
-    ],
+      ],
+      
   });
 
 
-  var tableFour = $('#data-table-5').DataTable( {
+  var tableFive = $('#data-table-5').dataTable( {
     data: dataSet,
     columns: [
       { title: "Product ID" },
       { title: "Product Name" },
-
       { title: "Quantity" },
       { title: "Status" },
       { title: "Price" },
 
 
+
     ],
   });
 })(jQuery);
+
+tableFour.on('draw.dt', function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
