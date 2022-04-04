@@ -1,4 +1,5 @@
-﻿using personalised_concierge_m1.Models.Entities.OtherServices;
+﻿using System.Collections.Generic;
+using personalised_concierge_m1.Models.Entities.OtherServices;
 
 namespace personalised_concierge_m1.Models.Interfaces.OtherServices
 {
@@ -6,7 +7,7 @@ namespace personalised_concierge_m1.Models.Interfaces.OtherServices
     {
         //TODO: Methods to be defined in the repo interface classes and implemented in the repository.
         //RoomType Entity
-        ITransportationRepo getAllTransportations();
-        ITransportationRepo getTransportationById(int transport_id);
+        IEnumerable<Transportation> GetAllTransportations();
+        Transportation GetTransportationByID(int transport_id);
     }
 }

@@ -1,0 +1,55 @@
+@using personalised_concierge_m1.Models.Entities.Itineraries
+@model dynamic
+
+@{
+    ViewData["Title"] = "Blog ";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>Looking for ideas to spice up your trip? Get some inspirations from our blogs!</p>
+
+<!DOCTYPE html>
+<style>
+    .row {
+        border: 1px solid #C4C4C4;
+        border-radius: 8px;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    h1 {
+        color: #23305E;
+    }
+
+    input[type=submit] {
+        background-color: #23305E;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 30px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 14px;
+        margin: 4px 2px;
+    }
+</style>
+
+<html>
+<body>
+    <div class="container">
+        @foreach (Blog ablog in Model.myBlog){
+        <div class="row">
+            <h1>@ablog.name</h1>
+            <p>@ablog.description</p>
+            <p>
+                @using (Html.BeginForm("Blog", "Blog")){
+                @Html.Hidden("itinerary_id", @ablog.itinerary_id)
+                <input type="submit" value="View blog" />
+                    }
+            </p>
+        </div>
+        }
+    </div>
+
+</body>
+</html>

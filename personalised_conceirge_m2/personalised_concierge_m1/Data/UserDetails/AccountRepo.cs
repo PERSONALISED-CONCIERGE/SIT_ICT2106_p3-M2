@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using personalised_concierge_m1.Models.Entities.UserDetails;
 using personalised_concierge_m1.Models.Interfaces.UserDetails;
 
@@ -15,6 +17,11 @@ namespace personalised_concierge_m1.Data.UserDetails
         public IAccountRepo getAccountById(int account_id)
         {
             throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<Account> GetAccountById(int account_id)
+        {
+            return _context.Accounts.Where(Account => Account.account_id == account_id).ToList();
         }
     }
 }

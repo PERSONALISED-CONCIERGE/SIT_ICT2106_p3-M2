@@ -1,11 +1,12 @@
-﻿using personalised_concierge_m1.Models.Entities.Itineraries;
+﻿using System.Collections.Generic;
+using personalised_concierge_m1.Models.Entities.Itineraries;
 
 
 namespace personalised_concierge_m1.Models.Interfaces.Itineraries
 {
     public interface IBlogRepo : IGenericRepo<Blog>
     {
-        IBlogRepo getAllBlogs();
-        IBlogRepo getBlogById(int blog_id);
+        IEnumerable<Blog> GetAllBlogs();
+        Blog GetBlogByID(int blog_id);
     }
 }
