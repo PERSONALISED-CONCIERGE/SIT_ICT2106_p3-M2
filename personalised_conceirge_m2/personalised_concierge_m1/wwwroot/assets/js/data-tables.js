@@ -53,7 +53,7 @@ var dataSet1= [
     [ "51558", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Merry",  "Hall Street", "ihj@gfail.com", " Pizza","$56"],
     [ "55841", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Herry",  "JK Road", "mhj@gfail.com", " Garlic Bread","$56" ],
     [ "55811", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Max",  "Hall Street", "ghj@gfail.com", " Noodles","$56" ],
-    [ "01475", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>  Joe",  "Street 21", "dhj@gfail.com", " Sandwich","$46"],
+    [ "01476", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>  Joe",  "Street 21", "dhj@gfail.com", " Sandwich","$46"],
     [ "55454", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Max",  "Street 21", "bhj@gfail.com", " Sandwich","$46"],
     [ "12145", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Bella",  "Huston Loan", "abc@gfail.com", " Burger" ,"$43" ],
     [ "52351", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Herry",  "Jk Road", "ghj@gfail.com", " Burger","$56" ],
@@ -86,7 +86,7 @@ var dataSet1= [
   var tableOne = $('#data-table-1').DataTable( {
     data: dataSet,
     columns: [
-      { title: "Product ID" },
+      { title: "Event ID" },
       { title: "Product Name" },
 
       { title: "Quantity" },
@@ -120,19 +120,19 @@ var dataSet1= [
   var tableFour = $('#data-table-4').DataTable( {
     data: dataSet1,
     columns: [
-      { title: "Customer ID" },
-      { title: "Customer Name" },
+      { title: "Item ID" },
+      { title: "Event Name" },
 
       { title: "Location" },
       { title: "Email ID" },
-      { title: "Ordered Item" },
-      { title: "Bill" }
+      { title: "Date" },
+      { title: "Budget" }
 
     ],
   });
 
 
-  var tableFour = $('#data-table-5').DataTable( {
+  var tableFive = $('#data-table-5').DataTable( {
     data: dataSet,
     columns: [
       { title: "Product ID" },
@@ -145,4 +145,19 @@ var dataSet1= [
 
     ],
   });
+  var tableSix = $('#data-table-6').DataTable({
+    data: dataSet1,
+    columns: [
+    { title: "Item ID" },
+    { title: "Event Name" },
+
+    { title: "Location" },
+    { title: "Email ID" },
+    { title: "Date" },
+    { title: "Budget" }, 
+        ],
+    });
+
+
+
 })(jQuery);

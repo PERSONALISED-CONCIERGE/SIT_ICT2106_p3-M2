@@ -19,6 +19,7 @@ namespace personalised_concierge_m1.Controllers
     public class ItineraryController : Controller
     {
         private Itinerary itinerary = new Itinerary();
+
         private readonly IM2UnitOfWork _m2UnitOfWork;
 
         public ItineraryController(IM2UnitOfWork m2UnitOfWork)
