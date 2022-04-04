@@ -4,6 +4,7 @@
 
 
 
+
 <html lang="en">
 <head>
 <style type="text/css">
@@ -123,11 +124,15 @@ infowindow10.open(map, marker10);
 </head>
 <body >
 <h3>My Current Location</h3>
-<p>Current Location to Sentosa : @ViewBag.Title</p>
 <form id="form1" runat="server">
 <div id="map_canvas" style="width: 500px; height: 400px"></div>
 <asp:Label ID="Long" runat="server" Text=""></asp:Label>
 <asp:Label ID="Lat" runat="server" Text=""></asp:Label>
 </form>
+<h3>Distance to Suggested Location</h3>
+<p>Current Location to Sentosa : @ViewBag.Sentosa miles</p>
+<p>Current Location to Changi Airport : @ViewBag.Changi miles</p>
+
+
 </body>
 </html>

@@ -9,28 +9,22 @@ namespace personalised_concierge_m1.Models.Entities.Attraction
     {
 
         [Key]
-        public int attraction_id { get; set; }
+        public int attractionId { get; set; }
 
         [Required]
-        public decimal start_lon { get; set; }
+        public string attractionName { get; set; }
 
         [Required]
-        public decimal start_lat { get; set; }
+        public string attractionImage { get; set; }
 
         [Required]
-        public decimal end_lon { get; set; }
+        public string attractionDescription { get; set; }
 
         [Required]
-        public decimal end_lat { get; set; }
+        public double attractionPrice { get; set; }
 
         [Required]
-        public decimal duration { get; set; }
-
-        [Required]
-        public decimal distance { get; set; }
-
-        [Required]
-        public int type { get; set; }
+        public string attraction_location { get; set; }
 
 
     }
