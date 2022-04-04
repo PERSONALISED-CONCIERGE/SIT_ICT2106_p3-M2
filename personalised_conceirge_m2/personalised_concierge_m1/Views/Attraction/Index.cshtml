@@ -1,0 +1,171 @@
+﻿@model IEnumerable<personalised_concierge_m1.Models.Entities.Attraction.Attraction>
+<!DOCTYPE html>
+<html>
+      
+<head>
+    <script language="javascript" type="text/javascript">
+        // JavaScript code
+        function search_attraction() {
+            let input = document.getElementById('searchbar').value
+            input=input.toLowerCase();
+            let attractionName = document.getElementsByClassName('attractionName');
+            let box = document.getElementsByClassName('sgLi');
+            let attractionDist = document.getElementsByClassName('attractionDist');
+            split = input.split(" ")
+      
+            for (i = 0; i < attractionName.length; i++) { 
+                count = 0
+                for (a = 0; a < split.length; a++){
+                    if (attractionName[i].innerHTML.toLowerCase().includes(split[a]) || attractionDist[i].innerHTML.toLowerCase().includes(split[a])) {
+                        count += 1
+                    }
+                }
+                if (count != split.length){
+                    box[i].style.display="none";
+                }
+                else{
+                    box[i].style.display="inline-flex";
+                }
+            }
+        }
+
+        function upVote(clicked_id){
+                
+            let attractionVote = document.getElementsByClassName('attractionVote');
+            let attractionName = document.getElementsByClassName('attractionName');
+            for(i = 0; i < attractionVote.length; i++){
+                var counter = 0;
+                /*
+                if(attractionId[i].innerHTML == click_id){
+                counter += parseInt(attractionVote[i].innerHTML);
+                counter += 1
+                attractionVote[i].innerHTML = counter.toString();
+                }
+                */
+                console.log(clicked_id)
+                console.log(attractionVote[i].innerHTML);
+                console.log(attractionName[i].innerHTML);
+            }
+        }
+
+        function downVote(){
+            let attractionVote = document.getElementsByClassName('attractionVote');
+            for(i = 0; i < attractionVote.length; i++){
+                var counter = 0;
+                counter += parseFloat(attractionVote[i].innerHTML);
+                counter -= 1
+                attractionVote[i].innerHTML = counter.toString();
+                console.log(attractionVote[i].innerHTML);
+            }
+        }
+    </script>
+      
+    <!-- linking the stylesheet(CSS) -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <style>
+     #searchbar{
+         margin-left: 15%;
+         padding:15px;
+         border-radius: 10px;
+     }
+ 
+     input[type=text] {
+          width: 70%;
+          -webkit-transition: width 0.15s ease-in-out;
+          transition: width 0.15s ease-in-out;
+     }
+ 
+      #list{
+        font-size:  1.2em;
+        margin-left: 90px;
+       }
+ 
+    .attraction{
+       display: list-item;    
+      }
+    .X{
+          margin: auto;
+          padding: 1% 2%;
+          max-width: 1440px;
+          border-radius: 5px;
+          background: #ecf0f1;
+          box-shadow: 0 2px 6px 0 rgba(0,0,0, .3);
+    }
+    h1,h2,h3{
+      text-align: center;
+      font-family: 'Baloo Tamma', cursive;
+    }
+    
+    /*SG = style grid*/
+    .SG{
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .SG .sgLi{
+      min-width: 24%;
+      margin: 2% .35%;
+      display: inline-flex;
+      box-shadow: 0 2px 4px rgba(0,0,0, .2);
+    }
+    .SG .sgLi:hover{
+      box-shadow:0 5px 10px rgba(0,0,0,.15);}
+    .SG .box{
+      width: 350px;
+      height: 350px;
+      padding: 1% 2%;
+      background: #fff;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .box img {
+        position: center;
+        bottom: 15%;
+        left: 8.33%;
+    }
+
+    .attractionDetailBtn{
+        background-color: yellow;
+        position: center;
+        bottom: 5%;
+        left: 35%;
+    }
+
+
+    </style>
+</head>
+  
+<body>
+      
+    <div class="X">
+        <!-- input tag -->
+        <input id="searchbar" onkeyup="search_attraction()" type="text"
+            name="search" placeholder="Search attractions here...">
+      
+        <ul class="SG">
+            @foreach (var item in Model) {
+                <li class="sgLi"> 
+                <div class="box">
+                    <h4 class="attractionName">@Html.DisplayFor(modelItem => item.attractionName)</h4>
+                    <h7>Distance:</h7>
+                    <h7 class="attractionDist">@Html.DisplayFor(modelItem => item.attractionDescription)</h7><br>
+                    <h7>Vote:</h7>
+                    <h7 class="attractionVote">@Html.DisplayFor(modelItem => item.attractionVote)</h7><br>
+                    <button id="1" onclick="upVote(this.get)">UP VOTE</button>
+                    <button id="(modelItem => item.attractionName)" onclick="downVote(this.id)">DOWN VOTE</button><br><br>
+                    <p><img src = "@Html.DisplayFor(modelItem => item.attractionImage)" width="250" height="150"/></p>
+                    <a class="attractionDetailBtn" asp-route-id = "@item.attractionId" asp-controller="Attraction" asp-action="ViewDetails">View Details</a>
+                </div>
+            </li> 
+           
+            }
+            
+        </ul>
+      
+        <!-- linking javascript -->
+        <script src="./attraction.js"></script>
+    </div>
+</body>
+
+  
+</html>
