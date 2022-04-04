@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
@@ -177,13 +177,7 @@
 
     <ItemGroup>
       <Reference Include="System.Device">
-        <HintPath>..\..\..\..\..\Downloads\System.Device\System.Device.dll</HintPath>
+        <HintPath>System.Device.dll</HintPath>
       </Reference>
-    </ItemGroup>
-      <None Remove="index.html" />
-      <None Remove="Views\FoodLeisure\" />
-    </ItemGroup>
-    <ItemGroup>
-      <Content Remove="wwwroot\images\" />
     </ItemGroup>
 </Project>

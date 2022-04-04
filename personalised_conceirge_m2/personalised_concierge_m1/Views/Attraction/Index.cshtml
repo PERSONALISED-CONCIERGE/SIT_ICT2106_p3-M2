@@ -122,17 +122,50 @@ infowindow10.open(map, marker10);
 }
 </script>
 </head>
-<body >
-<h3>My Current Location</h3>
+<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+
+    <div class="ms-content-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="db-header-title"> </h1>
+            </div>
+	<div class="col-md-12">
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>My Current Location</h6>
+                    </div>
+                    <div class="ms-panel-body">
+                        <div class="row">
+                            
 <form id="form1" runat="server">
-<div id="map_canvas" style="width: 500px; height: 400px"></div>
-<asp:Label ID="Long" runat="server" Text=""></asp:Label>
+                            <div id="map_canvas" style="height: 400px; width: 1025px"></div>
+                            <asp:Label ID="Long" runat="server" Text=""></asp:Label>
 <asp:Label ID="Lat" runat="server" Text=""></asp:Label>
 </form>
-<h3>Distance to Suggested Location</h3>
-<p>Current Location to Sentosa : @ViewBag.Sentosa miles</p>
-<p>Current Location to Changi Airport : @ViewBag.Changi miles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="col-md-12">
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>Distance to Suggested Location</h6>
+                    </div>
+                    <div class="ms-panel-body">
+                        <div class="row">
+                            
+<p>Current Location to Sentosa : @ViewBag.Sentosa miles</p>
+</div>
+<div class="row">
+<p>Current Location to Changi Airport : @ViewBag.Changi miles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            </div>
 
 </body>
 </html>

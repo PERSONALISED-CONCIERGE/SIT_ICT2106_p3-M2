@@ -68,6 +68,7 @@ namespace personalised_concierge_m1.Controllers
             watcher.TryStart(false, TimeSpan.FromMilliseconds(1000));
 
             GeoCoordinate coord = watcher.Position.Location;
+
             string Sentosa = GetLocation(1.2494, 103.8303);
             string changiairport = GetLocation(1.359167, 103.989441);
             string jurongbirdpark = GetLocation(1.318707, 103.706442);
