@@ -12,6 +12,6 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
     {
         IEnumerable<Review> SortASC(int FoodLeisureID);
         IEnumerable<Review> SortDSC(int FoodLeisureID);
-        IEnumerable<Review> Search(int FoodLeisureID, string searchstr);
+        IEnumerable<Review> Filter(int FoodLeisureID, string searchstr);
     }
 }
