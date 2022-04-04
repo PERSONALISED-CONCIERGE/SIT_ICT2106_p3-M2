@@ -176,6 +176,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Reference Include="System.Device">
+        <HintPath>..\..\..\..\..\Downloads\System.Device\System.Device.dll</HintPath>
+      </Reference>
+    </ItemGroup>
       <None Remove="index.html" />
       <None Remove="Views\FoodLeisure\" />
     </ItemGroup>
