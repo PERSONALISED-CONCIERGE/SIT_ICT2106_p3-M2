@@ -32,29 +32,38 @@
         function upVote(clicked_id){
                 
             let attractionVote = document.getElementsByClassName('attractionVote');
-            let attractionName = document.getElementsByClassName('attractionName');
-            for(i = 0; i < attractionVote.length; i++){
+
+
+            
+            for(i = 0; i < attractionVote.length+1; i++){
                 var counter = 0;
-                /*
-                if(attractionId[i].innerHTML == click_id){
+                
+                if(i == clicked_id){
                 counter += parseInt(attractionVote[i].innerHTML);
                 counter += 1
                 attractionVote[i].innerHTML = counter.toString();
-                }
-                */
+                document.getElementById(i.toString()).disabled = true;
+                }      
+
                 console.log(clicked_id)
                 console.log(attractionVote[i].innerHTML);
-                console.log(attractionName[i].innerHTML);
+
             }
         }
 
-        function downVote(){
+        function downVote(clicked_id){
             let attractionVote = document.getElementsByClassName('attractionVote');
+            let attractionName = document.getElementsByClassName('attractionName');
             for(i = 0; i < attractionVote.length; i++){
                 var counter = 0;
+
+                if(attractionName[i].innerHTML == clicked_id){
                 counter += parseFloat(attractionVote[i].innerHTML);
                 counter -= 1
                 attractionVote[i].innerHTML = counter.toString();
+                document.getElementById(attractionName[i].innerHTML).disabled = true;
+                }
+                console.log(clicked_id)
                 console.log(attractionVote[i].innerHTML);
             }
         }
@@ -144,6 +153,7 @@
       
         <ul class="SG">
             @foreach (var item in Model) {
+                
                 <li class="sgLi"> 
                 <div class="box">
                     <h4 class="attractionName">@Html.DisplayFor(modelItem => item.attractionName)</h4>
@@ -151,13 +161,13 @@
                     <h7 class="attractionDist">@Html.DisplayFor(modelItem => item.attractionDescription)</h7><br>
                     <h7>Vote:</h7>
                     <h7 class="attractionVote">@Html.DisplayFor(modelItem => item.attractionVote)</h7><br>
-                    <button id="1" onclick="upVote(this.get)">UP VOTE</button>
-                    <button id="(modelItem => item.attractionName)" onclick="downVote(this.id)">DOWN VOTE</button><br><br>
+                    <button id="@Html.DisplayFor(modelItem => item.attractionId)" onclick="upVote(this.id)">UP VOTE</button>
+                    <button id="@Html.DisplayFor(modelItem => item.attractionName)" onclick="downVote(this.id)">DOWN VOTE</button><br><br>
                     <p><img src = "@Html.DisplayFor(modelItem => item.attractionImage)" width="250" height="150"/></p>
                     <a class="attractionDetailBtn" asp-route-id = "@item.attractionId" asp-controller="Attraction" asp-action="ViewDetails">View Details</a>
                 </div>
-            </li> 
-           
+                </li>
+
             }
             
         </ul>
