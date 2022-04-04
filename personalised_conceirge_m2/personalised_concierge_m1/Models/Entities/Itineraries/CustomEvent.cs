@@ -8,7 +8,7 @@ using personalised_concierge_m1.Modelspersonalised_concierge_m1.Models;
 
 namespace personalised_concierge_m1.Models
 {
-    public class CustomEvent : CalendarEvent, ICalendarEvent
+    public class CustomEvent : ICalendarEvent
     {
         private CalendarEvent calendarEvent;
         private int defaultId = 0;

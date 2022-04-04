@@ -21,6 +21,22 @@ namespace personalised_concierge_m1.Migrations
                 .Annotation("Npgsql:Enum:rating", "one,two,three,four,five");
 
             migrationBuilder.CreateTable(
+                name: "attractionDemo",
+                schema: "public",
+                columns: table => new
+                {
+                    AttractionDemoId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Location = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_attractionDemo", x => x.AttractionDemoId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Attractions",
                 schema: "public",
                 columns: table => new
@@ -38,7 +54,78 @@ namespace personalised_concierge_m1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Facilities",
+                name: "Budgets",
+                schema: "public",
+                columns: table => new
+                {
+                    Budgetid = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Budgetlimit = table.Column<double>(type: "double precision", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Budgets", x => x.Budgetid);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "calendar",
+                schema: "public",
+                columns: table => new
+                {
+                    CalendarId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_calendar", x => x.CalendarId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "calendarEvent",
+                schema: "public",
+                columns: table => new
+                {
+                    CalendarEventId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CalendarId = table.Column<int>(type: "integer", nullable: false),
+                    Type = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Location = table.Column<string>(type: "text", nullable: true),
+                    Note = table.Column<string>(type: "text", nullable: true),
+                    OtherId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_calendarEvent", x => x.CalendarEventId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Expenses",
+                schema: "public",
+                columns: table => new
+                {
+                    ExpensesId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    Currency = table.Column<string>(type: "text", nullable: true),
+                    Category = table.Column<string>(type: "text", nullable: true),
+                    Amount = table.Column<double>(type: "double precision", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Expenses", x => x.ExpensesId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Facility",
                 schema: "public",
                 columns: table => new
                 {
@@ -52,7 +139,7 @@ namespace personalised_concierge_m1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Facilities", x => x.facility_id);
+                    table.PrimaryKey("PK_Facility", x => x.facility_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,7 +150,7 @@ namespace personalised_concierge_m1.Migrations
                     foodleisure_id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "varchar(50)", nullable: false),
-                    description = table.Column<string>(type: "varchar(500)", nullable: false),
+                    description = table.Column<string>(type: "varchar(10000)", nullable: false),
                     website_link = table.Column<string>(type: "varchar(500)", nullable: true),
                     contact_num = table.Column<string>(type: "varchar(20)", nullable: false),
                     foodleisure_image = table.Column<string>(type: "varchar(500)", nullable: true),
@@ -97,7 +184,7 @@ namespace personalised_concierge_m1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InventoryCategories",
+                name: "InventoryCategory",
                 schema: "public",
                 columns: table => new
                 {
@@ -107,11 +194,11 @@ namespace personalised_concierge_m1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InventoryCategories", x => x.invcate_id);
+                    table.PrimaryKey("PK_InventoryCategory", x => x.invcate_id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "RequestTypes",
+                name: "RequestType",
                 schema: "public",
                 columns: table => new
                 {
@@ -124,7 +211,7 @@ namespace personalised_concierge_m1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RequestTypes", x => x.requesttype_id);
+                    table.PrimaryKey("PK_RequestType", x => x.requesttype_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -203,7 +290,7 @@ namespace personalised_concierge_m1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Inventories",
+                name: "Inventory",
                 schema: "public",
                 columns: table => new
                 {
@@ -216,18 +303,18 @@ namespace personalised_concierge_m1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Inventories", x => x.inventory_id);
+                    table.PrimaryKey("PK_Inventory", x => x.inventory_id);
                     table.ForeignKey(
-                        name: "FK_Inventories_InventoryCategories_invcate_id",
+                        name: "FK_Inventory_InventoryCategory_invcate_id",
                         column: x => x.invcate_id,
                         principalSchema: "public",
-                        principalTable: "InventoryCategories",
+                        principalTable: "InventoryCategory",
                         principalColumn: "invcate_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Requests",
+                name: "Request",
                 schema: "public",
                 columns: table => new
                 {
@@ -238,12 +325,12 @@ namespace personalised_concierge_m1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Requests", x => x.request_id);
+                    table.PrimaryKey("PK_Request", x => x.request_id);
                     table.ForeignKey(
-                        name: "FK_Requests_RequestTypes_requesttype_id",
+                        name: "FK_Request_RequestType_requesttype_id",
                         column: x => x.requesttype_id,
                         principalSchema: "public",
-                        principalTable: "RequestTypes",
+                        principalTable: "RequestType",
                         principalColumn: "requesttype_id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -295,7 +382,7 @@ namespace personalised_concierge_m1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InventoryRequests",
+                name: "InventoryRequest",
                 schema: "public",
                 columns: table => new
                 {
@@ -311,12 +398,12 @@ namespace personalised_concierge_m1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InventoryRequests", x => x.invreq_id);
+                    table.PrimaryKey("PK_InventoryRequest", x => x.invreq_id);
                     table.ForeignKey(
-                        name: "FK_InventoryRequests_Inventories_inventory_id",
+                        name: "FK_InventoryRequest_Inventory_inventory_id",
                         column: x => x.inventory_id,
                         principalSchema: "public",
-                        principalTable: "Inventories",
+                        principalTable: "Inventory",
                         principalColumn: "inventory_id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -355,17 +442,17 @@ namespace personalised_concierge_m1.Migrations
                 {
                     table.PrimaryKey("PK_Accounts", x => x.account_id);
                     table.ForeignKey(
-                        name: "FK_Accounts_Facilities_facility_id",
+                        name: "FK_Accounts_Facility_facility_id",
                         column: x => x.facility_id,
                         principalSchema: "public",
-                        principalTable: "Facilities",
+                        principalTable: "Facility",
                         principalColumn: "facility_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Accounts_Requests_request_id",
+                        name: "FK_Accounts_Request_request_id",
                         column: x => x.request_id,
                         principalSchema: "public",
-                        principalTable: "Requests",
+                        principalTable: "Request",
                         principalColumn: "request_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -378,7 +465,7 @@ namespace personalised_concierge_m1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FacilityBookings",
+                name: "FacilityBooking",
                 schema: "public",
                 columns: table => new
                 {
@@ -391,25 +478,25 @@ namespace personalised_concierge_m1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FacilityBookings", x => x.facilitybooking_id);
+                    table.PrimaryKey("PK_FacilityBooking", x => x.facilitybooking_id);
                     table.ForeignKey(
-                        name: "FK_FacilityBookings_Accounts_account_id",
+                        name: "FK_FacilityBooking_Accounts_account_id",
                         column: x => x.account_id,
                         principalSchema: "public",
                         principalTable: "Accounts",
                         principalColumn: "account_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FacilityBookings_Facilities_facility_id",
+                        name: "FK_FacilityBooking_Facility_facility_id",
                         column: x => x.facility_id,
                         principalSchema: "public",
-                        principalTable: "Facilities",
+                        principalTable: "Facility",
                         principalColumn: "facility_id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Feedbacks",
+                name: "Feedback",
                 schema: "public",
                 columns: table => new
                 {
@@ -422,9 +509,9 @@ namespace personalised_concierge_m1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Feedbacks", x => x.feedback_id);
+                    table.PrimaryKey("PK_Feedback", x => x.feedback_id);
                     table.ForeignKey(
-                        name: "FK_Feedbacks_Accounts_account_id",
+                        name: "FK_Feedback_Accounts_account_id",
                         column: x => x.account_id,
                         principalSchema: "public",
                         principalTable: "Accounts",
@@ -456,7 +543,7 @@ namespace personalised_concierge_m1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GuestRequests",
+                name: "GuestRequest",
                 schema: "public",
                 columns: table => new
                 {
@@ -471,26 +558,26 @@ namespace personalised_concierge_m1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GuestRequests", x => new { x.account_id, x.request_id });
+                    table.PrimaryKey("PK_GuestRequest", x => new { x.account_id, x.request_id });
                     table.ForeignKey(
-                        name: "FK_GuestRequests_Accounts_account_id",
+                        name: "FK_GuestRequest_Accounts_account_id",
                         column: x => x.account_id,
                         principalSchema: "public",
                         principalTable: "Accounts",
                         principalColumn: "account_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GuestRequests_Accounts_serviced_by",
+                        name: "FK_GuestRequest_Accounts_serviced_by",
                         column: x => x.serviced_by,
                         principalSchema: "public",
                         principalTable: "Accounts",
                         principalColumn: "account_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GuestRequests_Requests_request_id",
+                        name: "FK_GuestRequest_Request_request_id",
                         column: x => x.request_id,
                         principalSchema: "public",
-                        principalTable: "Requests",
+                        principalTable: "Request",
                         principalColumn: "request_id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -583,9 +670,10 @@ namespace personalised_concierge_m1.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     account_id = table.Column<int>(type: "integer", nullable: false),
                     foodleisure_id = table.Column<int>(type: "integer", nullable: false),
-                    review = table.Column<string>(type: "varchar(500)", nullable: true),
+                    review = table.Column<string>(type: "varchar(10000)", nullable: true),
                     Date = table.Column<string>(type: "text", nullable: true),
-                    rating = table.Column<Rating>(type: "rating", nullable: false)
+                    rating = table.Column<Rating>(type: "rating", nullable: false),
+                    refrence_review = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -647,72 +735,6 @@ namespace personalised_concierge_m1.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Budgets",
-                schema: "public",
-                columns: table => new
-                {
-                    Budgetid = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Budgetlimit = table.Column<double>(type: "double precision", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_budget", x => x.Budgetid);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "attractionDemo",
-                columns: table => new
-                {
-                    AttractionDemoId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Location = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_attractionDemo", x => x.AttractionDemoId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "calendar",
-                columns: table => new
-                {
-                    CalendarId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_calendar", x => x.CalendarId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "calendarEvent",
-                columns: table => new
-                {
-                    CalendarEventId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CalendarId = table.Column<int>(type: "integer", nullable: false),
-                    Type = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    Location = table.Column<string>(type: "text", nullable: true),
-                    Note = table.Column<string>(type: "text", nullable: true),
-                    OtherId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_calendarEvent", x => x.CalendarEventId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Checklists",
                 schema: "public",
                 columns: table => new
@@ -766,24 +788,6 @@ namespace personalised_concierge_m1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Expenses",
-                schema: "public",
-                columns: table => new
-                {
-                    ExpensesId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    Currency = table.Column<string>(type: "text", nullable: true),
-                    Category = table.Column<string>(type: "text", nullable: true),
-                    Amount = table.Column<double>(type: "double precision", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_expenses", x => x.ExpensesId);
-                });
-
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "Attractions",
@@ -796,24 +800,44 @@ namespace personalised_concierge_m1.Migrations
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "Facilities",
+                table: "Budgets",
+                columns: new[] { "Budgetid", "Budgetlimit" },
+                values: new object[,]
+                {
+                    { 1, 120.5 },
+                    { 2, 231.30000000000001 }
+                });
+
+            migrationBuilder.InsertData(
+                schema: "public",
+                table: "Expenses",
+                columns: new[] { "ExpensesId", "Amount", "Category", "Currency", "Description", "UserId" },
+                values: new object[,]
+                {
+                    { 2, 50.0, "Food", "SGD", "My second meal in singapore", 2 },
+                    { 1, 50.0, "Food", "SGD", "My first meal in singapore", 1 }
+                });
+
+            migrationBuilder.InsertData(
+                schema: "public",
+                table: "Facility",
                 columns: new[] { "facility_id", "hotel_id", "name", "operation_end_time", "operation_start_time", "status" },
                 values: new object[,]
                 {
-                    { 1, 1, "Basketball Court", new DateTime(2022, 2, 26, 22, 26, 51, 97, DateTimeKind.Local).AddTicks(9210), new DateTime(2022, 2, 26, 22, 26, 51, 97, DateTimeKind.Local).AddTicks(8250), "Available" },
-                    { 2, 2, "Tennis Court", new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(810), new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(730), "Available" }
+                    { 1, 1, "Basketball Court", new DateTime(2022, 4, 4, 10, 1, 29, 6, DateTimeKind.Local).AddTicks(6584), new DateTime(2022, 4, 4, 10, 1, 29, 6, DateTimeKind.Local).AddTicks(6007), "Available" },
+                    { 2, 2, "Tennis Court", new DateTime(2022, 4, 4, 10, 1, 29, 6, DateTimeKind.Local).AddTicks(7325), new DateTime(2022, 4, 4, 10, 1, 29, 6, DateTimeKind.Local).AddTicks(7318), "Available" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "FoodLeisures",
-                columns: new[] { "foodleisure_id", "address", "businessHours", "businessHours2", "businessHours3", "businessHours4", "businessHours5", "businessHours6", "businessHours7", "contact_num", "description", "email", "featured", "foodleisure_image", "latitude", "longtitude", "name", "nearestMRTStation", "supportedLanguage", "type", "website_link" },
+                columns: new[] { "foodleisure_id", "address", "businessHours", "contact_num", "description", "email", "featured", "foodleisure_image", "latitude", "longtitude", "name", "nearestMRTStation", "supportedLanguage", "type", "website_link" },
                 values: new object[,]
                 {
-                    { 3, "252 North Bridge Road, #03-37, Raffles City Shopping Centre, Singapore 179103", null, null, null, null, null, null, null, "+65 6708 9288", "PS.Cafe opened in 1999 as a cosy cafe hidden within Projectshop clothing store.", null, false, "~/images/PScafe.jpeg", null, null, "PS.Cafe at Raffles City", null, null, FoodLeisureType.Restaurant, "https://www.pscafe.com" },
-                    { 2, "Blk 208D New Upper Changi Rd, Singapore 464208", null, null, null, null, null, null, null, "+65 89773448", "ASIA'S FIRST D.I.Y SUSHI & SALAD RESTAURANT.", null, false, "~/images/makisan.webp", null, null, "Maki-San (Bedok Town Square)", null, null, FoodLeisureType.Restaurant, "https://www.makisan.com" },
-                    { 4, "80 Mandai Lake Rd, 729826", null, null, null, null, null, null, null, "+65 6269 3411", "The Singapore Zoo, formerly known as the Singapore Zoological Gardens or Mandai Zoo, occupies 28 hectares on the margins of Upper Seletar Reservoir within Singapore's heavily forested central catchment area.", null, false, "~/images/Zoo.jpeg", null, null, "Singapore Zoo", null, null, FoodLeisureType.POI, "https://www.mandai.com/en/singapore-zoo.html" },
-                    { 1, "8 Sentosa Gateway, 098269", null, null, null, null, null, null, null, "+65 6577 8888", "The happiest place on earth!", null, true, "~/images/USS.jpeg", null, null, "Universal Studios Singapore", null, null, FoodLeisureType.POI, "https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore" }
+                    { 1, "8 Sentosa Gateway, 098269", null, "+65 6577 8888", "The happiest place on earth!", null, true, "~/images/USS.jpeg", null, null, "Universal Studios Singapore", null, null, FoodLeisureType.POI, "https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore" },
+                    { 2, "Blk 208D New Upper Changi Rd, Singapore 464208", null, "+65 89773448", "ASIA'S FIRST D.I.Y SUSHI & SALAD RESTAURANT.", null, false, "~/images/makisan.webp", null, null, "Maki-San (Bedok Town Square)", null, null, FoodLeisureType.Restaurant, "https://www.makisan.com" },
+                    { 3, "252 North Bridge Road, #03-37, Raffles City Shopping Centre, Singapore 179103", null, "+65 6708 9288", "PS.Cafe opened in 1999 as a cosy cafe hidden within Projectshop clothing store.", null, false, "~/images/PScafe.jpeg", null, null, "PS.Cafe at Raffles City", null, null, FoodLeisureType.Restaurant, "https://www.pscafe.com" },
+                    { 4, "80 Mandai Lake Rd, 729826", null, "+65 6269 3411", "The Singapore Zoo, formerly known as the Singapore Zoological Gardens or Mandai Zoo, occupies 28 hectares on the margins of Upper Seletar Reservoir within Singapore's heavily forested central catchment area.", null, false, "~/images/Zoo.jpeg", null, null, "Singapore Zoo", null, null, FoodLeisureType.POI, "https://www.mandai.com/en/singapore-zoo.html" }
                 });
 
             migrationBuilder.InsertData(
@@ -822,28 +846,28 @@ namespace personalised_concierge_m1.Migrations
                 columns: new[] { "foodleisure_id", "cuisine" },
                 values: new object[,]
                 {
-                    { 2, CuisineType.Chinese },
-                    { 1, CuisineType.Western }
+                    { 1, CuisineType.Western },
+                    { 2, CuisineType.Chinese }
                 });
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "InventoryCategories",
+                table: "InventoryCategory",
                 columns: new[] { "invcate_id", "cate_name" },
                 values: new object[,]
                 {
-                    { 1, "Red Wine" },
-                    { 2, "Bathroom Items" }
+                    { 2, "Bathroom Items" },
+                    { 1, "Red Wine" }
                 });
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "RequestTypes",
+                table: "RequestType",
                 columns: new[] { "requesttype_id", "created_at", "deleted_at", "is_deleted", "type_value" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(1120), new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(1920), false, "RoomService" },
-                    { 2, new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(3340), new DateTime(2022, 2, 26, 22, 26, 51, 101, DateTimeKind.Local).AddTicks(3410), false, "Bathroom replenishment" }
+                    { 1, new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(8914), new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(9355), false, "RoomService" },
+                    { 2, new DateTime(2022, 4, 4, 10, 1, 29, 15, DateTimeKind.Local).AddTicks(36), new DateTime(2022, 4, 4, 10, 1, 29, 15, DateTimeKind.Local).AddTicks(43), false, "Bathroom replenishment" }
                 });
 
             migrationBuilder.InsertData(
@@ -878,7 +902,7 @@ namespace personalised_concierge_m1.Migrations
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "Inventories",
+                table: "Inventory",
                 columns: new[] { "inventory_id", "inv_name", "invcate_id", "quantity", "status" },
                 values: new object[,]
                 {
@@ -898,7 +922,7 @@ namespace personalised_concierge_m1.Migrations
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "Requests",
+                table: "Request",
                 columns: new[] { "request_id", "request_msg", "requesttype_id" },
                 values: new object[,]
                 {
@@ -943,7 +967,7 @@ namespace personalised_concierge_m1.Migrations
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "InventoryRequests",
+                table: "InventoryRequest",
                 columns: new[] { "invreq_id", "created_date", "inventory_id", "price", "quantity", "remarks", "status_id", "updated_date" },
                 values: new object[,]
                 {
@@ -953,22 +977,22 @@ namespace personalised_concierge_m1.Migrations
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "FacilityBookings",
+                table: "FacilityBooking",
                 columns: new[] { "facilitybooking_id", "account_id", "booking_end", "booking_start", "facility_id" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(5640), new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(4810), 1 },
-                    { 2, 2, new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(7040), new DateTime(2022, 2, 26, 22, 26, 51, 98, DateTimeKind.Local).AddTicks(6960), 2 }
+                    { 1, 1, new DateTime(2022, 4, 4, 10, 1, 29, 10, DateTimeKind.Local).AddTicks(8131), new DateTime(2022, 4, 4, 10, 1, 29, 10, DateTimeKind.Local).AddTicks(7348), 1 },
+                    { 2, 2, new DateTime(2022, 4, 4, 10, 1, 29, 10, DateTimeKind.Local).AddTicks(9382), new DateTime(2022, 4, 4, 10, 1, 29, 10, DateTimeKind.Local).AddTicks(9372), 2 }
                 });
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "Feedbacks",
+                table: "Feedback",
                 columns: new[] { "feedback_id", "account_id", "created_at", "description", "type" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(2820), "Perfect dream hotel after a hard project", "General" },
-                    { 2, 2, new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(4270), "Perfect dream hotel after a hard project", "General" }
+                    { 1, 1, new DateTime(2022, 4, 4, 10, 1, 29, 13, DateTimeKind.Local).AddTicks(9954), "Perfect dream hotel after a hard project", "General" },
+                    { 2, 2, new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(843), "Perfect dream hotel after a hard project", "General" }
                 });
 
             migrationBuilder.InsertData(
@@ -983,12 +1007,12 @@ namespace personalised_concierge_m1.Migrations
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "GuestRequests",
+                table: "GuestRequest",
                 columns: new[] { "account_id", "request_id", "created_at", "deleted_at", "is_deleted", "serviced_at", "serviced_by", "status" },
                 values: new object[,]
                 {
-                    { 2, 2, new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(2040), new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(2150), false, new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(2220), 2, "In progress" },
-                    { 1, 1, new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(9230), new DateTime(2022, 2, 26, 22, 26, 51, 99, DateTimeKind.Local).AddTicks(9990), false, new DateTime(2022, 2, 26, 22, 26, 51, 100, DateTimeKind.Local).AddTicks(680), 1, "In progress" }
+                    { 2, 2, new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(4935), new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(4942), false, new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(4944), 2, "In progress" },
+                    { 1, 1, new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(3349), new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(3796), false, new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(4222), 1, "In progress" }
                 });
 
             migrationBuilder.InsertData(
@@ -1026,11 +1050,11 @@ namespace personalised_concierge_m1.Migrations
             migrationBuilder.InsertData(
                 schema: "public",
                 table: "Reviews",
-                columns: new[] { "review_id", "Date", "account_id", "foodleisure_id", "rating", "review" },
+                columns: new[] { "review_id", "Date", "account_id", "foodleisure_id", "rating", "refrence_review", "review" },
                 values: new object[,]
                 {
-                    { 2, null, 2, 2, Rating.Five, "mcdonalds is awesome!" },
-                    { 1, null, 1, 1, Rating.One, "saizeriya sucks" }
+                    { 2, null, 2, 2, Rating.Five, null, "mcdonalds is awesome!" },
+                    { 1, null, 1, 1, Rating.One, null, "saizeriya sucks" }
                 });
 
             migrationBuilder.InsertData(
@@ -1045,22 +1069,12 @@ namespace personalised_concierge_m1.Migrations
 
             migrationBuilder.InsertData(
                 schema: "public",
-                table: "Budgets",
-                columns: new[] { "Budgetid", "Budgetlimit" },
-                values: new object[,]
-                {
-                    { 1, 120.5 },
-                    { 2, 231.30000000000001 }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "public",
                 table: "Checklists",
                 columns: new[] { "checklist_id", "created_date", "description", "itinerary_id", "name" },
                 values: new object[,]
                 {
                     { 1, new DateTime(2022, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "10 Fun things to do in SG when you are on a budget", 1, "Things to Do in Singapore" },
-                    { 2, new DateTime(2022, 2, 26, 22, 26, 51, 77, DateTimeKind.Local).AddTicks(3080), "Alex dream holiday", 2, "Alex Checklist" }
+                    { 2, new DateTime(2022, 4, 4, 10, 1, 28, 994, DateTimeKind.Local).AddTicks(7458), "Alex dream holiday", 2, "Alex Checklist" }
                 });
 
             migrationBuilder.InsertData(
@@ -1071,16 +1085,6 @@ namespace personalised_concierge_m1.Migrations
                 {
                     { 1, 1, 1, 101 },
                     { 2, 2, 2, 12345 }
-                });
-
-            migrationBuilder.InsertData(
-                schema: "public",
-                table: "Expenses",
-                columns: new[] { "ExpensesId", "UserId", "Currency", "Category", "Amount", "Description" },
-                values: new object[,]
-                {
-                    { 1, 1, "SGD", "Food", 50, "Eat Mac" },
-                    { 2, 2, "SGD", "Food", 50, "Eat Food" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1126,21 +1130,21 @@ namespace personalised_concierge_m1.Migrations
                 column: "itinerary_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FacilityBookings_account_id",
+                name: "IX_FacilityBooking_account_id",
                 schema: "public",
-                table: "FacilityBookings",
+                table: "FacilityBooking",
                 column: "account_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FacilityBookings_facility_id",
+                name: "IX_FacilityBooking_facility_id",
                 schema: "public",
-                table: "FacilityBookings",
+                table: "FacilityBooking",
                 column: "facility_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Feedbacks_account_id",
+                name: "IX_Feedback_account_id",
                 schema: "public",
-                table: "Feedbacks",
+                table: "Feedback",
                 column: "account_id");
 
             migrationBuilder.CreateIndex(
@@ -1150,15 +1154,15 @@ namespace personalised_concierge_m1.Migrations
                 column: "account_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GuestRequests_request_id",
+                name: "IX_GuestRequest_request_id",
                 schema: "public",
-                table: "GuestRequests",
+                table: "GuestRequest",
                 column: "request_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GuestRequests_serviced_by",
+                name: "IX_GuestRequest_serviced_by",
                 schema: "public",
-                table: "GuestRequests",
+                table: "GuestRequest",
                 column: "serviced_by");
 
             migrationBuilder.CreateIndex(
@@ -1168,15 +1172,15 @@ namespace personalised_concierge_m1.Migrations
                 column: "account_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Inventories_invcate_id",
+                name: "IX_Inventory_invcate_id",
                 schema: "public",
-                table: "Inventories",
+                table: "Inventory",
                 column: "invcate_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InventoryRequests_inventory_id",
+                name: "IX_InventoryRequest_inventory_id",
                 schema: "public",
-                table: "InventoryRequests",
+                table: "InventoryRequest",
                 column: "inventory_id");
 
             migrationBuilder.CreateIndex(
@@ -1204,9 +1208,9 @@ namespace personalised_concierge_m1.Migrations
                 column: "foodleisure_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_requesttype_id",
+                name: "IX_Request_requesttype_id",
                 schema: "public",
-                table: "Requests",
+                table: "Request",
                 column: "requesttype_id");
 
             migrationBuilder.CreateIndex(
@@ -1249,11 +1253,27 @@ namespace personalised_concierge_m1.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "attractionDemo",
+                schema: "public");
+
+            migrationBuilder.DropTable(
                 name: "Attractions",
                 schema: "public");
 
             migrationBuilder.DropTable(
                 name: "Blogs",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "Budgets",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "calendar",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "calendarEvent",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1265,11 +1285,11 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "FacilityBookings",
+                name: "FacilityBooking",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "Feedbacks",
+                name: "Feedback",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1281,7 +1301,7 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "GuestRequests",
+                name: "GuestRequest",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1289,7 +1309,7 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "InventoryRequests",
+                name: "InventoryRequest",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1313,11 +1333,11 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "Budgets",
+                name: "Inventory",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "Inventories",
+                name: "Itineraries",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1333,15 +1353,7 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "Itineraries",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "InventoryCategories",
-                schema: "public");
-
-            migrationBuilder.DropTable(
-                name: "RoomTypes",
+                name: "InventoryCategory",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1349,11 +1361,15 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "Facilities",
+                name: "RoomTypes",
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "Requests",
+                name: "Facility",
+                schema: "public");
+
+            migrationBuilder.DropTable(
+                name: "Request",
                 schema: "public");
 
             migrationBuilder.DropTable(
@@ -1361,7 +1377,7 @@ namespace personalised_concierge_m1.Migrations
                 schema: "public");
 
             migrationBuilder.DropTable(
-                name: "RequestTypes",
+                name: "RequestType",
                 schema: "public");
         }
     }
