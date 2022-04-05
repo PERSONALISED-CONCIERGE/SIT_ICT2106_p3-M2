@@ -173,9 +173,10 @@
                     <p><img src = "@Html.DisplayFor(modelItem => item.attractionImage)" width="250" height="150"/></p>
                     <!-- <a class="attractionDetailBtn" asp-route-id = "@item.attractionId" asp-controller="Attraction" asp-action="ViewDetails">View Details</a> -->
 
+
                     @using (Html.BeginForm("ViewDetails", "Attraction"))
                                 {
-
+                                    //@Html.Hidden("FoodLeisureID", (int)foodLeisure.foodleisure_id)
                                     <input type="submit" value="View Details" />
                                 }
                 </div>
