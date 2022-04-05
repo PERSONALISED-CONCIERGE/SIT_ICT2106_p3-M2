@@ -6,12 +6,6 @@
 @model personalised_concierge_m1.Models.Entities.OtherServices.Review
 @{
     ViewData["Title"] = "Home Page";
-    var myLeisure = (FoodLeisure)(ViewData["myLeisure"]);
-    var myFood = (FoodDelivery) (ViewData["myfood"]);
-    //var myRoom = (Room) (ViewData["myRoom"]);
-    //var myAccount = (Account) (ViewData["myAccount"]);
-    var myEnum = (Review) (ViewData["myenum"]);
-    //var test = ViewData["test"];
     var attractionList = (List<FoodLeisure>)(ViewData["attractionList"]);
     var counter = 0;
     var elementPerRow = 3;
@@ -53,7 +47,7 @@
                                 {
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                                            <img class="img-fluid" alt="100%x280" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/ArtScience_Museum%2C_Marina_Bay_Sands%2C_Singapore.jpg">
                                             <div class="card-body">
                                                 <h4 class="card-title">@attraction.name @attraction.foodleisure_id @attractionList.Count</h4>
                                                 <p class="card-text">@attraction.description</p>
@@ -74,24 +68,45 @@
                         </div>
                     @if(attractionList.Count > elementPerRow)
                     {
+                        
+                        // when the list content is more then a row's worth (3)
+                        // removes the first 3 items in the remaining attractions var, then use it to loop to create rows of 3
+                        var remainingAttractions = attractionList;
+                        remainingAttractions.RemoveAt(0);
+                        remainingAttractions.RemoveAt(1);
+                        remainingAttractions.RemoveAt(2);
+                        var attractionsCounter = 0;
+
+                        // loops though all attractions to ensure a card is created for all
+                        while(attractionsCounter <  remainingAttractions.Count)
+                        {
                         <div class="carousel-item">
                             <div class="row">
-                            @for(int i = counter; i < attractionList.Count; i++)
+                            @for(int i = 0; i < 3; i++)
                             {
-                                <div class="col-md-4 mb-3">
+                                // checks if remaining counter is same amount as remainingAttractions count
+                                //prevents index out of range error
+                                if(attractionsCounter < remainingAttractions.Count)
+                                {
+                                    <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                                            <img class="img-fluid" alt="100%x280" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/ArtScience_Museum%2C_Marina_Bay_Sands%2C_Singapore.jpg ">
                                             <div class="card-body">
-                                                <h4 class="card-title">@attractionList[i].name</h4>
-                                                <p class="card-text">@attractionList[i].description</p>
+                                                <h4 class="card-title">@remainingAttractions[attractionsCounter].name</h4>
+                                                <p class="card-text">@remainingAttractions[attractionsCounter].description</p>
 
                                             </div>
 
                                         </div>
-                                    </div>
+                                </div>
+                                attractionsCounter = attractionsCounter + 1;
+                                }
+                                        
                             }
                             </div>
                         </div>
+                        }
+                        
 
                     }
                     </div>
