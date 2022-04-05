@@ -8,100 +8,95 @@
     ViewData["Title"] = "Home Page";
     var myLeisure = (FoodLeisure)(ViewData["myLeisure"]);
     var myFood = (FoodDelivery) (ViewData["myfood"]);
-    var myRoom = (Room) (ViewData["myRoom"]);
-    var myAccount = (Account) (ViewData["myAccount"]);
+    //var myRoom = (Room) (ViewData["myRoom"]);
+    //var myAccount = (Account) (ViewData["myAccount"]);
     var myEnum = (Review) (ViewData["myenum"]);
+    //var test = ViewData["test"];
+    var attractionList = (List<FoodLeisure>)(ViewData["attractionList"]);
+    var counter = 0;
+    var elementPerRow = 3;
 
 }
-
- <form id="form1" runat="server">
-    <div>
-        <h2>Navigation</h2>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTYqC1kZafWB0Ewsobhe05TyHGzl40qA"></script>
-<script language="javascript" type="text/javascript">
-    var directionsDisplay;
-    var directionsService = new google.maps.DirectionsService();
-
-<<<<<<< HEAD
-    function InitializeMap() {
-        directionsDisplay = new google.maps.DirectionsRenderer();
-        var latlng = new google.maps.LatLng(1.3521, 103.8198);
-        var myOptions =
-        {
-            zoom: 11,
-            center: latlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("Gmap"), myOptions);
-
-        directionsDisplay.setMap(map);
-        directionsDisplay.setPanel(document.getElementById('directionpanel'));
-
-        var control = document.getElementById('control');
-        control.style.display = 'block';
-
-
-    }
-
-
-
-    function calcRoute() {
-
-        var start = document.getElementById('startvalue').value;
-        var end = document.getElementById('endvalue').value;
-        var request = {
-            origin: start,
-            destination: end,
-            travelMode: google.maps.DirectionsTravelMode.WALKING
-        };
-        directionsService.route(request, function (response, status) {
-            console.log(status);
-            if (status == google.maps.DirectionsStatus.OK) {
-                directionsDisplay.setDirections(response);
-            }
-        });
-
-    }
-
-    function btnDirections_onclick() {
-        calcRoute();
-    }
-
-    window.onload = InitializeMap;
-    </script>
-   
-<table id ="control">
-<tr>
-<td class="style1">
-<table>
-<tr>
-<td>From:</td>
-<td>
-    <input id="startvalue" type="text" style="width: 305px" /></td>
-</tr>
-<tr>
-<td>To:</td>
-<td><input id="endvalue" type="text" style="width: 301px" /></td>
-</tr>
-<tr>
-<td align ="right">
-    <input id="btnDirections" type="button" value="Get Directions"
-        onclick="return btnDirections_onclick()" /></td>
-</tr>
-</table>
-</td>
-</tr>
-<br>
-<tr>
-<td valign ="top">
-<div id ="Gmap" style="height: 400px; width: 1200px"></div>
-</td>
-</tr>
-<tr>
-<td valign ="top">
-<div id ="directionpanel"  style="height: 390px;overflow: auto" ></div>
-</td>
-</tr>
-</table>
+<div class="text-center">
+    <div class="text-center indexTopBody d-flex align-items-center justify-content-center">
+        <div class="col ">
+            <h1 class="display-4 bannerText">Welcome</h1>
+            <p class="bannerText">Plan Your trip today by creating an Itinerary</p>
+        
+            <button class="btn btn-primary buttonStyling">Start Planning Itinerary</button>
+            
+        </div>
     </div>
-    </form>
+
+    <div class="text-center mt-2 mb-2">
+        <h1 class="display-4">Highly recommended attractions to visit:</h1>
+
+    </div>
+    <div class="row align-items-center justify-content-center">
+            <div class="col-6">
+                <a class="btn btn-primary mb-3 mr-1" href="#attractionCarousel" role="button" data-slide="prev">
+                    Previous
+                </a>
+                <a class="btn btn-primary mb-3 " href="#attractionCarousel" role="button" data-slide="next">
+                    Next
+                </a>
+            </div>
+            <div class="col-12">
+                <div id="attractionCarousel" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                            @foreach(var attraction in attractionList)
+                            {
+                                if(counter < elementPerRow)
+                                {
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@attraction.name @attraction.foodleisure_id @attractionList.Count</h4>
+                                                <p class="card-text">@attraction.description</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    counter++;
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            
+                            </div>
+                        </div>
+                    @if(attractionList.Count > elementPerRow)
+                    {
+                        <div class="carousel-item">
+                            <div class="row">
+                            @for(int i = counter; i < attractionList.Count; i++)
+                            {
+                                <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@attractionList[i].name</h4>
+                                                <p class="card-text">@attractionList[i].description</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                            }
+                            </div>
+                        </div>
+
+                    }
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+</div>

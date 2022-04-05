@@ -169,8 +169,6 @@
       <None Include="wwwroot\assets\js\vector-maps.js" />
       <None Include="wwwroot\assets\js\web-analytics.js" />
       <None Include="wwwroot\assets\js\widgets.js" />
-
-      <Folder Include="wwwroot\images\" />
       <Folder Include="Views\FoodLeisure\" />
 
     </ItemGroup>
