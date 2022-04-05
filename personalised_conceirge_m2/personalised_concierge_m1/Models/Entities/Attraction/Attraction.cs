@@ -19,7 +19,7 @@ namespace personalised_concierge_m1.Models.Entities.Attraction
 
         [Required]
         public string attractionDescription { get; set; }
-        
+
         [Required]
         public double attractionPrice { get; set; }
 
@@ -28,3 +28,4 @@ namespace personalised_concierge_m1.Models.Entities.Attraction
 
 
     }
+}

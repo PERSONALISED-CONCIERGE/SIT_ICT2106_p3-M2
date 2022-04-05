@@ -171,7 +171,13 @@
                     <button id="@Html.DisplayFor(modelItem => item.attractionId)" onclick="upVote(this.id)">UP VOTE</button>
                     <button id="@Html.DisplayFor(modelItem => item.attractionName)" onclick="downVote(this.id)">DOWN VOTE</button><br><br>
                     <p><img src = "@Html.DisplayFor(modelItem => item.attractionImage)" width="250" height="150"/></p>
-                    <a class="attractionDetailBtn" asp-route-id = "@item.attractionId" asp-controller="Attraction" asp-action="ViewDetails">View Details</a>
+                    <!-- <a class="attractionDetailBtn" asp-route-id = "@item.attractionId" asp-controller="Attraction" asp-action="ViewDetails">View Details</a> -->
+
+                    @using (Html.BeginForm("ViewDetails", "Attraction"))
+                                {
+
+                                    <input type="submit" value="View Details" />
+                                }
                 </div>
                 </li>
             }

@@ -35,27 +35,6 @@
 
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">personalised_concierge_m1</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Navigation" asp-action="Index">Navigation</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Attraction" asp-action="Index">Attraction</a>
-                        </li>
-                    </ul>
-                </div>
     <!-- Overlays -->
     <div class="ms-aside-overlay ms-overlay-left ms-toggler" data-target="#ms-side-nav" data-toggle="slideLeft"></div>
     <!-- Sidebar Navigation Left -->
@@ -76,7 +55,7 @@
                 <ul id="dashboard" class="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
                     <!-- Continue to add more lines from here -->
                     <li>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Navigation" asp-action="Index">Navigation</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Navigation</a>
                     </li>
                     <!-- End of adding more lines -->
                 </ul>
@@ -105,13 +84,13 @@
                 </a>
                 <ul id="maps" class="collapse" aria-labelledby="maps" data-parent="#side-nav-accordion">
                     <li>
-                        <a href="pages/maps/google-maps.html">Google Maps</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Navigation" asp-action="Index">Navigation</a>
                     </li>
                     <li>
-                        <a href="pages/maps/vector-maps.html">Vector Maps</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Attraction" asp-action="Suggestion">Attractions Suggestions</a>
                     </li>
                     <li>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Attraction" asp-action="Index">AttractionList</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Attraction" asp-action="Index">Attractions List</a>
                     </li>
                 </ul>
             </li>
@@ -128,6 +107,7 @@
                 <span class="ms-toggler-bar bg-primary"></span>
                 <span class="ms-toggler-bar bg-primary"></span>
             </div>
+            <!--
             <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
                 <li class="ms-nav-item ms-search-form pb-0 py-0">
                     <form class="ms-form" method="post">
@@ -137,6 +117,7 @@
                     </form>
                 </li>
             </ul>
+            -->
         </nav>
         <main role="main" class="pb-3">
             @RenderBody()

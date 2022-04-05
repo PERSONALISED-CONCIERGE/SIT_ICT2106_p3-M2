@@ -12,6 +12,11 @@
         <h6 style="text-align: left;">@Html.DisplayFor(model => model.attractionDescription)</h6>
         <button class="custom-btn" style="margin-right: 50px;">Reviews</button>
         <button class="custom-btn">Directions</button>
+         @using (Html.BeginForm("Index", "Navigation"))
+                                {
+
+                                    <input type="submit" value="Direction" />
+                                }
     </div>
     </li>
 </ul>
