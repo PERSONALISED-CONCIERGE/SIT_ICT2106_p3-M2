@@ -11,6 +11,7 @@
             let attractionName = document.getElementsByClassName('attractionName');
             let box = document.getElementsByClassName('sgLi');
             let attractionDist = document.getElementsByClassName('attractionDist');
+
             split = input.split(" ")
       
             for (i = 0; i < attractionName.length; i++) { 
@@ -28,6 +29,7 @@
                 }
             }
         }
+
 
         function upVote(clicked_id){
                 
@@ -67,11 +69,13 @@
                 console.log(attractionVote[i].innerHTML);
             }
         }
+
     </script>
       
     <!-- linking the stylesheet(CSS) -->
     <link rel="stylesheet" type="text/css" href="./style.css">
     <style>
+
      #searchbar{
          margin-left: 15%;
          padding:15px;
@@ -92,6 +96,7 @@
     .attraction{
        display: list-item;    
       }
+
     .X{
           margin: auto;
           padding: 1% 2%;
@@ -119,14 +124,17 @@
     }
     .SG .sgLi:hover{
       box-shadow:0 5px 10px rgba(0,0,0,.15);}
+
     .SG .box{
       width: 350px;
       height: 350px;
+
       padding: 1% 2%;
       background: #fff;
       box-sizing: border-box;
       position: relative;
     }
+
     .box img {
         position: center;
         bottom: 15%;
@@ -135,7 +143,7 @@
 
     .attractionDetailBtn{
         background-color: yellow;
-        position: center;
+        position: absolute;
         bottom: 5%;
         left: 35%;
     }
@@ -153,7 +161,6 @@
       
         <ul class="SG">
             @foreach (var item in Model) {
-                
                 <li class="sgLi"> 
                 <div class="box">
                     <h4 class="attractionName">@Html.DisplayFor(modelItem => item.attractionName)</h4>
@@ -167,7 +174,6 @@
                     <a class="attractionDetailBtn" asp-route-id = "@item.attractionId" asp-controller="Attraction" asp-action="ViewDetails">View Details</a>
                 </div>
                 </li>
-
             }
             
         </ul>

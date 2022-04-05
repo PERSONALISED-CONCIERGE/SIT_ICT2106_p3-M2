@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using personalised_concierge_m1.Models.Entities.Attraction;
 using System.Collections.Generic;
 using System.Linq;

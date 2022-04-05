@@ -19,16 +19,12 @@ namespace personalised_concierge_m1.Models.Entities.Attraction
 
         [Required]
         public string attractionDescription { get; set; }
-
+        
         [Required]
         public double attractionPrice { get; set; }
 
         [Required]
         public int attractionVote { get; set; }
 
-        //[Required]
-        //public string attraction_location { get; set; }
-
 
     }
-}
