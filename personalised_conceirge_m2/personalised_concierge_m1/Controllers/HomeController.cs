@@ -44,7 +44,7 @@ namespace personalised_concierge_m1.Controllers
             // ViewData["myenum"] = myEnum;
             // ViewData["myrequest"] = myRequest;
 
-            
+
             //data is return to the view to be used there.
             return View();
         }
@@ -57,7 +57,7 @@ namespace personalised_concierge_m1.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

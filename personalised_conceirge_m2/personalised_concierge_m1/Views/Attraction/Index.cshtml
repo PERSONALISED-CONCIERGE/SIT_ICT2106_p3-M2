@@ -4,7 +4,6 @@
       
 <head>
     <script language="javascript" type="text/javascript">
-
         // JavaScript code
         function search_attraction() {
             let input = document.getElementById('searchbar').value
@@ -28,6 +27,46 @@
                 else{
                     box[i].style.display="inline-flex";
                 }
+            }
+        }
+
+
+        function upVote(clicked_id){
+                
+            let attractionVote = document.getElementsByClassName('attractionVote');
+
+
+            
+            for(i = 0; i < attractionVote.length+1; i++){
+                var counter = 0;
+                
+                if(i == clicked_id){
+                counter += parseInt(attractionVote[i].innerHTML);
+                counter += 1
+                attractionVote[i].innerHTML = counter.toString();
+                document.getElementById(i.toString()).disabled = true;
+                }      
+
+                console.log(clicked_id)
+                console.log(attractionVote[i].innerHTML);
+
+            }
+        }
+
+        function downVote(clicked_id){
+            let attractionVote = document.getElementsByClassName('attractionVote');
+            let attractionName = document.getElementsByClassName('attractionName');
+            for(i = 0; i < attractionVote.length; i++){
+                var counter = 0;
+
+                if(attractionName[i].innerHTML == clicked_id){
+                counter += parseFloat(attractionVote[i].innerHTML);
+                counter -= 1
+                attractionVote[i].innerHTML = counter.toString();
+                document.getElementById(attractionName[i].innerHTML).disabled = true;
+                }
+                console.log(clicked_id)
+                console.log(attractionVote[i].innerHTML);
             }
         }
 
@@ -58,7 +97,6 @@
        display: list-item;    
       }
 
-
     .X{
           margin: auto;
           padding: 1% 2%;
@@ -88,8 +126,9 @@
       box-shadow:0 5px 10px rgba(0,0,0,.15);}
 
     .SG .box{
-      width: 300px;
-      height: 300px;
+      width: 350px;
+      height: 350px;
+
       padding: 1% 2%;
       background: #fff;
       box-sizing: border-box;
@@ -97,7 +136,7 @@
     }
 
     .box img {
-        position: absolute;
+        position: center;
         bottom: 15%;
         left: 8.33%;
     }
@@ -122,15 +161,19 @@
       
         <ul class="SG">
             @foreach (var item in Model) {
-                <li class="sgLi">
+                <li class="sgLi"> 
                 <div class="box">
                     <h4 class="attractionName">@Html.DisplayFor(modelItem => item.attractionName)</h4>
-                    @* <h7 class="attractionDist">@Html.DisplayFor(modelItem => item.attractionDescription)</h7> *@
-                    <h7 class="attractionDist">10km</h7>
+                    <h7>Distance:</h7>
+                    <h7 class="attractionDist">@Html.DisplayFor(modelItem => item.attractionDescription)</h7><br>
+                    <h7>Vote:</h7>
+                    <h7 class="attractionVote">@Html.DisplayFor(modelItem => item.attractionVote)</h7><br>
+                    <button id="@Html.DisplayFor(modelItem => item.attractionId)" onclick="upVote(this.id)">UP VOTE</button>
+                    <button id="@Html.DisplayFor(modelItem => item.attractionName)" onclick="downVote(this.id)">DOWN VOTE</button><br><br>
                     <p><img src = "@Html.DisplayFor(modelItem => item.attractionImage)" width="250" height="150"/></p>
                     <a class="attractionDetailBtn" asp-route-id = "@item.attractionId" asp-controller="Attraction" asp-action="ViewDetails">View Details</a>
                 </div>
-            </li> 
+                </li>
             }
             
         </ul>
