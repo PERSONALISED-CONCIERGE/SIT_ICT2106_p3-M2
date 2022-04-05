@@ -131,7 +131,13 @@ var dataSet1= [
         data: dataset2,
         columns: [
             { title: "Item ID" },
-            { title: "Event Name" },
+            {
+                title: "Event Name",
+                render: function (title) {
+                    title = '<a href ="itinerary/testing">'+title+'</a>';
+                    return title;
+                }
+            },
             { title: "Location" },
             { title: "Date" },
             { title: "Budget" }
