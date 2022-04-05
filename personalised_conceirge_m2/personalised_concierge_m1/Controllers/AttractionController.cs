@@ -60,7 +60,7 @@ namespace personalised_concierge_m1.Controllers
 
             return "";
         }
-        public IActionResult Index()
+        public IActionResult Suggestion()
         {
             GeoCoordinateWatcher watcher = new GeoCoordinateWatcher();
 

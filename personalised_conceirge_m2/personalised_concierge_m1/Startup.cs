@@ -138,7 +138,7 @@ namespace personalised_concierge_m1
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Attraction}/{action=Index}/");
+                    pattern: "{controller=Navigation}/{action=Index}/");
             });
         }
     }
