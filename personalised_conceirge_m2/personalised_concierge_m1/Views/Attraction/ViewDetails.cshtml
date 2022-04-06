@@ -14,7 +14,7 @@
         @* <button class="custom-btn">Directions</button> *@
          @using (Html.BeginForm("Index", "Navigation"))
                                 {
-
+                                    @Html.Hidden("id", Model.attractionId)
                                     <input type="submit" value="Direction" class="custom-btn"/>
                                 }
     </div>

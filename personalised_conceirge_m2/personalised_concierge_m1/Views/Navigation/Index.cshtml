@@ -1,4 +1,4 @@
-﻿@model personalised_concierge_m1.Models.Entities.Navigation.Navigation
+﻿@model personalised_concierge_m1.Models.Entities.Attraction.Attraction
 
 @{
     ViewData["Title"] = "Index";
@@ -12,6 +12,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="db-header-title">Welcome, Anny</h1>
+                <p id="attractionName">@Html.DisplayFor(model => model.attractionName)</p>
             </div>
 
             <!-- Food Orders -->
@@ -31,6 +32,7 @@
                                 var directionsService = new google.maps.DirectionsService();
                                 var totalDistance = 0;
                                 var start;
+                                var end;
 
                                 if (navigator.geolocation) {
 navigator.geolocation.getCurrentPosition(success);
@@ -70,7 +72,9 @@ InitializeMap();
                                 function calcRoute() {
                                     console.log("calcRoute");
                                     console.log("start " , start);
-                                    var end = "600002";
+                                    //var end = "600002";
+                                    end = document.getElementById('attractionName').innerHTML;
+                                    console.log("end " , end);
                                     var request = {
                                         origin: start,
                                         destination: end,
@@ -85,8 +89,7 @@ InitializeMap();
                                 }
 
                                     function calculateFinalRoute() {
-                                         console.log("calcRoute");
-                                    var end = "600002";
+                                        console.log("calcRoute");
                                         console.log("Final");
                                         console.log("Distance == " + totalDistance);
                                         if (totalDistance > 5000) {

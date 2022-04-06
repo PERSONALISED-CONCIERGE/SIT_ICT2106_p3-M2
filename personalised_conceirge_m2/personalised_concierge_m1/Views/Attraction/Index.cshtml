@@ -10,14 +10,15 @@
             input=input.toLowerCase();
             let attractionName = document.getElementsByClassName('attractionName');
             let box = document.getElementsByClassName('sgLi');
-            let attractionDist = document.getElementsByClassName('attractionDist');
+            //let attractionDist = document.getElementsByClassName('attractionDist');
 
             split = input.split(" ")
       
             for (i = 0; i < attractionName.length; i++) { 
                 count = 0
                 for (a = 0; a < split.length; a++){
-                    if (attractionName[i].innerHTML.toLowerCase().includes(split[a]) || attractionDist[i].innerHTML.toLowerCase().includes(split[a])) {
+                    //if (attractionName[i].innerHTML.toLowerCase().includes(split[a]) || attractionDist[i].innerHTML.toLowerCase().includes(split[a])) {
+                    if (attractionName[i].innerHTML.toLowerCase().includes(split[a])) {    
                         count += 1
                     }
                 }
