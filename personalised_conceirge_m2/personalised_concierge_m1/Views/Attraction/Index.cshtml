@@ -11,15 +11,16 @@
             let attractionName = document.getElementsByClassName('attractionName');
             let box = document.getElementsByClassName('sgLi');
             //let attractionDist = document.getElementsByClassName('attractionDist');
+            let attractionVote = document.getElementsByClassName('attractionVote');
 
-            split = input.split(" ")
+            split = input.split(" ");
       
             for (i = 0; i < attractionName.length; i++) { 
-                count = 0
+                count = 0;
                 for (a = 0; a < split.length; a++){
                     //if (attractionName[i].innerHTML.toLowerCase().includes(split[a]) || attractionDist[i].innerHTML.toLowerCase().includes(split[a])) {
-                    if (attractionName[i].innerHTML.toLowerCase().includes(split[a])) {    
-                        count += 1
+                    if (attractionName[i].innerHTML.toLowerCase().includes(split[a]) || parseInt(split[a]) <= parseInt(attractionVote[i].innerHTML)) {    
+                        count += 1;
                     }
                 }
                 if (count != split.length){
@@ -165,7 +166,6 @@
                 <li class="sgLi"> 
                 <div class="box">
                     <h4 class="attractionName">@Html.DisplayFor(modelItem => item.attractionName)</h4>
-                    <h7>Distance:</h7>
                     <h7>Vote:</h7>
                     <h7 class="attractionVote">@Html.DisplayFor(modelItem => item.attractionVote)</h7><br>
                     <button id="@Html.DisplayFor(modelItem => item.attractionId)" onclick="upVote(this.id)">UP VOTE</button>
