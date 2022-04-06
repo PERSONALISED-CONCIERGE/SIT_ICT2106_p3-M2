@@ -1,0 +1,171 @@
+﻿@model personalised_concierge_m1.Models.Entities.Attraction.Attraction
+
+
+
+
+
+
+<html lang="en">
+<head>
+<style type="text/css">
+html { height: 100% }
+body { height: 100%; margin: 0; padding: 0 }
+#map_canvas { height: 100% }
+</style>
+	
+<script type="text/javascript"
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTYqC1kZafWB0Ewsobhe05TyHGzl40qA&sensor=false">
+</script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places">
+</script>
+<script type="text/javascript">
+if (navigator.geolocation) {
+navigator.geolocation.getCurrentPosition(success);
+} else {
+alert("Geo Location is not supported on your current browser!");
+}
+function success(position) {
+document.getElementById("Lat").value = position.coords.latitude
+document.getElementById("Long").value = position.coords.longitude;
+var lat = position.coords.latitude;
+var long = position.coords.longitude;
+var city=position.coords.locality;
+var myLatlng = new google.maps.LatLng(lat, long);
+var sentosa = new google.maps.LatLng(1.2494041, 103.8303209);
+var changiairport = new google.maps.LatLng(1.359167, 103.989441);
+var jurongbirdpark = new google.maps.LatLng(1.318707, 103.706442);
+var zoo = new google.maps.LatLng(1.4043, 103.7930);
+var mbs = new google.maps.LatLng(1.2847, 103.8610);
+var gardenbay = new google.maps.LatLng(1.2816, 103.8636);
+var orchidgarden = new google.maps.LatLng(1.3127, 103.8137);
+var marinabarage = new google.maps.LatLng(1.2807, 103.8711);
+var artscience = new google.maps.LatLng(1.2863, 103.8593);
+var myOptions = {
+center: myLatlng,
+zoom: 12,
+mapTypeId: google.maps.MapTypeId.ROADMAPe
+};
+
+
+
+var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+var marker = new google.maps.Marker({
+position: myLatlng,
+title: "lat: " + lat + " long: " + long
+});
+var marker2 = new google.maps.Marker({
+position: sentosa,
+title: "lat: " + lat + " long: " + long
+});
+var marker3 = new google.maps.Marker({
+position: changiairport,
+title: "lat: " + lat + " long: " + long
+});
+var marker4 = new google.maps.Marker({
+position: jurongbirdpark,
+title: "lat: " + lat + " long: " + long
+});
+var marker5 = new google.maps.Marker({
+position: zoo,
+title: "lat: " + lat + " long: " + long
+});
+var marker6 = new google.maps.Marker({
+position: mbs,
+title: "lat: " + lat + " long: " + long
+});
+var marker7 = new google.maps.Marker({
+position: gardenbay,
+title: "lat: " + lat + " long: " + long
+});
+var marker8 = new google.maps.Marker({
+position: orchidgarden,
+title: "lat: " + lat + " long: " + long
+});
+var marker9 = new google.maps.Marker({
+position: marinabarage,
+title: "lat: " + lat + " long: " + long
+});
+var marker10 = new google.maps.Marker({
+position: artscience,
+title: "lat: " + lat + " long: " + long
+});
+marker.setMap(map);
+marker2.setMap(map);
+marker3.setMap(map);
+marker4.setMap(map);
+marker5.setMap(map);
+marker6.setMap(map);
+marker7.setMap(map);
+marker8.setMap(map);
+marker9.setMap(map);
+marker10.setMap(map);
+var infowindow = new google.maps.InfoWindow({  content: "<b>My Current Location</b><br/> Latitude:"+lat+"<br /> Longitude:"+long+""});
+infowindow.open(map, marker);
+var infowindow2 = new google.maps.InfoWindow({ content: "Universal Studios" });
+infowindow2.open(map, marker2);
+var infowindow3 = new google.maps.InfoWindow({ content: "Changi Airport" });
+infowindow3.open(map, marker3);
+var infowindow4 = new google.maps.InfoWindow({ content: "Jurong Bird Park" });
+infowindow4.open(map, marker4);
+var infowindow5 = new google.maps.InfoWindow({ content: "Singapore Zoo" });
+infowindow5.open(map, marker5);
+var infowindow6 = new google.maps.InfoWindow({ content: "Marina Bay Sands" });
+infowindow6.open(map, marker6);
+var infowindow7 = new google.maps.InfoWindow({ content: "Gardens by the Bay" });
+infowindow7.open(map, marker7);
+var infowindow8 = new google.maps.InfoWindow({ content: "National Orchird Garden" });
+infowindow8.open(map, marker8);
+var infowindow9 = new google.maps.InfoWindow({ content: "Marina Barrage" });
+infowindow9.open(map, marker9);
+var infowindow10 = new google.maps.InfoWindow({ content: "Art Science Museum" });
+infowindow10.open(map, marker10);
+}
+</script>
+</head>
+<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+
+    <div class="ms-content-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="db-header-title"> </h1>
+            </div>
+	<div class="col-md-12">
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>My Current Location</h6>
+                    </div>
+                    <div class="ms-panel-body">
+                        <div class="row">
+                            
+<form id="form1" runat="server">
+                            <div id="map_canvas" style="height: 400px; width: 1025px"></div>
+                            <asp:Label ID="Long" runat="server" Text=""></asp:Label>
+<asp:Label ID="Lat" runat="server" Text=""></asp:Label>
+</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>Distance to Suggested Location</h6>
+                    </div>
+                    <div class="ms-panel-body">
+                        <div class="row">
+                            
+<p>Current Location to Sentosa : @ViewBag.Sentosa miles</p>
+</div>
+<div class="row">
+<p>Current Location to Changi Airport : @ViewBag.Changi miles</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            </div>
+
+</body>
+</html>

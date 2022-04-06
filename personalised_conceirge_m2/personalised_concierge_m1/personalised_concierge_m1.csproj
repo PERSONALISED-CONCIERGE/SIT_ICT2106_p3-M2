@@ -4,7 +4,9 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'personalised_conceirge_m1' " />
     <ItemGroup>
+      <Content Remove="Views\Itinerary\ItineraryItem.cshtml" />
       <Content Remove="wwwroot\assets\css\animate.min.css" />
       <Content Remove="wwwroot\assets\css\bootstrap.min.css" />
       <Content Remove="wwwroot\assets\css\cropper.min.css" />
@@ -99,6 +101,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Include="Views\ItineraryItem\Index.cshtml" />
       <None Include="wwwroot\assets\css\animate.min.css" />
       <None Include="wwwroot\assets\css\bootstrap.min.css" />
       <None Include="wwwroot\assets\css\cropper.min.css" />
@@ -166,6 +169,15 @@
       <None Include="wwwroot\assets\js\vector-maps.js" />
       <None Include="wwwroot\assets\js\web-analytics.js" />
       <None Include="wwwroot\assets\js\widgets.js" />
+
+      <Folder Include="wwwroot\images\" />
+      <Folder Include="Views\FoodLeisure\" />
+
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="System.Device">
+        <HintPath>System.Device.dll</HintPath>
+      </Reference>
+    </ItemGroup>
 </Project>
