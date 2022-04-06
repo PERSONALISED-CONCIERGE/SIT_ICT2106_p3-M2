@@ -32,7 +32,7 @@
     </div>
     <div class="ms-content-wrapper">
         <div class="row">
-            
+
             <div class="col-md-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb pl-0">
@@ -41,8 +41,6 @@
 
                     </ol>
                 </nav>
-
-
 
                 <div class="col-12">
                     <div class="ms-panel">
@@ -62,12 +60,9 @@
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Total Bill</th>
                                             <th scope="col">
-                                                <a href='#'><i class='fas fa-plus-circle text-white'></i></a>
+                                                <a id="addNewItem" data-toggle="modal" data-target="#myModal"><i class='fas fa-plus-circle text-white'></i></a>
                                             </th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                                    <tbody id="itineraryTable">
                                         <tr>
                                             <th scope="row">15451</th>
                                             <td>French Fries</td>
@@ -213,7 +208,8 @@
                                                 <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
-
+                                        <tr id="newItem">
+                                        </tr>
 
                                     </tbody>
                                 </table>
@@ -226,5 +222,117 @@
 
         </div>
     </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New Item</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <form id="addItem" method="get">
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table id="data-table-5" class="table w-100 thead-primary"></table>
+                        </div>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button id="edireq" type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+                        @*<button type="button" onclick="addNewItem()" class="btn btn-success" data-dismiss="modal">Submit</button>*@
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#edireq").button().click(function () {
+                var $ele = $('input[name="itemRow"]:checked');
+                if ($ele.length) {
+                    var $tds = $ele.closest('tr').find('td');
+                    var id = $tds.eq(0).text();
+                    var name = $tds.eq(1).text();
+                    var loc = $tds.eq(2).text();
+                    var bud = $tds.eq(4).text();
+                    alert(id + name + loc + bud);
+                    //addNewItem(id, name, loc, bud);
+                    var table = document.getElementById("itineraryTable");
+                    var row = table.insertRow(0);
+                    var itemID = row.insertCell(0);
+                    var eventName = row.insertCell(1);
+                    var productID = row.insertCell(2);
+                    var location = row.insertCell(3);
+                    var date = row.insertCell(4);
+                    var budget = row.insertCell(5);
+                    var deleteButton = row.insertCell(6);
+
+                    itemID.innerHTML = "<b>" + id + "</b>";
+                    eventName.innerHTML = name;
+                    productID.innerHTML = "";
+                    location.innerHTML = loc;
+                    date.innerHTML = "@DateTime.Today.ToString("dd/MM/yyyy")";
+                    budget.innerHTML = bud;
+                    deleteButton.innerHTML = "<a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                }
+                else {
+                    alert("Select a row first");
+                }
+            });
+        });
+        function addNewItem(id, name, loc, bud) {
+            var table = document.getElementById("itineraryTable");
+            var row = table.insertRow(0);
+            var itemID = row.insertCell(0);
+            var eventName = row.insertCell(1);
+            var location = row.insertCell(3);
+            var date = row.insertCell(4);
+            var budget = row.insertCell(5);
+            var deleteButton = row.insertCell(6);
+
+            itemID.innerHTML = this.id.toString();
+            eventName.innerHTML = this.name.toString();
+            location.innerHTML = this.loc.toString();
+            date.innerHTML = "@DateTime.Today.ToString("dd/MM/yyyy")";
+            budget.innerHTML = this.bud.toString();
+            deleteButton.innerHTML = "<a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+        }
+        function addNewItem() {
+            var radios = document.getElementsByName("itemRow");
+
+            for (var i = 0, length = radios.length; i < length; i++) {
+                if (radios[i].checked) {
+                    // do whatever you want with the checked radio
+                    alert(radios[i].value);
+
+                    // only one radio can be logically checked, don't check the rest
+                    break;
+                }
+            }
+
+            var table = document.getElementById("itineraryTable");
+            var row = table.insertRow(0);
+            var itemID = row.insertCell(0);
+            var itemName = row.insertCell(1);
+            var productID = row.insertCell(2);
+            var date = row.insertCell(3);
+            var quantity = row.insertCell(4);
+            var totalBill = row.insertCell(5);
+            var deleteButton = row.insertCell(6);
+            itemID.innerHTML = "<b>12321</b>";
+            itemName.innerHTML = "Fries";
+            productID.innerHTML = "021";
+            date.innerHTML = "@DateTime.Today.ToString("dd/MM/yyyy")";
+            quantity.innerHTML = "133";
+            totalBill.innerHTML = "$43";
+            deleteButton.innerHTML = "<a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+        }
+    </script>
 </body>
-</html>
+</html >
