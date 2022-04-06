@@ -176,7 +176,8 @@
 
                     @using (Html.BeginForm("ViewDetails", "Attraction"))
                                 {
-                                    //@Html.Hidden("FoodLeisureID", (int)foodLeisure.foodleisure_id)
+                                    @Html.Hidden("id", (int)item.attractionId)
+
                                     <input type="submit" value="View Details" />
                                 }
                 </div>
