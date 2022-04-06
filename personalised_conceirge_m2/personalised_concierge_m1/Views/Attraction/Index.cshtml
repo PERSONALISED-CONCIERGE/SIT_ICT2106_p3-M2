@@ -1,0 +1,254 @@
+﻿@model IEnumerable<personalised_concierge_m1.Models.Entities.Attraction.Attraction>
+<!DOCTYPE html>
+<html>
+      
+<head>
+    <script language="javascript" type="text/javascript">
+        // JavaScript code
+        function search_attraction() {
+            let input = document.getElementById('searchbar').value
+            input=input.toLowerCase();
+            let attractionName = document.getElementsByClassName('attractionName');
+            let box = document.getElementsByClassName('sgLi');
+            let attractionDist = document.getElementsByClassName('attractionDist');
+
+            split = input.split(" ")
+      
+            for (i = 0; i < attractionName.length; i++) { 
+                count = 0
+                for (a = 0; a < split.length; a++){
+                    if (attractionName[i].innerHTML.toLowerCase().includes(split[a]) || attractionDist[i].innerHTML.toLowerCase().includes(split[a])) {
+                        count += 1
+                    }
+                }
+                if (count != split.length){
+                    box[i].style.display="none";
+                }
+                else{
+                    box[i].style.display="inline-flex";
+                }
+            }
+        }
+
+
+        function upVote(clicked_id){
+                
+            let attractionVote = document.getElementsByClassName('attractionVote');
+
+
+            
+            for(i = 0; i < attractionVote.length+1; i++){
+                var counter = 0;
+                
+                if(i == clicked_id){
+                counter += parseInt(attractionVote[i].innerHTML);
+                counter += 1
+                attractionVote[i].innerHTML = counter.toString();
+                document.getElementById(i.toString()).disabled = true;
+                }      
+
+                console.log(clicked_id)
+                console.log(attractionVote[i].innerHTML);
+
+            }
+        }
+
+        function downVote(clicked_id){
+            let attractionVote = document.getElementsByClassName('attractionVote');
+            let attractionName = document.getElementsByClassName('attractionName');
+            for(i = 0; i < attractionVote.length; i++){
+                var counter = 0;
+
+                if(attractionName[i].innerHTML == clicked_id){
+                counter += parseFloat(attractionVote[i].innerHTML);
+                counter -= 1
+                attractionVote[i].innerHTML = counter.toString();
+                document.getElementById(attractionName[i].innerHTML).disabled = true;
+                }
+                console.log(clicked_id)
+                console.log(attractionVote[i].innerHTML);
+            }
+        }
+
+    </script>
+      
+    <!-- linking the stylesheet(CSS) -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <style>
+
+     #searchbar{
+         margin-left: 15%;
+         padding:15px;
+         border-radius: 10px;
+     }
+ 
+     input[type=text] {
+          width: 70%;
+          -webkit-transition: width 0.15s ease-in-out;
+          transition: width 0.15s ease-in-out;
+     }
+ 
+      #list{
+        font-size:  1.2em;
+        margin-left: 90px;
+       }
+ 
+    .attraction{
+       display: list-item;    
+      }
+
+    .X{
+          margin: auto;
+          padding: 1% 2%;
+          max-width: 1440px;
+          border-radius: 5px;
+          background: #ecf0f1;
+          box-shadow: 0 2px 6px 0 rgba(0,0,0, .3);
+    }
+    h1,h2,h3{
+      text-align: center;
+      font-family: 'Baloo Tamma', cursive;
+    }
+    
+    /*SG = style grid*/
+    .SG{
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .SG .sgLi{
+      min-width: 24%;
+      margin: 2% .35%;
+      display: inline-flex;
+      box-shadow: 0 2px 4px rgba(0,0,0, .2);
+    }
+    .SG .sgLi:hover{
+      box-shadow:0 5px 10px rgba(0,0,0,.15);}
+
+    .SG .box{
+      width: 350px;
+      height: 350px;
+
+      padding: 1% 2%;
+      background: #fff;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .box img {
+        position: center;
+        bottom: 15%;
+        left: 8.33%;
+    }
+
+    .attractionDetailBtn{
+        background-color: yellow;
+        position: absolute;
+        bottom: 5%;
+        left: 35%;
+    }
+
+
+    </style>
+</head>
+  
+<body>
+      
+    <div class="X">
+        <!-- input tag -->
+        <input id="searchbar" onkeyup="search_attraction()" type="text"
+            name="search" placeholder="Search attractions here...">
+      
+        <ul class="SG">
+            @foreach (var item in Model) {
+                <li class="sgLi"> 
+                <div class="box">
+                    <h4 class="attractionName">@Html.DisplayFor(modelItem => item.attractionName)</h4>
+                    <h7>Distance:</h7>
+                    <h7>Vote:</h7>
+                    <h7 class="attractionVote">@Html.DisplayFor(modelItem => item.attractionVote)</h7><br>
+                    <button id="@Html.DisplayFor(modelItem => item.attractionId)" onclick="upVote(this.id)">UP VOTE</button>
+                    <button id="@Html.DisplayFor(modelItem => item.attractionName)" onclick="downVote(this.id)">DOWN VOTE</button><br><br>
+                    <p><img src = "@Html.DisplayFor(modelItem => item.attractionImage)" width="250" height="150"/></p>
+                    <!-- <a class="attractionDetailBtn" asp-route-id = "@item.attractionId" asp-controller="Attraction" asp-action="ViewDetails">View Details</a> -->
+
+
+                    @using (Html.BeginForm("ViewDetails", "Attraction"))
+                                {
+                                    @Html.Hidden("id", (int)item.attractionId)
+
+                                    <input type="submit" value="View Details" class="custom-btn" />
+                                }
+                </div>
+                </li>
+            }
+            
+        </ul>
+      
+        <!-- linking javascript -->
+        <script src="./attraction.js"></script>
+    </div>
+</body>
+
+  
+</html>
+
+<style>
+    .custom-btn {
+      appearance: none;
+      background-color: #FAFBFC;
+      border: 1px solid rgba(27, 31, 35, 0.15);
+      border-radius: 6px;
+      box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+      box-sizing: border-box;
+      color: #24292E;
+      cursor: pointer;
+      display: inline-block;
+      font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 20px;
+      list-style: none;
+      padding: 6px 16px;
+      position: relative;
+      transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: middle;
+      white-space: nowrap;
+      word-wrap: break-word;
+      margin-bottom: 10px;
+    }
+
+    .custom-btn:hover {
+      background-color: #F3F4F6;
+      text-decoration: none;
+      transition-duration: 0.1s;
+    }
+
+    .custom-btn:disabled {
+      background-color: #FAFBFC;
+      border-color: rgba(27, 31, 35, 0.15);
+      color: #959DA5;
+      cursor: default;
+    }
+
+    .custom-btn:active {
+      background-color: #EDEFF2;
+      box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+      transition: none 0s;
+    }
+
+    .custom-btn:focus {
+      outline: 1px transparent;
+    }
+
+    .custom-btn:before {
+      display: none;
+    }
+
+    .custom-btn:-webkit-details-marker {
+      display: none;
+    }
+</style>

@@ -23,21 +23,20 @@ namespace personalised_concierge_m1.Controllers
         public IActionResult Index()
         {
             
-            //variable getting data from DB and storing in an Object Example
-            //var myRoom = _unitOfWork.RoomDetails.GetById(1);
-            //var myReservation = _unitOfWork.ReservationDetails.GetById(1);
-            //var myAccount = _unitOfWork.AccountDetails.GetById(1);
-            //var myLeisure = _m2UnitOfWork.FoodLeisureDetails.GetById(1);
-            //var myEnum = _m2UnitOfWork.ReviewDetails.GetById(1);
-            //var myRequest = _m3UnitOfWork.RequestDetails.GetById(1);
+            // //variable getting data from DB and storing in an Object Example
+            // var myRoom = _unitOfWork.RoomDetails.GetById(1);
+            // var myReservation = _unitOfWork.ReservationDetails.GetById(1);
+            // var myAccount = _unitOfWork.AccountDetails.GetById(1);
+            // var myLeisure = _m2UnitOfWork.FoodLeisureDetails.GetById(1);
+            // var myEnum = _m2UnitOfWork.ReviewDetails.GetById(1);
+            // var myRequest = _m3UnitOfWork.RequestDetails.GetById(1);
             
-            //ViewData["myRoom"] = myRoom;
-            //ViewData["myAccount"] = myAccount;
-            //ViewData["myLeisure"] = myLeisure;
-            //ViewData["myenum"] = myEnum;
-            //ViewData["myrequest"] = myRequest;
+            // ViewData["myRoom"] = myRoom;
+            // ViewData["myAccount"] = myAccount;
+            // ViewData["myLeisure"] = myLeisure;
+            // ViewData["myenum"] = myEnum;
+            // ViewData["myrequest"] = myRequest;
 
-            
             //data is return to the view to be used there.
             return View();
         }
@@ -50,7 +49,7 @@ namespace personalised_concierge_m1.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

@@ -87,7 +87,10 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Navigation" asp-action="Index">Navigation</a>
                     </li>
                     <li>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Attraction" asp-action="Suggestion" hidden>Attractions Suggestions</a>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Attraction" asp-action="Suggestion">Attractions Suggestions</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Attraction" asp-action="Index">Attractions List</a>
                     </li>
                 </ul>
             </li>
@@ -104,6 +107,7 @@
                 <span class="ms-toggler-bar bg-primary"></span>
                 <span class="ms-toggler-bar bg-primary"></span>
             </div>
+            <!--
             <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
                 <li class="ms-nav-item ms-search-form pb-0 py-0">
                     <form class="ms-form" method="post">
@@ -113,6 +117,8 @@
                     </form>
                 </li>
             </ul>
+            -->
+
         </nav>
         <main role="main" class="pb-3">
             @RenderBody()
