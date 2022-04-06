@@ -31,5 +31,10 @@ namespace personalised_concierge_m1.Controllers
         
             return View(itinerary);
         }
+        public IActionResult Testing()
+        {
+
+            return View();
+        }
     }
 }
