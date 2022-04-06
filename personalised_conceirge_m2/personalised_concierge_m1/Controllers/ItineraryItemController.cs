@@ -19,6 +19,7 @@ namespace personalised_concierge_m1.Controllers
     public class ItineraryItemController : Controller
     {
         private ItineraryItem itineraryitem = new ItineraryItem();
+        private static List<Expenses> itineraryItems = new List<Expenses>();
         private ItineraryItem data = new ItineraryItem();
         private readonly IM2UnitOfWork _m2UnitOfWork;
 
@@ -31,7 +32,6 @@ namespace personalised_concierge_m1.Controllers
         {
 
             return View(itineraryitem);
-        }
-
+        }            
     }
 }
