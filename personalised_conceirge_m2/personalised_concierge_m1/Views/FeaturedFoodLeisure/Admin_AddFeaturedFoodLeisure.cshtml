@@ -7,20 +7,51 @@
  <html>
 
  <body>
-     <br/>
+     <br />
      <h1>Admin Featured Banner</h1><br />
+     <p>
+         <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample"
+                 aria-expanded="false" aria-controls="collapseExample">
+             Add New Featured Item
+         </button>
+     </p>
+     <div class="collapse" id="collapseExample">
+         <div class="card card-body">
+
+
+             @using (Html.BeginForm("Edit", "FeaturedFoodLeisure"))
+             {
+
+                 @Html.DropDownList("FoodLeisureName", new SelectList(Model.nameList),
+                   "Select FoodLeisure Item ",
+                   new { @class = "form-control" })
+
+                 @Html.Hidden("featured", true)
+
+                 <input type="submit" value="Submit">
+
+
+             }
+
+
+
+         </div>
+     </div>
+
+     <hr />
+
      <div style="overflow-x:auto;">
          <table class="table table-striped">
-             <thead >
+             <thead>
                  <tr>
-                     <th scope="col" >#</th>
-                     <th scope="col" >Name</th>
-                     <th scope="col" >Description</th>
-                     <th scope="col" >Website Link</th>
-                     <th scope="col" >Contact Number</th>
-                     <th scope="col" >Type</th>
-                     <th scope="col" >Address</th>
-                     <th scope="col" >Featured</th>
+                     <th scope="col">#</th>
+                     <th scope="col">Name</th>
+                     <th scope="col">Description</th>
+                     <th scope="col">Website Link</th>
+                     <th scope="col">Contact Number</th>
+                     <th scope="col">Type</th>
+                     <th scope="col">Address</th>
+                     <th scope="col">Featured</th>
                  </tr>
              </thead>
              <tbody>
@@ -54,34 +85,6 @@
      </div>
 
      <hr />
-     <p>
-         <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample"
-                 aria-expanded="false" aria-controls="collapseExample">
-             Add New Featured Item 
-         </button>
-     </p>
-     <div class="collapse" id="collapseExample">
-         <div class="card card-body">
-
-           
-                 @using (Html.BeginForm("Edit", "FeaturedFoodLeisure"))
-                 {
-
-                     @Html.DropDownList("FoodLeisureName", new SelectList(Model.nameList),
-                       "Select FoodLeisure Item ",
-                       new { @class = "form-control" })
-
-                     @Html.Hidden("featured", true)
-
-                     <input type="submit" value="Submit">
-
-
-                 }
-             
-
-
-         </div>
-     </div>
 
 
  </body>

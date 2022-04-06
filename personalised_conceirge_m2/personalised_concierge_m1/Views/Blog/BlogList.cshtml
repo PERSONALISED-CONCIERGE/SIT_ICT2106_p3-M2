@@ -37,17 +37,32 @@
 <html>
 <body>
     <div class="container">
-        @foreach (Blog ablog in Model.myBlog){
-        <div class="row">
-            <h1>@ablog.name</h1>
-            <p>@ablog.description</p>
-            <p>
-                @using (Html.BeginForm("Blog", "Blog")){
-                @Html.Hidden("itinerary_id", @ablog.itinerary_id)
-                <input type="submit" value="View blog" />
-                    }
-            </p>
+        @foreach (Blog ablog in Model.myBlog)
+        {
+        <div class="row align-item-center" >
+           
+            
+                <h1>@ablog.name</h1>
+       
+         
+
+                @using (Html.BeginForm("Blog", "Blog"))
+                {
+                    @Html.Hidden("itinerary_id", @ablog.itinerary_id)
+
+            
+                    @ablog.description
+
+
+
+                    <hr />
+                    <input type="submit" value="View blog" />
+                }
+            
         </div>
+
+           
+            
         }
     </div>
 
