@@ -10,8 +10,6 @@
         <p><img src = "@Html.DisplayFor(model => model.attractionImage)" width="250" height="150"/></p>
         <h4>@Html.DisplayFor(model => model.attractionName)</h4>
         <h6 style="text-align: left;">@Html.DisplayFor(model => model.attractionDescription)</h6>
-        <button class="custom-btn">Reviews</button>
-        @* <button class="custom-btn">Directions</button> *@
          @using (Html.BeginForm("Index", "Navigation"))
                                 {
                                     @Html.Hidden("id", Model.attractionId)

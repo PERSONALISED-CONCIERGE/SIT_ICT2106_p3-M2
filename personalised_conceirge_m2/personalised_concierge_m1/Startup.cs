@@ -20,6 +20,7 @@ using personalised_concierge_m1.Data.RoomDetails;
 using personalised_concierge_m1.Data.UnitOfWorks;
 using personalised_concierge_m1.Data.Itineraries;
 using personalised_concierge_m1.Data.UserDetails;
+using personalised_concierge_m1.Data.AttractionServices;
 using personalised_concierge_m1.Models.Interfaces;
 using personalised_concierge_m1.Models.Interfaces.FoodLeisureServices;
 using personalised_concierge_m1.Models.Interfaces.HotelServices;
@@ -30,6 +31,7 @@ using personalised_concierge_m1.Models.Interfaces.Facilities;
 using personalised_concierge_m1.Models.Interfaces.Inventories;
 using personalised_concierge_m1.Models.Interfaces.OtherServices;
 using personalised_concierge_m1.Models.Interfaces.Requests;
+using personalised_concierge_m1.Models.Interfaces.Attraction;
 
 
 namespace personalised_concierge_m1

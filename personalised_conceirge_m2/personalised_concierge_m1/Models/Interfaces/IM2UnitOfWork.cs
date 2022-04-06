@@ -2,6 +2,7 @@
 using personalised_concierge_m1.Models.Interfaces.FoodLeisureServices;
 using personalised_concierge_m1.Models.Interfaces.Itineraries;
 using personalised_concierge_m1.Models.Interfaces.OtherServices;
+using personalised_concierge_m1.Models.Interfaces.Attraction;
 
 namespace personalised_concierge_m1.Models.Interfaces
 {

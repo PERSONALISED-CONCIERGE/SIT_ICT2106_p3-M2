@@ -6,6 +6,8 @@ namespace personalised_concierge_m1.Models.Interfaces.NavigationServices
 {
     public interface INavigation : IGenericRepo<Navigation>
     {
-        Navigation GetDistance(string endPoint);
+        Navigation getModeOfTransport(string transport);
+        Navigation setModeOfTransport(string transport);
+        Navigation getDistance(string endPoint);
     }
 }

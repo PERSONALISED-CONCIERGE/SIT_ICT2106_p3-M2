@@ -27,7 +27,7 @@ namespace personalised_concierge_m1.Models.Entities.Attraction
 
         public int attractionVote { get; set; }
 
-        public string attraction_location { get; set; }
+        //public string attraction_location { get; set; }
 
 
 
