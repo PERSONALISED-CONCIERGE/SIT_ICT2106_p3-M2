@@ -78,7 +78,18 @@ var dataSet1= [
     [ "15451", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Max",  "Hall Street", "ghj@gfail.com", "  Noodles","$56" ],
     [ "14451", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Dum sum",  "Hall Street", "bbc@gfail.com", " Pizza" ,"$43" ]
   ];
-
+    var dataset2 = [
+        ["001", "Sentosa Siloso Beach", "Sentosa", "2022/03/31", "$40"],
+        ["002", "Rooftop Swimming Pool", "Marina Bay Sands Hotel", "2022/04/01", "$75"],
+        ["003", "Picnic at Marina Barrage", "Marina Barrage", "2022/04/01", "$0"],
+        ["004", "Hiking at Macritchie", "Macritchie", "2022/04/02", "$20"],
+        ["005", "Tour At Puala Ubin", "Puala Ubin", "2022/04/04", "$40"],
+        ["006", "Singapore Flyer", "Singapore Flyer", "2022/04/04", "$35"],
+        ["007", "Gardens by The Bay", "Bayfront", "2022/04/01", "$50"],
+        ["008", "Bungee Jumping at Sentosa", "Sentosa", "2022/03/31", "$80"],
+        ["009", "Singapore Arts Museum", "Tanjong Pagar", "2022/04/03", "$45"],
+        ["010", "DuckTour", "Suntec Convention Centre", "2022/04/02", "$40"]
+    ];
 
   var tableOne = $('#data-table-1').DataTable( {
     data: dataSet,
@@ -114,19 +125,24 @@ var dataSet1= [
     ],
     scrollY: 400
   });
-  var tableFour = $('#data-table-4').DataTable( {
-    data: dataSet1,
-    columns: [
-      { title: "Item ID" },
-      { title: "Event Name" },
+    var tableFour = $('#data-table-4').dataTable({
+        data: dataset2,
+        columns: [
+            { title: "Item ID" },
+            {
+                title: "Event Name",
+                render: function (title) {
+                    title = '<a href ="itinerary/testing">' + title + '</a>';
+                    return title;
+                }
+            },
+            { title: "Location" },
+            { title: "Date" },
+            { title: "Budget" }
 
-      { title: "Location" },
-      { title: "Email ID" },
-      { title: "Date" },
-      { title: "Budget" }
+        ],
 
-    ],
-  });
+    });
 
 
   var tableFive = $('#data-table-5').DataTable( {
@@ -170,3 +186,7 @@ var dataSet1= [
 
 
 })(jQuery);
+
+tableFour.on('draw.dt', function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
