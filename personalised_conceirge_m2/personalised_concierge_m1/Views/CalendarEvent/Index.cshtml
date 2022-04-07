@@ -1,0 +1,661 @@
+﻿@model personalised_concierge_m1.Models.CalendarEvent
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!--calendar-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.10.1/main.min.css" />
+    <link rel="stylesheet" href="~/css/calendarEvent.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@5.10.1/main.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDATkgw3RPW8MmEmLUdkjRVQ0fYUd8re8&libraries=places"></script>
+
+    <title>Index</title>
+</head>
+<body>
+    <div id='calendar'></div>
+</body>
+
+<!--------------------------------------------------------Modal section-------------------------------------------------------->
+<div class="modal fade" id="createEventModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center">Add custom event</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="nameInput">Name</label>
+                        <input type="text" class="form-control" id="nameInput" placeholder="Enter custom event name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="locationInput">Location</label>
+                        <input type="text" class="form-control" id="locationInput" placeholder="Enter a location">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descriptionInput">Description</label>
+                    <textarea class="form-control" id="descriptionInput" rows="2" placeholder="Enter description"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="dateInput">Date</label>
+                        <input type="date" class="form-control" id="dateInput">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="startTimeInput">Start time</label>
+                        <input type="time" class="form-control" id="startTimeInput">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="endTimeInput">End time</label>
+                        <input type="time" class="form-control" id="endTimeInput">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="noteInput">Note</label>
+                    <textarea class="form-control" id="noteInput" rows="3" placeholder="Add notes"></textarea>
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" class="btn btn-primary" onclick="createEvent1('custom')">Save</button>
+                    <button type="button" id="buttonDelete" class="btn btn-danger float-right" onclick="deleteEvent()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addActivityModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add activity</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-info btn-block" onclick="addActivityClick()">Add Attraction</button>
+                <button type="button" class="btn btn-info btn-block" onclick="onCreateEventClick()">Create Custom Event</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Attraction Activity Modal-->
+<div class="modal fade" id="attractionActivity" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Attraction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+                    <a class="left carousel-control" href="#multi-item-example" data-slide="prev" onclick="$('#multi-item-example').carousel('prev')">‹</a>
+                    <a class="right carousel-control" href="#multi-item-example" data-slide="next" onclick="$('#multi-item-example').carousel('next')">›</a>
+
+                    <!--/.Controls-->
+                    <!--Indicators-->
+                    <ol class="carousel-indicators">
+                        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+                        <li data-target="#multi-item-example" data-slide-to="1"></li>
+
+                    </ol>
+                    <!--/.Indicators-->
+                    <!--Slides-->
+                    <div class="carousel-inner" role="listbox">
+
+                        <!--First slide-->
+                        <div class="carousel-item active">
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2" onclick="retrieveAttraction(1)">
+                                    <img class="card-img-top"
+                                         src="~/Images/sentosa.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Sentosa Island</h4>
+                                        <p class="card-text">
+                                            Sentosa is an island resort off Singapore's southern coast, connected to the city by road, cable car, pedestrian boardwalk and monorail.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2" onclick="retrieveAttraction(2)">
+                                    <img class="card-img-top"
+                                         src="~/Images/durian.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Esplanade</h4>
+                                        <p class="card-text">
+                                            Theatres on the Bay is a performing arts centre located in the Downtown Core of Singapore near the mouth of the Singapore River.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2" onclick="retrieveAttraction(3)">
+                                    <img class="card-img-top"
+                                         src="~/Images/merlion.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">The Merlion</h4>
+                                        <p class="card-text">
+                                            Merlion Park is a famous Singapore landmark and a major tourist attraction, located near One Fullerton, Singapore, near the Central Business District.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2" onclick="retrieveAttraction(4)">
+                                    <img class="card-img-top"
+                                         src="~/Images/flyer.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Singapore Flyer</h4>
+                                        <p class="card-text">
+                                            Located in the heart of downtown Marina Bay, the Singapore Flyer is Asia's largest giant observation wheel. More importantly, it is high on thrills for tourists.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.First slide-->
+                        <!--Second slide-->
+                        <div class="carousel-item">
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2" onclick="retrieveAttraction(5)">
+                                    <img class="card-img-top"
+                                         src="~/Images/zoo.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Singapore Zoo</h4>
+                                        <p class="card-text">
+                                            Formerly known as the Singapore Zoological Gardens or Mandai Zoo. An unforgettable wildlife adventure at Mandai awaits! Explore and discover the wonders at Singapore Zoo.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2" onclick="retrieveAttraction(6)">
+                                    <img class="card-img-top"
+                                         src="~/Images/gardenbythebay.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Gardens by the Bay</h4>
+                                        <p class="card-text">
+                                            One of Asia's premier horticultural destinations, Gardens by the Bay offers a scenic paradise for nature and photography lovers, as well as the whole family.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2" onclick="retrieveAttraction(7)">
+                                    <img class="card-img-top"
+                                         src="~/Images/uss.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Universal Studios Singapore</h4>
+                                        <p class="card-text">
+                                            Universal Studios Singapore the Southeast Asia's first and only Universal Studios theme park, featuring 24 rides, shows and attractions in seven themed zones.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="float:left">
+                                <div class="card mb-2" onclick="retrieveAttraction(8)">
+                                    <img class="card-img-top"
+                                         src="~/Images/mbs2.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Marina Bay Sands</h4>
+                                        <p class="card-text">
+                                            Visit Singapore's most iconic hotel for the world's largest rooftop Infinity Pool, award-winning dining, casino, retail mall, as well as convention facilities and entertainment venues.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--/.Second slide-->
+
+
+
+                    </div>
+                    <!--/.Slides-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Add attraction form modal-->
+<div class="modal fade" id="addAttractionForm" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center">Add Attraction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img id="attractionImage" src="~/Images/durian.jpg" class="img-thumbnail float-left" alt="...">
+                    </div>
+                    <div class="col">
+                        <h5 id="attractionTitle" class="mb-0">Attraction title</h5>
+                        <p id="attractionLocation" class="text-secondary"><i class="fa fa-map-marker">Attraction location</i></p>
+                        <p id="attractionDescription">Revel in sweeping views over Singapore from Sands SkyPark Observation Deck, a public observation point perched on top a five-star hotel. Complement the 360-degree vistas with a drink from the rooftop bar, or put your photography skills to the test. Hotel guests can also enjoy the surreal experience of swimming in an infinity pool on the edge of the roof.</p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="dateInput">Date</label>
+                        <input type="date" class="form-control" id="attractionDate">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="startTimeInput">Start time</label>
+                        <input type="time" class="form-control" id="attractionStartTime">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="endTimeInput">End time</label>
+                        <input type="time" class="form-control" id="attractionEndTime">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="noteInput">Note</label>
+                    <textarea class="form-control" id="attractionNote" rows="3" placeholder="Add notes"></textarea>
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" class="btn btn-primary" onclick="createEvent1('attraction')">Save</button>
+                    <button type="button" id="buttonAttractionDelete" class="btn btn-danger float-right" onclick="deleteEvent()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
+<script type="text/javascript">
+    var calendar;
+    var calendarEl;
+    var cEventId = 0;
+    var eventObjToDelete;
+    var otherId = 0; // use for referencing other db table's id
+    var initialDate = "";
+
+    //for auto complete in location
+    function initialize() {
+        var input = document.getElementById('locationInput');
+        var autocomplete = new google.maps.places.Autocomplete(input, {
+            types: ['establishment'],
+            componentRestrictions: { 'country': ['SG'] },
+            fields: ['place_id', 'geometry', 'name']
+        });
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    function createEvent1(category) {
+        var name, location, description, date, startTime, endTime, note;
+        if (category == "custom") {
+            name = String(document.getElementById("nameInput").value);
+            location = String(document.getElementById("locationInput").value);
+            description = String(document.getElementById("descriptionInput").value);
+            date = String(document.getElementById("dateInput").value);
+            startTime = String(document.getElementById("startTimeInput").value);
+            endTime = String(document.getElementById("endTimeInput").value);
+            note = String(document.getElementById("noteInput").value);
+        } else if(category == "attraction"){
+            name = document.getElementById("attractionTitle").innerHTML;
+            location = document.getElementById("attractionLocation").innerHTML;
+            description = document.getElementById("attractionDescription").innerHTML;
+            date = document.getElementById("attractionDate").value;
+            startTime = document.getElementById("attractionStartTime").value;
+            endTime = document.getElementById("attractionEndTime").value;
+            note = document.getElementById("attractionNote").value;
+        }
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("createEvent", "CalendarEvent")',
+            data: {
+                id: cEventId,
+                name: name,
+                type: category,
+                location: location,
+                description: description,
+                date: date,
+                startTime: startTime,
+                endTime: endTime,
+                note: note,
+                otherId: otherId
+            },
+            dataType: 'json',
+            success: function (result) {
+                var obj = JSON.parse(result);
+                addEvent(obj.CalendarEventId, obj.Name, obj.StartTime, obj.EndTime, obj.Type);
+            }
+        })
+        if (cEventId == 0) {
+            showDeleteButton();
+        }
+        else {
+            hideDeleteButton();
+        }
+        $("#createEventModal").modal('hide');
+        $("#addAttractionForm").modal('hide');
+    }
+
+        function retrieveEvent(eventId) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("retrieveEvent", "CalendarEvent")',
+            data: {
+                eventId: eventId,
+            },
+            dataType: 'json',
+            success: function (result) {
+                var obj = JSON.parse(result);
+                if (obj.Type == "custom") {
+                    fillAllFormInputs(obj);
+                    showDeleteButton();
+                    $("#createEventModal").modal('toggle');
+                } else if (obj.Type == "attraction") {
+                    fillAttractionForm(obj)
+                    $("#addAttractionForm").modal('show');
+                }
+            }
+        })
+    }
+
+    function addEvent(id, title, startTime, endTime, type) {
+        var color = "#000000"
+        if (type == "custom") {
+            color = "#378006"
+        }
+        var eventObject = {
+            title: title,
+            start: startTime,
+            end: endTime,
+            id: id,
+            color: color
+        };
+        if (cEventId != 0)// it is an update
+        {
+            eventObjToDelete.event.remove();
+        }
+        calendar.addEvent(eventObject)
+    }
+
+    function deleteEvent() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("deleteEvent", "CalendarEvent")',
+            data: {
+                eventId: eventObjToDelete.event.id,
+            },
+            dataType: 'json',
+            success: function (result) {
+                eventObjToDelete.event.remove();
+            }
+        })
+        $("#createEventModal").modal('hide');
+        $("#addAttractionForm").modal('hide');
+    }
+
+    function getInitialDate() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("getInitialDate", "CalendarEvent")',
+            dataType: 'json',
+            async: false,
+            success: function (result) {
+                var obj = JSON.parse(result);
+                initialDate = new Date(obj.StartDate).toISOString().substring(0, 10)
+            }
+        })
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var serialiseVar2 = @Html.Raw(Json.Serialize(Model.CalendarEventList));
+        getInitialDate();
+
+        var sourceEvent = convertIncomingEventsReadableForCalendar(serialiseVar2);
+
+        calendarEl = document.getElementById('calendar');
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            initialDate: initialDate,
+            initialView: 'timeGridWeek',
+            allDaySlot: false,
+            views: {
+                week: { // name of view
+                    titleFormat: { year: 'numeric', month: 'short', day: 'numeric' }
+                    // other view-specific options here
+                }
+            },
+            headerToolbar: {
+                left: 'dayGridMonth,timeGridWeek',
+                center: 'title',
+                right: 'prev,next'
+            },
+            events: sourceEvent,
+            eventClick: function (info) {
+                eventObjToDelete = info;
+                cEventId = info.event.id;
+                retrieveEvent(info.event.id)
+            },
+            dateClick: function (info) {
+                cEventId = 0;
+                fillDateTimeInputFields(info)
+                onDateClickModal();
+            }
+        });
+        calendar.render();
+    });
+
+
+
+    function convertIncomingEventsReadableForCalendar(serialisedObj) {
+        var sourceEvent = []
+        var eventColor;
+        for (var key of Object.keys(serialisedObj)) {
+            if (serialisedObj[key].type == "custom") {
+                eventColor = '#378006';
+            } else {
+                eventColor = '#000000';
+            }
+            sourceEvent.push({ id: serialisedObj[key].calendarEventId, title: serialisedObj[key].name, start: serialisedObj[key].startTime, end: serialisedObj[key].endTime, color: eventColor })
+        }
+        return sourceEvent;
+    }
+
+    function onDateClickModal() {
+        $("#addActivityModal").modal('show');
+    }
+
+    function onCreateEventClick() {
+        otherId = 0
+        $("#addActivityModal").modal('toggle');
+        hideDeleteButton();
+        $("#createEventModal").modal('show');
+    }
+
+    function addActivityClick() {
+        $("#addActivityModal").modal('toggle');
+        $("#attractionActivity").modal('show');
+    }
+
+    function hideDeleteButton() {
+        var button = document.getElementById("buttonDelete");
+        button.style.display = "none";
+    }
+
+    function showDeleteButton() {
+        var button = document.getElementById("buttonDelete");
+        button.style.display = "block";
+    }
+
+    function convertCalendarDateToDateString(dateObj){
+        var date = new Date(dateObj.dateStr).toISOString().substring(0, 10)
+        return date
+    }
+
+    function convertCalendarDateToTimeString(dateObj) {
+        var timeString = new Date(dateObj.dateStr).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+        return timeString
+    }
+
+    //add 30minutes to date object
+    function addMinutesToDate(dateobj) {
+        var dateObj = new Date(dateobj.dateStr)
+        dateObj.setMinutes(dateObj.getMinutes() + 30);
+        return dateObj
+    }
+
+    function convertDateToString(date) {
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    }
+
+    function clearFields() {
+        document.getElementById("nameInput").value = ""
+        document.getElementById("locationInput").value = ""
+        document.getElementById("descriptionInput").value = ""
+        document.getElementById("noteInput").value = ""
+    }
+
+    function fillDateTimeInputFields(date) {
+        clearFields();
+        var dateString = convertCalendarDateToDateString(date)
+        var startTimeString = convertCalendarDateToTimeString(date)
+        var endDate = addMinutesToDate(date)
+        var endTimeString = convertDateToString(endDate)
+        document.getElementById("dateInput").value = dateString
+        document.getElementById("startTimeInput").value = startTimeString
+        document.getElementById("endTimeInput").value = endTimeString
+        document.getElementById("attractionDate").value = dateString
+        document.getElementById("attractionStartTime").value = startTimeString
+        document.getElementById("attractionEndTime").value = endTimeString
+    }
+
+    function fillAllFormInputs(jsonObj) {
+        document.getElementById("nameInput").value = jsonObj.Name;
+        document.getElementById("locationInput").value = jsonObj.Location;
+        document.getElementById("descriptionInput").value = jsonObj.Description;
+        var date = new Date(jsonObj.Date)
+        date.setDate(date.getDate() + 1);
+        var dateOneDay = date.toISOString().substring(0, 10);
+        var startTime = new Date(jsonObj.StartTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+        var endTime = new Date(jsonObj.EndTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+        document.getElementById("dateInput").value = dateOneDay
+        document.getElementById("startTimeInput").value = startTime;
+        document.getElementById("endTimeInput").value = endTime;
+        document.getElementById("noteInput").value = jsonObj.Note;
+    }
+
+    //------------------------------------------attraction functions--------------------------------------------------------------------------------------
+    function retrieveAttraction(attractionId) {
+        otherId = attractionId
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("retrieveAttraction", "CalendarEvent")',
+            data: {
+                id: attractionId,
+            },
+            dataType: 'json',
+            success: function (result) {
+                var obj = JSON.parse(result);
+                fillAttractionForm(obj);
+            }
+        })
+        openAttractionForm();
+    }
+
+    function fillAttractionForm(jsonObj) {
+        var imgUrlPath;
+        if (jsonObj.AttractionDemoId == undefined) { // if opening up form from attraction event click
+            showAttrDeleteButton()
+            otherId = jsonObj.OtherId;
+            imgUrlPath = getImageUrl(jsonObj.OtherId)
+            var date = new Date(jsonObj.Date)
+            date.setDate(date.getDate() + 1);
+            var dateOneDay = date.toISOString().substring(0, 10);
+            var startTime = new Date(jsonObj.StartTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+            var endTime = new Date(jsonObj.EndTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+            document.getElementById("attractionDate").value = dateOneDay
+            document.getElementById("attractionStartTime").value = startTime;
+            document.getElementById("attractionEndTime").value = endTime;
+            document.getElementById("attractionNote").value = jsonObj.Note;
+        } else { //if opening up form from creating event
+            hideAttrDeleteButton();
+            document.getElementById("attractionNote").value = "";
+            imgUrlPath = getImageUrl(jsonObj.AttractionDemoId)
+        }
+        document.getElementById("attractionImage").src = imgUrlPath;
+        console.log(document.getElementById("attractionImage").src)
+        document.getElementById("attractionTitle").innerHTML = jsonObj.Name;
+        document.getElementById("attractionLocation").innerHTML = jsonObj.Location;
+        document.getElementById("attractionDescription").innerHTML = jsonObj.Description;
+    }
+
+    function getImageUrl(attractionId) {
+        var imagePath = "../../Images/"
+        if (attractionId == 1) {
+            return imagePath + "sentosa.jpg"
+        } else if (attractionId == 2) {
+            return imagePath + "durian.jpg"
+        }
+        else if (attractionId == 3) {
+            return imagePath + "merlion.jpg"
+        }
+        else if (attractionId == 4) {
+            return imagePath + "flyer.jpg"
+        }
+        else if (attractionId == 5) {
+            return imagePath + "zoo.jpg"
+        }
+        else if (attractionId == 6) {
+            return imagePath + "gardenbythebay.jpg"
+        }
+        else if (attractionId == 7) {
+            return imagePath + "uss.jpg"
+        }
+        else if (attractionId == 8) {
+            return imagePath + "mbs2.jpg"
+        }
+    }
+
+    function hideAttrDeleteButton() {
+        var attractionDeleteBtn = document.getElementById("buttonAttractionDelete");
+        attractionDeleteBtn.style.display = "none";
+    }
+
+    function showAttrDeleteButton() {
+        var attractionDeleteBtn = document.getElementById("buttonAttractionDelete");
+        attractionDeleteBtn.style.display = "block";
+    }
+
+    function openAttractionForm() {
+        $("#attractionActivity").modal('toggle');
+        $("#addAttractionForm").modal('show');
+    }
+</script>

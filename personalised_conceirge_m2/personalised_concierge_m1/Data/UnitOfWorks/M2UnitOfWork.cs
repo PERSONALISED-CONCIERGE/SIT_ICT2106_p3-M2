@@ -1,10 +1,12 @@
 ﻿using personalised_concierge_m1.Data.FoodLeisureServices;
 using personalised_concierge_m1.Data.Itineraries;
 using personalised_concierge_m1.Data.OtherServices;
+using personalised_concierge_m1.Interface;
 using personalised_concierge_m1.Models.Interfaces;
 using personalised_concierge_m1.Models.Interfaces.FoodLeisureServices;
 using personalised_concierge_m1.Models.Interfaces.Itineraries;
 using personalised_concierge_m1.Models.Interfaces.OtherServices;
+using personalised_concierge_m1.Repository;
 
 namespace personalised_concierge_m1.Data.UnitOfWorks
 {
@@ -23,6 +25,7 @@ namespace personalised_concierge_m1.Data.UnitOfWorks
             NavigationDetails = new NavigationRepo(_context);
             ReviewDetails = new ReviewRepo(_context);
             TransportationDetails = new TransportationRepo(_context);
+            TransportFareDetails = new TransportFaresRepo(_context);
             
             // M2 Itineraries
             BlogDetails = new BlogRepo(_context);
@@ -31,7 +34,11 @@ namespace personalised_concierge_m1.Data.UnitOfWorks
             ExpensesDetails = new ExpensesRepo(_context);
             ItineraryItemDetails = new ItineraryItemRepo(_context);
             ItineraryDetails = new ItineraryRepo(_context);
-            
+            CalendarDetails = new CalendarRepository(_context);
+            CalendarEventDetails = new CalendarEventRepository(_context);
+            AttractionDemoDetails = new AttractionDemoRepository(_context);
+
+
             // M2 Food Leisure Services
             AttractionDetails = new AttractionRepo(_context);
             FoodLeisureDetails = new FoodLeisureRepo(_context);
@@ -47,7 +54,8 @@ namespace personalised_concierge_m1.Data.UnitOfWorks
         public INavigationRepo NavigationDetails { get; }
         public IReviewRepo ReviewDetails { get; }
         public ITransportationRepo TransportationDetails { get; }
-        
+        public ITransportFaresRepo TransportFareDetails { get; }
+
         // Food Leisure services
         public IAttractionRepo AttractionDetails { get; }
         public IFoodLeisureRepo FoodLeisureDetails { get; }
@@ -60,9 +68,15 @@ namespace personalised_concierge_m1.Data.UnitOfWorks
         public IExpensesRepo ExpensesDetails { get; }
         public IItineraryItemRepo ItineraryItemDetails { get; }
         public IItineraryRepo ItineraryDetails { get; }
-        
+        public ICalendarRepository CalendarDetails { get; }
+        public ICalendarEventRepository CalendarEventDetails { get; }
+        public IAttractionDemoRepository AttractionDemoDetails { get; }
+
+
+
+
         #endregion
-        
+
         public int Complete()
         {
             return _context.SaveChanges();

@@ -85,3 +85,9 @@ _UpgradeReport_Files/
 Thumbs.db
 Desktop.ini
 .DS_Store
+<<<<<<< HEAD
+global.json
+=======
+
+global.json
+>>>>>>> b86c343c06dc3b3def9cba40e4388f8b97cdb3ea

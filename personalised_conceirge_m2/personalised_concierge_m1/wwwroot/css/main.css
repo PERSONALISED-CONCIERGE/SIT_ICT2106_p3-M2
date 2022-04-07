@@ -47,7 +47,18 @@
     transition: margin-left .5s;
     padding: 16px;
 }
-
+.indexTopBody {
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+    background-image: url('../images/merlion-park-singaporeBanner.jpg');
+    background-size: cover;
+    background-color: rgba(100,100,100,0.6);
+    background-blend-mode: multiply;
+    color: #fff9d9;
+}
+.bannerText{
+    color: white;
+}
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidebar {

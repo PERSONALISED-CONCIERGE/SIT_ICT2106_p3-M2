@@ -6,28 +6,113 @@
 @model personalised_concierge_m1.Models.Entities.OtherServices.Review
 @{
     ViewData["Title"] = "Home Page";
-    var myLeisure = (FoodLeisure)(ViewData["myLeisure"]);
-    var myFood = (FoodDelivery) (ViewData["myfood"]);
-    var myRoom = (Room) (ViewData["myRoom"]);
-    var myAccount = (Account) (ViewData["myAccount"]);
-    var myEnum = (Review) (ViewData["myenum"]);
+    var attractionList = (List<FoodLeisure>)(ViewData["attractionList"]);
+    var counter = 0;
+    var elementPerRow = 3;
 
 }
-
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    
-    <ul>
-        My Details after finding student by ID is :
+    <div class="text-center indexTopBody d-flex align-items-center justify-content-center">
+        <div class="col ">
+            <h1 class="display-4 bannerText">Welcome</h1>
+            <p class="bannerText">Plan Your trip today by creating an Itinerary</p>
+        
+            <!--<button class="btn btn-primary buttonStyling" asp-controller="Itinerary" asp-action="Index">Start Planning Itinerary</button>-->
+            <input type="button" class="btn btn-primary buttonStyling" value="Create" onclick="location.href='@Url.Action("Index", "Itinerary")'" />
+            
+        </div>
+    </div>
 
-        <li>@myLeisure.address</li>
-        @* <li>@myEnum.room_num</li> *@
-        @* <li>@myEnum.vacancy</li> *@
-        <li>@myRoom.roomType_id</li>
-        <li>@myRoom.room_num</li>
-        <li>@myRoom.vacancy</li>
-        <li>@(myEnum.rating == Rating.One)</li>
+    <div class="text-center mt-2 mb-2">
+        <h1 class="display-4">Highly recommended attractions to visit:</h1>
 
-    </ul>
+    </div>
+    <div class="row align-items-center justify-content-center">
+            <div class="col-6">
+                <a class="btn btn-primary mb-3 mr-1" href="#attractionCarousel" role="button" data-slide="prev">
+                    Previous
+                </a>
+                <a class="btn btn-primary mb-3 " href="#attractionCarousel" role="button" data-slide="next">
+                    Next
+                </a>
+            </div>
+            <div class="col-12">
+                <div id="attractionCarousel" class="carousel slide" data-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                            @foreach(var attraction in attractionList)
+                            {
+                                if(counter < elementPerRow)
+                                {
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <img class="img-fluid" alt="100%x280" src="@Url.Content(@attraction.foodleisure_image)">
+                                            <div class="card-body">
+                                                <h4 class="card-title">@attraction.name @attraction.foodleisure_id @attractionList.Count</h4>
+                                                <p class="card-text">@attraction.description</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    counter++;
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            
+                            </div>
+                        </div>
+                    @if(attractionList.Count > elementPerRow)
+                    {
+                        
+                        // when the list content is more then a row's worth (3)
+                        // removes the first 3 items in the remaining attractions var, then use it to loop to create rows of 3
+                        var remainingAttractions = attractionList;
+                        remainingAttractions.RemoveAt(0);
+                        remainingAttractions.RemoveAt(1);
+                        remainingAttractions.RemoveAt(2);
+                        var attractionsCounter = 0;
+
+                        // loops though all attractions to ensure a card is created for all
+                        while(attractionsCounter <  remainingAttractions.Count)
+                        {
+                        <div class="carousel-item">
+                            <div class="row">
+                            @for(int i = 0; i < 3; i++)
+                            {
+                                // checks if remaining counter is same amount as remainingAttractions count
+                                //prevents index out of range error
+                                if(attractionsCounter < remainingAttractions.Count)
+                                {
+                                    <div class="col-md-4 mb-3">
+                                        <div class="card">
+                                            <a href="@remainingAttractions[attractionsCounter].website_link"><img class="img-fluid" alt="100%x280" src="@Url.Content(remainingAttractions[attractionsCounter].foodleisure_image)"></a>
+                                            <div class="card-body">
+                                                <h4 class="card-title">@remainingAttractions[attractionsCounter].name</h4>
+                                                <p class="card-text">@remainingAttractions[attractionsCounter].description</p>
+
+                                            </div>
+
+                                        </div>
+                                </div>
+                                attractionsCounter = attractionsCounter + 1;
+                                }
+                                        
+                            }
+                            </div>
+                        </div>
+                        }
+                        
+
+                    }
+                    </div>
+                </div>
+            </div>
+            
+        </div>
 </div>

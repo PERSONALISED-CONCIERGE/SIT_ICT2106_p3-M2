@@ -18,13 +18,98 @@ namespace personalised_concierge_m1.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("public")
+                .HasPostgresEnum(null, "cuisine_type", new[] { "malay", "chinese", "indian", "western" })
+                .HasPostgresEnum(null, "fares_type", new[] { "standard", "flagdown", "distance" })
                 .HasPostgresEnum(null, "food_leisure_type", new[] { "restaurant", "hawker", "poi", "hotel_facilities" })
                 .HasPostgresEnum(null, "navigation_type", new[] { "walk", "drive", "car", "taxi", "train", "bus" })
                 .HasPostgresEnum(null, "rating", new[] { "one", "two", "three", "four", "five" })
-                .HasPostgresEnum(null, "transportation_type", new[] { "taxi", "limo", "car_sharing", "radio_taxi", "bus_charter" })
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+            modelBuilder.Entity("personalised_concierge_m1.Models.AttractionDemo", b =>
+                {
+                    b.Property<int>("AttractionDemoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("AttractionDemoId");
+
+                    b.ToTable("attractionDemo");
+                });
+
+            modelBuilder.Entity("personalised_concierge_m1.Models.Calendar", b =>
+                {
+                    b.Property<int>("CalendarId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("CalendarId");
+
+                    b.ToTable("calendar");
+                });
+
+            modelBuilder.Entity("personalised_concierge_m1.Models.CalendarEvent", b =>
+                {
+                    b.Property<int>("CalendarEventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CalendarId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("text");
+
+                    b.Property<int>("OtherId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("text");
+
+                    b.HasKey("CalendarEventId");
+
+                    b.ToTable("calendarEvent");
+                });
 
             modelBuilder.Entity("personalised_concierge_m1.Models.Entities.Facilities.Facility", b =>
                 {
@@ -52,7 +137,7 @@ namespace personalised_concierge_m1.Migrations
 
                     b.HasKey("facility_id");
 
-                    b.ToTable("Facilities");
+                    b.ToTable("Facility");
 
                     b.HasData(
                         new
@@ -60,8 +145,8 @@ namespace personalised_concierge_m1.Migrations
                             facility_id = 1,
                             hotel_id = 1,
                             name = "Basketball Court",
-                            operation_end_time = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(3060),
-                            operation_start_time = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(2600),
+                            operation_end_time = new DateTime(2022, 4, 4, 10, 1, 29, 6, DateTimeKind.Local).AddTicks(6584),
+                            operation_start_time = new DateTime(2022, 4, 4, 10, 1, 29, 6, DateTimeKind.Local).AddTicks(6007),
                             status = "Available"
                         },
                         new
@@ -69,8 +154,8 @@ namespace personalised_concierge_m1.Migrations
                             facility_id = 2,
                             hotel_id = 2,
                             name = "Tennis Court",
-                            operation_end_time = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(3650),
-                            operation_start_time = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(3640),
+                            operation_end_time = new DateTime(2022, 4, 4, 10, 1, 29, 6, DateTimeKind.Local).AddTicks(7325),
+                            operation_start_time = new DateTime(2022, 4, 4, 10, 1, 29, 6, DateTimeKind.Local).AddTicks(7318),
                             status = "Available"
                         });
                 });
@@ -100,23 +185,23 @@ namespace personalised_concierge_m1.Migrations
 
                     b.HasIndex("facility_id");
 
-                    b.ToTable("FacilityBookings");
+                    b.ToTable("FacilityBooking");
 
                     b.HasData(
                         new
                         {
                             facilitybooking_id = 1,
                             account_id = 1,
-                            booking_end = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(6260),
-                            booking_start = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(5360),
+                            booking_end = new DateTime(2022, 4, 4, 10, 1, 29, 10, DateTimeKind.Local).AddTicks(8131),
+                            booking_start = new DateTime(2022, 4, 4, 10, 1, 29, 10, DateTimeKind.Local).AddTicks(7348),
                             facility_id = 1
                         },
                         new
                         {
                             facilitybooking_id = 2,
                             account_id = 2,
-                            booking_end = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(7060),
-                            booking_start = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(7050),
+                            booking_end = new DateTime(2022, 4, 4, 10, 1, 29, 10, DateTimeKind.Local).AddTicks(9382),
+                            booking_start = new DateTime(2022, 4, 4, 10, 1, 29, 10, DateTimeKind.Local).AddTicks(9372),
                             facility_id = 2
                         });
                 });
@@ -146,14 +231,14 @@ namespace personalised_concierge_m1.Migrations
 
                     b.HasIndex("account_id");
 
-                    b.ToTable("Feedbacks");
+                    b.ToTable("Feedback");
 
                     b.HasData(
                         new
                         {
                             feedback_id = 1,
                             account_id = 1,
-                            created_at = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(9170),
+                            created_at = new DateTime(2022, 4, 4, 10, 1, 29, 13, DateTimeKind.Local).AddTicks(9954),
                             description = "Perfect dream hotel after a hard project",
                             type = "General"
                         },
@@ -161,7 +246,7 @@ namespace personalised_concierge_m1.Migrations
                         {
                             feedback_id = 2,
                             account_id = 2,
-                            created_at = new DateTime(2022, 2, 7, 15, 36, 40, 849, DateTimeKind.Local).AddTicks(9780),
+                            created_at = new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(843),
                             description = "Perfect dream hotel after a hard project",
                             type = "General"
                         });
@@ -217,8 +302,8 @@ namespace personalised_concierge_m1.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("cuisine")
-                        .HasColumnType("integer");
+                    b.Property<CuisineType>("cuisine")
+                        .HasColumnType("cuisine_type");
 
                     b.HasKey("foodleisure_id");
 
@@ -228,12 +313,12 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             foodleisure_id = 1,
-                            cuisine = 3
+                            cuisine = CuisineType.Western
                         },
                         new
                         {
                             foodleisure_id = 2,
-                            cuisine = 1
+                            cuisine = CuisineType.Chinese
                         });
                 });
 
@@ -248,9 +333,8 @@ namespace personalised_concierge_m1.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(500)");
 
-                    b.Property<string>("category")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
+                    b.Property<string>("businessHours")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("contact_num")
                         .IsRequired()
@@ -258,11 +342,32 @@ namespace personalised_concierge_m1.Migrations
 
                     b.Property<string>("description")
                         .IsRequired()
+                        .HasColumnType("varchar(10000)");
+
+                    b.Property<string>("email")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<bool>("featured")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("foodleisure_image")
                         .HasColumnType("varchar(500)");
+
+                    b.Property<string>("latitude")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("longtitude")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("name")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
+
+                    b.Property<string>("nearestMRTStation")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("supportedLanguage")
+                        .HasColumnType("varchar(500)");
 
                     b.Property<FoodLeisureType>("type")
                         .HasColumnType("food_leisure_type");
@@ -278,24 +383,50 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             foodleisure_id = 1,
-                            address = "Lantau Island, Hong Kong",
-                            category = "Theme Park",
-                            contact_num = "+852 3550 3388",
+                            address = "8 Sentosa Gateway, 098269",
+                            contact_num = "+65 6577 8888",
                             description = "The happiest place on earth!",
-                            name = "Hong Kong Disneyland",
+                            featured = true,
+                            foodleisure_image = "~/images/USS.jpeg",
+                            name = "Universal Studios Singapore",
                             type = FoodLeisureType.POI,
-                            website_link = "https://www.hongkongdisneyland.com/"
+                            website_link = "https://www.rwsentosa.com/en/attractions/universal-studios-singapore/explore"
                         },
                         new
                         {
                             foodleisure_id = 2,
-                            address = "Jurong East",
-                            category = "Theme Park",
-                            contact_num = "89773448",
-                            description = "seasfood restaurant",
-                            name = "Tunglok",
+                            address = "Blk 208D New Upper Changi Rd, Singapore 464208",
+                            contact_num = "+65 89773448",
+                            description = "ASIA'S FIRST D.I.Y SUSHI & SALAD RESTAURANT.",
+                            featured = false,
+                            foodleisure_image = "~/images/makisan.webp",
+                            name = "Maki-San (Bedok Town Square)",
                             type = FoodLeisureType.Restaurant,
-                            website_link = "tunglok.com"
+                            website_link = "https://www.makisan.com"
+                        },
+                        new
+                        {
+                            foodleisure_id = 3,
+                            address = "252 North Bridge Road, #03-37, Raffles City Shopping Centre, Singapore 179103",
+                            contact_num = "+65 6708 9288",
+                            description = "PS.Cafe opened in 1999 as a cosy cafe hidden within Projectshop clothing store.",
+                            featured = false,
+                            foodleisure_image = "~/images/PScafe.jpeg",
+                            name = "PS.Cafe at Raffles City",
+                            type = FoodLeisureType.Restaurant,
+                            website_link = "https://www.pscafe.com"
+                        },
+                        new
+                        {
+                            foodleisure_id = 4,
+                            address = "80 Mandai Lake Rd, 729826",
+                            contact_num = "+65 6269 3411",
+                            description = "The Singapore Zoo, formerly known as the Singapore Zoological Gardens or Mandai Zoo, occupies 28 hectares on the margins of Upper Seletar Reservoir within Singapore's heavily forested central catchment area.",
+                            featured = false,
+                            foodleisure_image = "~/images/Zoo.jpeg",
+                            name = "Singapore Zoo",
+                            type = FoodLeisureType.POI,
+                            website_link = "https://www.mandai.com/en/singapore-zoo.html"
                         });
                 });
 
@@ -364,7 +495,7 @@ namespace personalised_concierge_m1.Migrations
 
                     b.HasIndex("invcate_id");
 
-                    b.ToTable("Inventories");
+                    b.ToTable("Inventory");
 
                     b.HasData(
                         new
@@ -398,7 +529,7 @@ namespace personalised_concierge_m1.Migrations
 
                     b.HasKey("invcate_id");
 
-                    b.ToTable("InventoryCategories");
+                    b.ToTable("InventoryCategory");
 
                     b.HasData(
                         new
@@ -445,7 +576,7 @@ namespace personalised_concierge_m1.Migrations
 
                     b.HasIndex("inventory_id");
 
-                    b.ToTable("InventoryRequests");
+                    b.ToTable("InventoryRequest");
 
                     b.HasData(
                         new
@@ -550,12 +681,12 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             Budgetid = 1,
-                            Budgetlimit = 120.5,
+                            Budgetlimit = 120.5
                         },
                         new
                         {
                             Budgetid = 2,
-                            Budgetlimit = 231.30000000000001,
+                            Budgetlimit = 231.30000000000001
                         });
                 });
 
@@ -598,7 +729,7 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             checklist_id = 2,
-                            created_date = new DateTime(2022, 2, 7, 15, 36, 40, 843, DateTimeKind.Local).AddTicks(7990),
+                            created_date = new DateTime(2022, 4, 4, 10, 1, 28, 994, DateTimeKind.Local).AddTicks(7458),
                             description = "Alex dream holiday",
                             itinerary_id = 2,
                             name = "Alex Checklist"
@@ -635,20 +766,20 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             ExpensesId = 1,
-                            UserId = 1,
-                            Currency = "SGD",
+                            Amount = 50.0,
                             Category = "Food",
-                            Amount = 50,
-                            Description = "My first meal in singapore"
+                            Currency = "SGD",
+                            Description = "My first meal in singapore",
+                            UserId = 1
                         },
                         new
                         {
                             ExpensesId = 2,
-                            UserId = 2,
-                            Currency = "SGD",
+                            Amount = 50.0,
                             Category = "Food",
-                            Amount = 50,
-                            Description = "My second meal in singapore"
+                            Currency = "SGD",
+                            Description = "My second meal in singapore",
+                            UserId = 2
                         });
                 });
 
@@ -854,17 +985,23 @@ namespace personalised_concierge_m1.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Date")
+                        .HasColumnType("text");
+
                     b.Property<int>("account_id")
                         .HasColumnType("integer");
-
-                    b.Property<string>("description")
-                        .HasColumnType("varchar(500)");
 
                     b.Property<int>("foodleisure_id")
                         .HasColumnType("integer");
 
                     b.Property<Rating>("rating")
                         .HasColumnType("rating");
+
+                    b.Property<string>("refrence_review")
+                        .HasColumnType("text");
+
+                    b.Property<string>("review")
+                        .HasColumnType("varchar(10000)");
 
                     b.HasKey("review_id");
 
@@ -879,17 +1016,63 @@ namespace personalised_concierge_m1.Migrations
                         {
                             review_id = 1,
                             account_id = 1,
-                            description = "saizeriya sucks",
                             foodleisure_id = 1,
-                            rating = Rating.One
+                            rating = Rating.One,
+                            review = "saizeriya sucks"
                         },
                         new
                         {
                             review_id = 2,
                             account_id = 2,
-                            description = "mcdonalds is awesome!",
                             foodleisure_id = 2,
-                            rating = Rating.Five
+                            rating = Rating.Five,
+                            review = "mcdonalds is awesome!"
+                        });
+                });
+
+            modelBuilder.Entity("personalised_concierge_m1.Models.Entities.OtherServices.TransportFares", b =>
+                {
+                    b.Property<int>("fare_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("fares")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<FaresType>("fares_type")
+                        .HasColumnType("fares_type");
+
+                    b.Property<int>("transport_id")
+                        .HasColumnType("integer");
+
+                    b.HasKey("fare_id");
+
+                    b.HasIndex("transport_id");
+
+                    b.ToTable("TransportFares");
+
+                    b.HasData(
+                        new
+                        {
+                            fare_id = 1,
+                            fares = "$3.00",
+                            fares_type = FaresType.Standard,
+                            transport_id = 1
+                        },
+                        new
+                        {
+                            fare_id = 2,
+                            fares = "$10.00",
+                            fares_type = FaresType.Flagdown,
+                            transport_id = 1
+                        },
+                        new
+                        {
+                            fare_id = 3,
+                            fares = "Every 400m thereafter or less up to 10km, $0.22",
+                            fares_type = FaresType.Distance,
+                            transport_id = 1
                         });
                 });
 
@@ -900,8 +1083,9 @@ namespace personalised_concierge_m1.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("account_id")
-                        .HasColumnType("integer");
+                    b.Property<string>("company_name")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
 
                     b.Property<int>("contact_num")
                         .HasMaxLength(8)
@@ -910,19 +1094,10 @@ namespace personalised_concierge_m1.Migrations
                     b.Property<string>("description")
                         .HasColumnType("varchar(500)");
 
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<TransportationType>("type")
-                        .HasColumnType("transportation_type");
-
                     b.Property<string>("website")
                         .HasColumnType("varchar(500)");
 
                     b.HasKey("transport_id");
-
-                    b.HasIndex("account_id");
 
                     b.ToTable("Transportations");
 
@@ -930,21 +1105,17 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             transport_id = 1,
-                            account_id = 1,
+                            company_name = "GrabCar",
                             contact_num = 99119911,
                             description = "for rich people only",
-                            name = "GrabCar",
-                            type = TransportationType.Taxi,
                             website = "www.grab.com"
                         },
                         new
                         {
                             transport_id = 2,
-                            account_id = 2,
+                            company_name = "Gojek",
                             contact_num = 92206874,
                             description = "for peasant people only",
-                            name = "Gojek",
-                            type = TransportationType.Taxi,
                             website = "www.gojek.com"
                         });
                 });
@@ -982,17 +1153,17 @@ namespace personalised_concierge_m1.Migrations
 
                     b.HasIndex("serviced_by");
 
-                    b.ToTable("GuestRequests");
+                    b.ToTable("GuestRequest");
 
                     b.HasData(
                         new
                         {
                             account_id = 1,
                             request_id = 1,
-                            created_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(2310),
-                            deleted_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(2700),
+                            created_at = new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(3349),
+                            deleted_at = new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(3796),
                             is_deleted = false,
-                            serviced_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(3090),
+                            serviced_at = new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(4222),
                             serviced_by = 1,
                             status = "In progress"
                         },
@@ -1000,10 +1171,10 @@ namespace personalised_concierge_m1.Migrations
                         {
                             account_id = 2,
                             request_id = 2,
-                            created_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(3660),
-                            deleted_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(3660),
+                            created_at = new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(4935),
+                            deleted_at = new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(4942),
                             is_deleted = false,
-                            serviced_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(3660),
+                            serviced_at = new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(4944),
                             serviced_by = 2,
                             status = "In progress"
                         });
@@ -1027,7 +1198,7 @@ namespace personalised_concierge_m1.Migrations
 
                     b.HasIndex("requesttype_id");
 
-                    b.ToTable("Requests");
+                    b.ToTable("Request");
 
                     b.HasData(
                         new
@@ -1066,22 +1237,22 @@ namespace personalised_concierge_m1.Migrations
 
                     b.HasKey("requesttype_id");
 
-                    b.ToTable("RequestTypes");
+                    b.ToTable("RequestType");
 
                     b.HasData(
                         new
                         {
                             requesttype_id = 1,
-                            created_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(6880),
-                            deleted_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(7270),
+                            created_at = new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(8914),
+                            deleted_at = new DateTime(2022, 4, 4, 10, 1, 29, 14, DateTimeKind.Local).AddTicks(9355),
                             is_deleted = false,
                             type_value = "RoomService"
                         },
                         new
                         {
                             requesttype_id = 2,
-                            created_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(7800),
-                            deleted_at = new DateTime(2022, 2, 7, 15, 36, 40, 850, DateTimeKind.Local).AddTicks(7810),
+                            created_at = new DateTime(2022, 4, 4, 10, 1, 29, 15, DateTimeKind.Local).AddTicks(36),
+                            deleted_at = new DateTime(2022, 4, 4, 10, 1, 29, 15, DateTimeKind.Local).AddTicks(43),
                             is_deleted = false,
                             type_value = "Bathroom replenishment"
                         });
@@ -1130,6 +1301,22 @@ namespace personalised_concierge_m1.Migrations
                             end_date = new DateTime(2021, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             room_id = 2,
                             start_date = new DateTime(2021, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            reservation_id = 3,
+                            account_id = 3,
+                            end_date = new DateTime(2021, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            room_id = 3,
+                            start_date = new DateTime(2021, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            reservation_id = 4,
+                            account_id = 4,
+                            end_date = new DateTime(2021, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            room_id = 4,
+                            start_date = new DateTime(2021, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -1167,6 +1354,20 @@ namespace personalised_concierge_m1.Migrations
                         new
                         {
                             room_id = 2,
+                            roomType_id = 2,
+                            room_num = "1",
+                            vacancy = true
+                        },
+                        new
+                        {
+                            room_id = 3,
+                            roomType_id = 1,
+                            room_num = "1",
+                            vacancy = true
+                        },
+                        new
+                        {
+                            room_id = 4,
                             roomType_id = 2,
                             room_num = "1",
                             vacancy = true
@@ -1267,6 +1468,9 @@ namespace personalised_concierge_m1.Migrations
                     b.Property<string>("position")
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("profile_pic")
+                        .HasColumnType("varchar(500)");
+
                     b.Property<int>("request_id")
                         .HasColumnType("integer");
 
@@ -1313,6 +1517,7 @@ namespace personalised_concierge_m1.Migrations
                             phone_number = 12345678,
                             phone_number_confirmed = true,
                             position = "guest",
+                            profile_pic = "~/images/PFP2.png",
                             request_id = 1,
                             reservation_id = 1,
                             role_id = 1,
@@ -1336,12 +1541,61 @@ namespace personalised_concierge_m1.Migrations
                             phone_number = 98765432,
                             phone_number_confirmed = true,
                             position = "guest",
+                            profile_pic = "~/images/PFP1.png",
                             request_id = 2,
                             reservation_id = 1,
                             role_id = 2,
                             secret_hashpin = "very so secret",
                             two_factor_enabled = true,
                             username = "sarahellis"
+                        },
+                        new
+                        {
+                            account_id = 3,
+                            currency = "sgd",
+                            distance_from_hotel = 0m,
+                            email = "sarah_ellis@gmail.com",
+                            email_confirmed = true,
+                            facility_id = 2,
+                            feedback_id = 2,
+                            full_name = "Wander Woman",
+                            has_reservation = true,
+                            location = "Singapore",
+                            password_hash = "123",
+                            phone_number = 98765432,
+                            phone_number_confirmed = true,
+                            position = "guest",
+                            profile_pic = "~/images/PFP3.png",
+                            request_id = 1,
+                            reservation_id = 1,
+                            role_id = 1,
+                            secret_hashpin = "very so secret",
+                            two_factor_enabled = true,
+                            username = "wondergirl"
+                        },
+                        new
+                        {
+                            account_id = 4,
+                            currency = "sgd",
+                            distance_from_hotel = 0m,
+                            email = "sarah_ellis@gmail.com",
+                            email_confirmed = true,
+                            facility_id = 2,
+                            feedback_id = 2,
+                            full_name = "Super Man",
+                            has_reservation = true,
+                            location = "Singapore",
+                            password_hash = "123",
+                            phone_number = 98765432,
+                            phone_number_confirmed = true,
+                            position = "guest",
+                            profile_pic = "~/images/PFP4.png",
+                            request_id = 2,
+                            reservation_id = 1,
+                            role_id = 1,
+                            secret_hashpin = "very so secret",
+                            two_factor_enabled = true,
+                            username = "superboy"
                         });
                 });
 
@@ -1463,17 +1717,6 @@ namespace personalised_concierge_m1.Migrations
                     b.Navigation("Itinerary");
                 });
 
-            modelBuilder.Entity("personalised_concierge_m1.Models.Entities.Itineraries.Budget", b =>
-                {
-                    b.HasOne("personalised_concierge_m1.Models.Entities.Itineraries.Itinerary", "Itinerary")
-                        .WithMany()
-                        .HasForeignKey("itinerary_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Itinerary");
-                });
-
             modelBuilder.Entity("personalised_concierge_m1.Models.Entities.Itineraries.Checklist", b =>
                 {
                     b.HasOne("personalised_concierge_m1.Models.Entities.Itineraries.Itinerary", "Itinerary")
@@ -1483,17 +1726,6 @@ namespace personalised_concierge_m1.Migrations
                         .IsRequired();
 
                     b.Navigation("Itinerary");
-                });
-
-            modelBuilder.Entity("personalised_concierge_m1.Models.Entities.Itineraries.Expenses", b =>
-                {
-                    b.HasOne("personalised_concierge_m1.Models.Entities.Itineraries.Budget", "Budget")
-                        .WithMany()
-                        .HasForeignKey("budget_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Budget");
                 });
 
             modelBuilder.Entity("personalised_concierge_m1.Models.Entities.Itineraries.Itinerary", b =>
@@ -1567,15 +1799,15 @@ namespace personalised_concierge_m1.Migrations
                     b.Navigation("FoodLeisure");
                 });
 
-            modelBuilder.Entity("personalised_concierge_m1.Models.Entities.OtherServices.Transportation", b =>
+            modelBuilder.Entity("personalised_concierge_m1.Models.Entities.OtherServices.TransportFares", b =>
                 {
-                    b.HasOne("personalised_concierge_m1.Models.Entities.UserDetails.Account", "Account")
+                    b.HasOne("personalised_concierge_m1.Models.Entities.OtherServices.Transportation", "Transportation")
                         .WithMany()
-                        .HasForeignKey("account_id")
+                        .HasForeignKey("transport_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Account");
+                    b.Navigation("Transportation");
                 });
 
             modelBuilder.Entity("personalised_concierge_m1.Models.Entities.Requests.GuestRequest", b =>

@@ -1,0 +1,120 @@
+﻿@model personalised_concierge_m1.Models.Entities.Navigation.Navigation
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
+
+    <div class="ms-content-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="db-header-title">Welcome, Anny</h1>
+            </div>
+
+            <!-- Food Orders -->
+            <div class="col-md-12">
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>Navigation</h6>
+                    </div>
+                    <div class="ms-panel-body">
+                        <div class="row">
+                            <!-- Google maps part
+                            <input id="startvalue" type="text" style="width: 305px" /></td>
+                            <br>
+                            <input id="endvalue" type="text" style="width: 301px" /></td>
+                            <br>-->
+                            <input id="btnDirections" type="button" value="Get Directions" onclick="return btnDirections_onclick()" hidden />
+                            <div id="Gmap" style="height: 400px; width: 1200px"></div>
+                            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTYqC1kZafWB0Ewsobhe05TyHGzl40qA"></script>
+                            <script language="javascript" type="text/javascript">
+                                var directionsDisplay;
+                                var directionsService = new google.maps.DirectionsService();
+
+                                function InitializeMap() {
+
+                                    console.log("InitializeMap")
+                                    directionsDisplay = new google.maps.DirectionsRenderer();
+                                    var latlng = new google.maps.LatLng(1.3521, 103.8198);
+                                    var myOptions =
+                                    {
+                                        zoom: 11,
+                                        center: latlng,
+                                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                                    };
+                                    var map = new google.maps.Map(document.getElementById("Gmap"), myOptions);
+
+                                    directionsDisplay.setMap(map);
+                                    directionsDisplay.setPanel(document.getElementById('directionpanel'));
+
+                                    var control = document.getElementById('control');
+                                    // control.style.display = 'block';
+
+                                    document.getElementById('btnDirections').click();
+                                }
+
+
+
+                                function calcRoute() {
+                                    console.log("calcRoute")
+                                    // var start = document.getElementById('startvalue').value;
+                                    // var end = document.getElementById('endvalue').value;
+                                    var start = "540136";
+                                    var end = "823217";
+                                    var request = {
+                                        origin: start,
+                                        destination: end,
+                                        travelMode: google.maps.DirectionsTravelMode.WALKING
+                                    };
+                                    directionsService.route(request, function (response, status) {
+                                        console.log(status);
+                                        console.log("Distance" + JSON.stringify(response.routes[0].legs[0].distance.text));
+                                        console.log("Distance" + JSON.stringify(response.routes[0].legs[0].distance.value));
+                                        if (status == google.maps.DirectionsStatus.OK) {
+                                            directionsDisplay.setDirections(response);
+                                        }
+                                    });
+
+                                }
+
+                                function btnDirections_onclick() {
+                                    calcRoute();
+                                }
+
+                                function initializeMapAndDirections() {
+                                    InitializeMap();
+                                }
+
+                                window.onload = InitializeMap;
+                            </script>
+                            <!-- End of google maps-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Directions -->
+            <div class="col-md-12">
+                <div class="ms-panel">
+                    <div class="ms-panel-header">
+                        <h6>Directions</h6>
+                    </div>
+                    <div class="ms-panel-body">
+                        <div class="row">
+                            <div id="directionpanel" style="height: 400px; width: 1200px;overflow: auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END/Directions -->
+
+        </div>
+    </div>
+
+</body>
+
+</html>
