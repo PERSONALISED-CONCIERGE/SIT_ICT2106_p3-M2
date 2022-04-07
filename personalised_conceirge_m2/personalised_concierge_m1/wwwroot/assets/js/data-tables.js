@@ -1,7 +1,7 @@
 (function($) {
   'use strict';
 var dataSet = [
-    [ "40521","  <img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>pizza",  "5421", "In Stock", "$32", "<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
+    [ "40521", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>pizza",  "5421", "In Stock", "$32", "<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
     [ "98521", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>shake", "8422", "In Stock", "$17","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
     [ "45454", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Burger",  "1562", "In Stock", "$86","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
     [ "12121", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Noodels",  "6224", "In Stock", "$43","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
@@ -78,6 +78,7 @@ var dataSet1= [
     [ "15451", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Max",  "Hall Street", "ghj@gfail.com", "  Noodles","$56" ],
     [ "14451", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'> Dum sum",  "Hall Street", "bbc@gfail.com", " Pizza" ,"$43" ]
   ];
+  
     var dataset2 = [
         ["001", "Sentosa Siloso Beach", "Sentosa", "2022/03/31", "$40"],
         ["002", "Rooftop Swimming Pool", "Marina Bay Sands Hotel", "2022/04/01", "$75"],
@@ -138,32 +139,32 @@ var dataSet1= [
     ],
     scrollY: 400
   });
-    var tableFour = $('#data-table-4').dataTable({
-        data: dataset2,
-        columns: [
-            { title: "Item ID" },
-            {
-                title: "Event Name",
-                render: function (title) {
-                    title = '<a href ="itinerary/testing">' + title + '</a>';
-                    return title;
-                }
-            },
-            { title: "Location" },
-            { title: "Date" },
-            { title: "Budget" },
-            {
-                title: '<a data-toggle="modal" data-target="#itinModal"><i class="fas fa-plus-circle text-white"></i></a>',
-                "data": null,
-                "bSortable": false,
-                "searchable": false,
-                "defaultContent": '<a onclick="deleteItem(this)"><i class="far fa-trash-alt ms-text-danger"></i></a>'
-            },
 
-        ],
+  var tableFour = $('#data-table-4').dataTable({
+      data: dataset2,
+      columns: [
+          { title: "Item ID" },
+          {
+              title: "Event Name",
+              render: function (title) {
+                  title = '<a href ="itinerary/testing">' + title + '</a>';
+                  return title;
+              }
+          },
+          { title: "Location" },
+          { title: "Date" },
+          { title: "Budget" },
+          {
+              title: '<a data-toggle="modal" data-target="#itinModal"><i class="fas fa-plus-circle text-white"></i></a>',
+              "data": null,
+              "bSortable": false,
+              "searchable": false,
+              "defaultContent": '<a onclick="deleteItem(this)"><i class="far fa-trash-alt ms-text-danger"></i></a>'
+          },
 
-    });
+      ],
 
+  });
 
   var tableFive = $('#data-table-5').DataTable( {
     data: dataSet,
@@ -193,18 +194,8 @@ var dataSet1= [
             "searchable": false,
             "defaultContent": '<input type="radio" name="itemRow" class="editor-active">'
         },
-
-      ],
-      columnDefs: [{
-          orderable: false,
-          className: 'select-checkbox',
-          targets: 0
-      }],
-      select: {
-          style: 'os',
-          selector: 'td:first-child'
-      },
   });
+      
   var tableSix = $('#data-table-6').DataTable({
     data: dataset3,
     columns: [
@@ -232,7 +223,7 @@ var dataSet1= [
             "defaultContent": '<input type="radio" name="itemRow" class="editor-active">'
         },
     ],
-    });
+  });
 
 
 

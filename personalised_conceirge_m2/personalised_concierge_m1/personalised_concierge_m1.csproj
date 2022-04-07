@@ -1487,31 +1487,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="assets\img\" />
       <Folder Include="Data\UserDetails\" />
-      <Folder Include="Migrations" />
-      <Folder Include="wwwroot\assets\img\" />
     </ItemGroup>
 
     <ItemGroup>
       <None Include="Views\ItineraryItem\Index.cshtml" />
-      <None Include="wwwroot\assets\css\animate.min.css" />
-      <None Include="wwwroot\assets\css\bootstrap.min.css" />
-      <None Include="wwwroot\assets\css\cropper.min.css" />
-      <None Include="wwwroot\assets\css\datatables.min.css" />
-      <None Include="wwwroot\assets\css\driver.min.css" />
-      <None Include="wwwroot\assets\css\ion.rangeSlider.min.css" />
-      <None Include="wwwroot\assets\css\jquery-jvectormap-2.0.3.css" />
-      <None Include="wwwroot\assets\css\jquery-ui.min.css" />
-      <None Include="wwwroot\assets\css\morris.css" />
-      <None Include="wwwroot\assets\css\slick.css" />
-      <None Include="wwwroot\assets\css\style.css" />
-      <None Include="wwwroot\assets\css\sweetalert2.min.css" />
-      <None Include="wwwroot\assets\css\toastr.min.css" />
-      <None Include="wwwroot\assets\fonts\Roboto-Bold.ttf" />
-      <None Include="wwwroot\assets\fonts\Roboto-Italic.ttf" />
-      <None Include="wwwroot\assets\fonts\Roboto-Medium.ttf" />
-      <None Include="wwwroot\assets\fonts\Roboto-Regular.ttf" />
       <None Include="wwwroot\assets\js\animate.js" />
       <None Include="wwwroot\assets\js\bootstrap.min.js" />
       <None Include="wwwroot\assets\js\Chart.bundle.min.js" />

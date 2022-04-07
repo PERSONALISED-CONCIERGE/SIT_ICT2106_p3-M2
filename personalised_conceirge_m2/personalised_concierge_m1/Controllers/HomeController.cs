@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using personalised_concierge_m1.Models;
@@ -23,21 +24,104 @@ namespace personalised_concierge_m1.Controllers
         public IActionResult Index()
         {
             
-            //variable getting data from DB and storing in an Object Example
-            var myRoom = _unitOfWork.RoomDetails.GetById(1);
-            var myReservation = _unitOfWork.ReservationDetails.GetById(1);
-            var myAccount = _unitOfWork.AccountDetails.GetById(1);
-            var myLeisure = _m2UnitOfWork.FoodLeisureDetails.GetById(1);
-            //var myEnum = _m2UnitOfWork.ReviewDetails.GetById(1);
-            var myRequest = _m3UnitOfWork.RequestDetails.GetById(1);
-            
-            ViewData["myRoom"] = myRoom;
-            ViewData["myAccount"] = myAccount;
-            ViewData["myLeisure"] = myLeisure;
-            //ViewData["myenum"] = myEnum;
-            ViewData["myrequest"] = myRequest;
+            var maxItem = 50;
+            List<Models.Entities.FoodLeisureServices.FoodLeisure> attractionlist = new List<Models.Entities.FoodLeisureServices.FoodLeisure>();
+            // code for getting all itinerary
+
+
+            // pseudo code for the extraction of attractions from itinerary
+            //List<Models.Entities.Itineraries.Itinerary> allAttractionInItinerary = _m2UnitOfWork.ItineraryItemDetails.getAllItineraryItems();
+            //var recommendedListDict = new Dictionary<string, int>();
+
+            /*
+            var itemsInItinerary = 0;
+            for (item in allAttractionInItinerary)
+            {
+                // limits the amount of items in itinerary going into the list
+                if(itemsInItinerary > maxItem){
+                    break;
+                }
+                if((int)item.type == 2)
+                {
+                    if (recommendedList.ContainsKey(item.name))
+                    {
+                        recommendedList.Add(item.name, 1);
+                    }
+                    else
+                    {
+                        var record = recommendedList[item.name];
+                        tempKeyPair = (item.name, record.Value + 1);
+                    }
+                    
+                }
+                itemsInItinerary++;
+            };
+            // sorts the dict according to how many times it has appeared, output is IEnumerable<KeyValuePair<TKey, TValue>>
+            var sortedDict = dict.OrderByDescending(pair => pair.Value).Take(maxItem);
 
             
+            // inserts the items into attractionlist
+            // item is the FoodLeisure object
+            var insertTracker = 0;
+            foreach (var item in sortedDict)
+            {
+                foreach (var itineraryItem in allAttractionInItinerary){
+                
+
+                    // checks if the name of the item is the same as the sorted key
+                    if(item.key == itineraryItem.name){
+
+                        // if the final list does not contain item, add into the list and break inner loop
+                        if(!attractionlist.contains(itineraryItem)){
+                            attractionlist.add(itineraryItem);
+                            break;
+                        {
+                    }
+                    
+                }
+                insertTracker++;
+
+                // limits the amount of items in itinerary going into the list
+                if(insertTracker == maxItem){
+                    break;
+                }
+                
+            };
+            */
+
+
+            // if no data can be extracted from itinerary, gets the placeholder values for the carousel
+            if (attractionlist.Count == 0)
+            {
+                var counter = 0;
+                // getting placeholder data for the recommended attractions
+                //_m2UnitOfWork.FoodLeisureDetails.GetAllFoodLeisure();
+                var allFoodLeisure = _m2UnitOfWork.FoodLeisureDetails.GetAllFoodLeisure();
+                while (attractionlist.Count < maxItem)
+                {
+
+                    // checks of the type is POI, due to lack of data, instead check if its a restraunt type (int 2 is POI )
+                    foreach(var foodLeisureItem in allFoodLeisure)
+                    {
+                        //if ((int)foodLeisureItem.type == 2)
+                        if ((int)foodLeisureItem.type == 0)
+                        {
+
+                            attractionlist.Add(foodLeisureItem);
+                        }
+
+
+                    }
+                    // to prevent infinite loop from not filling up to 6 in the placeholder attraction list, loop up to 50
+                    if (counter == maxItem)
+                    {
+                        break;
+                    }
+                    counter++;
+                }
+            }
+            
+            ViewData["attractionList"] = attractionlist;
             //data is return to the view to be used there.
             return View();
         }
@@ -52,5 +136,6 @@ namespace personalised_concierge_m1.Controllers
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
+
     }
 }
