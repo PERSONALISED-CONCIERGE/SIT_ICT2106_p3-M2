@@ -51,6 +51,9 @@ namespace personalised_concierge_m1.Data
         public DbSet<Expenses> Expenses { get; set; }
         public DbSet<ItineraryItem> ItineraryItems { get; set; }
         public DbSet<Itinerary> Itineraries { get; set; }
+        public DbSet<Calendar> calendar { get; set; }
+        public DbSet<CalendarEvent> calendarEvent { get; set; }
+        public DbSet<AttractionDemo> attractionDemo { get; set; }
 
         //M2 Food Leisure Services
         public DbSet<Attraction> Attractions { get; set; }
@@ -64,20 +67,6 @@ namespace personalised_concierge_m1.Data
         public DbSet<Transportation> Transportations { get; set; }
         public DbSet<TransportFares> TransportFares { get; set; }
 
-        //M3 Facilities
-        public DbSet<Facility> Facilities { get; set; }
-        public DbSet<FacilityBooking> FacilityBookings { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
-
-        //M3 Inventories
-        public DbSet<Inventory> Inventories { get; set; }
-        public DbSet<InventoryCategory> InventoryCategories { get; set; }
-        public DbSet<InventoryRequest> InventoryRequests { get; set; }
-
-        //M3 Requests
-        public DbSet<GuestRequest> GuestRequests { get; set; }
-        public DbSet<Request> Requests { get; set; }
-        public DbSet<RequestType> RequestTypes { get; set; }
 
         #endregion
 
@@ -89,8 +78,8 @@ namespace personalised_concierge_m1.Data
             NpgsqlConnection.GlobalTypeMapper.MapEnum<NavigationType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FaresType>();
 
-            builder.UseNpgsql(connectionString: "Server=db2106.crpbbktmz3yf.us-east-1.rds.amazonaws.com; Database=postgres; Port=5432; User Id=postgres; Password=yycK8-_SH:erf2f; SslMode=Prefer; Trust Server Certificate = true; ");
-
+            builder.UseNpgsql(connectionString: "Server = localhost; Database = mytestdb; Port = 5432; User Id = postgres; Password = hahaha;");
+            //"Server=ec2-50-19-32-96.compute-1.amazonaws.com; Database=d1oj5mvl9l9lk1;Port=5432; User Id=zzzdwyspgzgwfy; Password=785618b138278c89939f83e523bf40609a490d176ab401f29a97c125c2feeb3e; SslMode=Require; Trust Server Certificate = true;"
         }
 
 
