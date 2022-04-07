@@ -1,0 +1,11 @@
+@media (min-width: 768px) {
+    .modal-xl {
+        width: 90%;
+        max-width: 1200px;
+    }
+}
+
+/* for location autocomplete*/
+.pac-container {
+    z-index: 10000 !important;
+}
