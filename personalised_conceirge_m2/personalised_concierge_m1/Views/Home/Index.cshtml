@@ -17,7 +17,8 @@
             <h1 class="display-4 bannerText">Welcome</h1>
             <p class="bannerText">Plan Your trip today by creating an Itinerary</p>
         
-            <button class="btn btn-primary buttonStyling">Start Planning Itinerary</button>
+            <!--<button class="btn btn-primary buttonStyling" asp-controller="Itinerary" asp-action="Index">Start Planning Itinerary</button>-->
+            <input type="button" class="btn btn-primary buttonStyling" value="Create" onclick="location.href='@Url.Action("Index", "Itinerary")'" />
             
         </div>
     </div>
@@ -47,7 +48,7 @@
                                 {
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="img-fluid" alt="100%x280" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/ArtScience_Museum%2C_Marina_Bay_Sands%2C_Singapore.jpg">
+                                            <img class="img-fluid" alt="100%x280" src="@Url.Content(@attraction.foodleisure_image)">
                                             <div class="card-body">
                                                 <h4 class="card-title">@attraction.name @attraction.foodleisure_id @attractionList.Count</h4>
                                                 <p class="card-text">@attraction.description</p>
@@ -90,7 +91,7 @@
                                 {
                                     <div class="col-md-4 mb-3">
                                         <div class="card">
-                                            <img class="img-fluid" alt="100%x280" src="https://upload.wikimedia.org/wikipedia/commons/f/f3/ArtScience_Museum%2C_Marina_Bay_Sands%2C_Singapore.jpg ">
+                                            <a href="@remainingAttractions[attractionsCounter].website_link"><img class="img-fluid" alt="100%x280" src="@Url.Content(remainingAttractions[attractionsCounter].foodleisure_image)"></a>
                                             <div class="card-body">
                                                 <h4 class="card-title">@remainingAttractions[attractionsCounter].name</h4>
                                                 <p class="card-text">@remainingAttractions[attractionsCounter].description</p>

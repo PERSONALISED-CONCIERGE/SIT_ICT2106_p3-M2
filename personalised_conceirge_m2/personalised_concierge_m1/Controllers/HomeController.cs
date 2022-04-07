@@ -103,7 +103,7 @@ namespace personalised_concierge_m1.Controllers
                     // checks of the type is POI, due to lack of data, instead check if its a restraunt type (int 2 is POI )
                     foreach(var foodLeisureItem in allFoodLeisure)
                     {
-
+                        //if ((int)foodLeisureItem.type == 2)
                         if ((int)foodLeisureItem.type == 0)
                         {
 
