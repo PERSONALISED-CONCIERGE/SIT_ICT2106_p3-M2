@@ -27,11 +27,11 @@ var dataSet = [
     [ "15485", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Baked Nachos",  "3023", "In Stock", "$10" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
     [ "48568", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Spaghetti",  "5797", "In Stock", "$1,2","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
     [ "45815", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Munchurian",  "8822", "In Stock", "$9","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
-    [ "46542", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Noodels",  "9239", "In Stock", "$35","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
+    [ "46542", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Noodles",  "9239", "In Stock", "$35","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
     [ "65412", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Fried Egg Sandwich",  "1314", "In Stock", "$20","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
     [ "89658", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Hot Cereal",  "2947", "In Stock", "$8","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
     [ "02351", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>French Crostini",  "8899", "In Stock", "$16" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
-    [ "56212", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Spicy Noodels",  "2769", "Out Of Stock", "$9","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
+    [ "56212", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Spicy Noodles",  "2769", "Out Of Stock", "$9","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
     [ "78065", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Lemon Yogurt Parfait", "6832", "In Stock", "$11" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
     [ "56121", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Potato Fries",  "3606", "In Stock", "$14","<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>" ],
     [ "14526", "<img src='https://via.placeholder.com/216x62' style='width:50px; height:30px;'>Lemon Rice",  "2860", "In Stock", "$21" ,"<a href='#'><i class='fas fa-pencil-alt text-secondary'></i></a> <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>"],
@@ -148,14 +148,29 @@ var dataSet1= [
   var tableFive = $('#data-table-5').DataTable( {
     data: dataSet,
     columns: [
-        { title: "Product ID" },
-        { title: "Product Name" },
-
-        { title: "Quantity" },
-        { title: "Status" },
+        { title: "Item ID" },
+        { title: "Item Name" },
+        { title: "Stocks" },
+        {
+            title: "Status",
+            "visible": false,
+            "bSortable": false,
+            "searchable": false
+        },
         { title: "Price" },
         {
+            "data": "Quantity",
+            "bSortable": false,
+            "searchable": false,
+            "defaultContent":
+                '<div class="input-group">  \
+                    <input type="number" step="1" min="0" value="1" name="quantity quantity-field" class="quantity-field text-center">  \
+                </div>'
+        },
+        {
             "data": null,
+            "bSortable": false,
+            "searchable": false,
             "defaultContent": '<input type="radio" name="itemRow" class="editor-active">'
         },
 

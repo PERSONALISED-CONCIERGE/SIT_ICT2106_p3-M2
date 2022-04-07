@@ -42,7 +42,7 @@
                     </ol>
                 </nav>
 
-                <div class="col-12">
+                <div class="col-12 p-0">
                     <div class="ms-panel">
                         <div class="ms-panel-header">
                             <h6>"Itinerary Name"</h6>
@@ -57,9 +57,9 @@
                                             <th scope="col">Item Name</th>
                                             <th scope="col">Date</th>
                                             <th scope="col">Quantity</th>
-                                            <th scope="col">Total Bill</th>
+                                            <th scope="col">Budget</th>
                                             <th scope="col">
-                                                <a id="addNewItem" data-toggle="modal" data-target="#myModal"><i class='fas fa-plus-circle text-white'></i></a>
+                                                <a id="addNewItem" data-toggle="modal" data-target="#itinModal"><i class='fas fa-plus-circle text-white'></i></a>
                                             </th>
                                     <tbody id="itineraryTable">
                                         <tr>
@@ -70,7 +70,7 @@
                                             <td>10</td>
                                             <td>$10</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
 
                                         </tr>
@@ -82,7 +82,7 @@
                                             <td>14</td>
                                             <td>$9</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -93,7 +93,7 @@
                                             <td>12</td>
                                             <td>$19</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -104,7 +104,7 @@
                                             <td>05</td>
                                             <td>$18</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -115,7 +115,7 @@
                                             <td>15</td>
                                             <td>$21</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -126,7 +126,7 @@
                                             <td>120</td>
                                             <td>$15</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -137,7 +137,7 @@
                                             <td>2</td>
                                             <td>$15</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -148,7 +148,7 @@
                                             <td>15</td>
                                             <td>$15</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -159,7 +159,7 @@
                                             <td>06</td>
                                             <td>$15</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -170,7 +170,7 @@
                                             <td>08</td>
                                             <td>$15</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -181,7 +181,7 @@
                                             <td>09</td>
                                             <td>$15</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -192,10 +192,8 @@
                                             <td>14</td>
                                             <td>$15</td>
                                             <td>
-                                                <a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>
+                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
                                             </td>
-                                        </tr>
-                                        <tr id="newItem">
                                         </tr>
 
                                     </tbody>
@@ -209,30 +207,32 @@
 
         </div>
     </div>
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
+    <div class="container-fluid">
+        <div div class="modal show" id="itinModal" role="dialog">
+            <div class="modal-dialog mw-100 w-75 mx-auto">
+                <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Add New Item</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New Item</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-                <!-- Modal body -->
-                <form id="addItem" method="get">
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                            <table id="data-table-5" class="table w-100 thead-primary"></table>
+                    <!-- Modal body -->
+                    <form method="get">
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table id="data-table-5" class="table w-100 thead-primary"></table>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button id="edireq" type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
-                        @*<button type="button" onclick="addNewItem()" class="btn btn-success" data-dismiss="modal">Submit</button>*@
-                    </div>
-                </form>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button id="edireq" type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+                            @*<button type="button" onclick="addNewItem()" class="btn btn-success" data-dismiss="modal">Submit</button>*@
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -246,34 +246,79 @@
                     var $tds = $ele.closest('tr').find('td');
                     var id = $tds.eq(0).text();
                     var name = $tds.eq(1).text();
-                    var loc = $tds.eq(2).text();
-                    var bud = $tds.eq(4).text();
-                    alert(id + name + loc + bud);
+                    var qty = $tds.eq(4).find('input[type="number"]').val();
+                    var bud = $tds.eq(3).text();
+                    //alert(id + name + qty + bud);
                     //addNewItem(id, name, loc, bud);
                     var table = document.getElementById("itineraryTable");
                     var row = table.insertRow(0);
                     var itemID = row.insertCell(0);
-                    var eventName = row.insertCell(1);
-                    var productID = row.insertCell(2);
-                    var location = row.insertCell(3);
-                    var date = row.insertCell(4);
-                    var budget = row.insertCell(5);
-                    var deleteButton = row.insertCell(6);
+                    var itemName = row.insertCell(1);
+                    //var productID = row.insertCell(2);
+                    var date = row.insertCell(2);
+                    var quantity = row.insertCell(3);
+                    var budget = row.insertCell(4);
+                    var deleteButton = row.insertCell(5);
+
+                    var budVal = bud.replace("$", "");
+                    var totalBudget = parseInt(budVal)*qty;
 
                     itemID.innerHTML = "<b>" + id + "</b>";
-                    eventName.innerHTML = name;
-                    productID.innerHTML = "";
-                    location.innerHTML = loc;
+                    itemName.innerHTML = name;
+                    //productID.innerHTML = "";
                     date.innerHTML = "@DateTime.Today.ToString("dd/MM/yyyy")";
-                    budget.innerHTML = bud;
-                    deleteButton.innerHTML = "<a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>";
+                    quantity.innerHTML = qty;
+                    budget.innerHTML = "$" + totalBudget.toString()
+                    deleteButton.innerHTML = "<a id='deleteButton' onclick='deleteItem(this)'><i class='far fa-trash-alt ms-text-danger'></i></a>";
                 }
                 else {
                     alert("Select a row first");
                 }
             });
         });
-        function addNewItem(id, name, loc, bud) {
+
+        function incrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal)) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        function decrementValue(e) {
+            e.preventDefault();
+            var fieldName = $(e.target).data('field');
+            var parent = $(e.target).closest('div');
+            var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+            if (!isNaN(currentVal) && currentVal > 0) {
+                parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+            } else {
+                parent.find('input[name=' + fieldName + ']').val(0);
+            }
+        }
+
+        $('.input-group').on('click', '.button-plus', function (e) {
+            incrementValue(e);
+        });
+
+        $('.input-group').on('click', '.button-minus', function (e) {
+            decrementValue(e);
+        });
+
+
+        function deleteItem(r) {
+            var table = document.getElementById("itineraryTable");
+            var rowIndex = r.parentNode.parentNode.rowIndex;
+            table.deleteRow(rowIndex-1);
+        }
+
+        @*function addNewItem(id, name, loc, bud) {
             var table = document.getElementById("itineraryTable");
             var row = table.insertRow(0);
             var itemID = row.insertCell(0);
@@ -319,7 +364,7 @@
             quantity.innerHTML = "133";
             totalBill.innerHTML = "$43";
             deleteButton.innerHTML = "<a href='a'><i class='far fa-trash-alt ms-text-danger'></i></a>";
-        }
-    </script>
+        }*@
+     </script>
 </body>
 </html >
