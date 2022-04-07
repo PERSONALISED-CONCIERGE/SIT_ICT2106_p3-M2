@@ -78,7 +78,7 @@ namespace personalised_concierge_m1.Data
             NpgsqlConnection.GlobalTypeMapper.MapEnum<NavigationType>();
             NpgsqlConnection.GlobalTypeMapper.MapEnum<FaresType>();
 
-            builder.UseNpgsql(connectionString: "Server=ec2-50-19-32-96.compute-1.amazonaws.com; Database=d1oj5mvl9l9lk1;Port=5432; User Id=zzzdwyspgzgwfy; Password=785618b138278c89939f83e523bf40609a490d176ab401f29a97c125c2feeb3e; SslMode=Require; Trust Server Certificate = true;");
+            builder.UseNpgsql(connectionString: "Server = localhost; Database = mytestdb; Port = 5432; User Id = postgres; Password = hahaha;");
             //"Server=ec2-50-19-32-96.compute-1.amazonaws.com; Database=d1oj5mvl9l9lk1;Port=5432; User Id=zzzdwyspgzgwfy; Password=785618b138278c89939f83e523bf40609a490d176ab401f29a97c125c2feeb3e; SslMode=Require; Trust Server Certificate = true;"
         }
 
