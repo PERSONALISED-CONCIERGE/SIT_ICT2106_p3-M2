@@ -88,10 +88,10 @@
                     var deleteButton = row.insertCell(5);
 
                     // Populate values to cells
-                    itemID.innerHTML = "<b>" + id + "</b>";
+                    itemID.innerHTML = id;
                     eventName.innerHTML = '<a href ="itinerary/testing">' + name + '</a>';
                     location.innerHTML = loc;
-                    date.innerHTML = "@DateTime.Today.ToString("dd/MM/yyyy")";
+                    date.innerHTML = "@DateTime.Today.ToString("yyyy/MM/dd")";
                     budget.innerHTML = "$" + bud.toString()
                     deleteButton.innerHTML = "<a id='deleteButton' onclick='deleteItem(this)'><i class='far fa-trash-alt ms-text-danger'></i></a>";
                 }
