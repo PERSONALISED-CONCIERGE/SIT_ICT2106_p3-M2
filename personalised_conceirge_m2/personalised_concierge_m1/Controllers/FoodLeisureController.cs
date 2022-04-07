@@ -98,20 +98,20 @@ namespace personalised_concierge_m1.Controllers
 
                 if (sort == "reviewid")
                 {
-                   context.SetStrategy(new SearchSortReviewIDStrategy(_m2UnitOfWork));
-                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);  
+                   context.SetStrategy(new FilterSortReviewIDStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeFilterSortingLogic(sortType, FoodLeisureID, searchstr);  
                 }else if (sort == "ratings")
                 {
-                    context.SetStrategy(new SearchSortRatingsStrategy(_m2UnitOfWork));
-                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);
+                    context.SetStrategy(new FilterSortRatingsStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeFilterSortingLogic(sortType, FoodLeisureID, searchstr);
                 }else if (sort == "date")
                 {
-                    context.SetStrategy(new SearchSortReviewDateStrategy(_m2UnitOfWork));
-                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);
+                    context.SetStrategy(new FilterSortReviewDateStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeFilterSortingLogic(sortType, FoodLeisureID, searchstr);
                 }else if(sort == "description")
                 {
-                    context.SetStrategy(new SearchSortDescriptionStrategy(_m2UnitOfWork));
-                    mymodel.reviews = context.DoSomeSearchSortingLogic(sortType, FoodLeisureID, searchstr);
+                    context.SetStrategy(new FilterSortDescriptionStrategy(_m2UnitOfWork));
+                    mymodel.reviews = context.DoSomeFilterSortingLogic(sortType, FoodLeisureID, searchstr);
                 }
             }
 

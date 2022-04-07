@@ -6,13 +6,13 @@ using personalised_concierge_m1.Models.Entities.FoodLeisureServices;
 
 namespace personalised_concierge_m1.Models.Entities.OtherServices
 {
-    public class SearchSortReviewIDStrategy : IStrategy
+    public class FilterSortReviewIDStrategy : IStrategy
     {
 
         //Model Class will create a UnitOfWork to talk to Db.
         private readonly IM2UnitOfWork _m2UnitOfWork;
 
-        public SearchSortReviewIDStrategy(IM2UnitOfWork m2UnitOfWork)
+        public FilterSortReviewIDStrategy(IM2UnitOfWork m2UnitOfWork)
         {
             this._m2UnitOfWork = m2UnitOfWork;
         }
@@ -29,7 +29,7 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
             return reviews;
         }
 
-        public IEnumerable<Review> Search(int FoodLeisureID, string searchstr)
+        public IEnumerable<Review> Filter(int FoodLeisureID, string searchstr)
         {
             var id = Int32.Parse(searchstr);
             var reviews = _m2UnitOfWork.ReviewDetails.GetReviewByIDNFoodLiesure(FoodLeisureID,id);

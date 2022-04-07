@@ -5,13 +5,13 @@ using personalised_concierge_m1.Models.Interfaces;
 
 namespace personalised_concierge_m1.Models.Entities.OtherServices
 {
-    public class SearchSortRatingsStrategy : IStrategy
+    public class FilterSortRatingsStrategy : IStrategy
     {
 
         //Model Class will create a UnitOfWork to talk to Db.
         private readonly IM2UnitOfWork _m2UnitOfWork;
 
-        public SearchSortRatingsStrategy(IM2UnitOfWork m2UnitOfWork)
+        public FilterSortRatingsStrategy(IM2UnitOfWork m2UnitOfWork)
         {
             this._m2UnitOfWork = m2UnitOfWork;
         }
@@ -29,7 +29,7 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
             return result;
         }
 
-        public IEnumerable<Review> Search(int FoodLeisureID, string searchstr)
+        public IEnumerable<Review> Filter(int FoodLeisureID, string searchstr)
         {
            
             var rate = searchstr switch
