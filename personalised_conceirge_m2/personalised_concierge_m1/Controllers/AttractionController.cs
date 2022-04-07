@@ -34,14 +34,13 @@ namespace personalised_concierge_m1.Controllers
             return View(attractionList);
         }
 
-        // GET: FoodEvents/Details/5
         public async Task<IActionResult> ViewDetails(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            //var attraction = attractionList.FindIndex(m => m.attractionID == id);
+
             if (attraction == null)
             {
                 return NotFound();
