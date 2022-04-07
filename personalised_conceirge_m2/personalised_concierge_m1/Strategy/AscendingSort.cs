@@ -6,13 +6,13 @@ using System.Linq;
 namespace personalised_concierge_m1.Data.Itineraries
 {
     public class AscendingSort : ISortStrategy
-    { 
+    {
+        private string temp;
+        private int i, j, l;
 
         public string[] Sort(string[] list)
         {
-            string temp;
-            int n, i, j, l;
-
+            
             l = list.Length;
             for (i = 0; i < l; i++)
             {
