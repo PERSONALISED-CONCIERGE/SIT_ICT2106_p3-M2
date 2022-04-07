@@ -91,6 +91,19 @@ var dataSet1= [
         ["010", "DuckTour", "Suntec Convention Centre", "2022/04/02", "$40"]
     ];
 
+    var dataset3 = [
+        ["001", "Sentosa Siloso Beach", "Sentosa"],
+        ["002", "Rooftop Swimming Pool", "Marina Bay Sands Hotel"],
+        ["003", "Picnic at Marina Barrage", "Marina Barrage"],
+        ["004", "Hiking at Macritchie", "Macritchie"],
+        ["005", "Tour At Puala Ubin", "Puala Ubin"],
+        ["006", "Singapore Flyer", "Singapore Flyer"],
+        ["007", "Gardens by The Bay", "Bayfront"],
+        ["008", "Bungee Jumping at Sentosa", "Sentosa"],
+        ["009", "Singapore Arts Museum", "Tanjong Pagar"],
+        ["010", "DuckTour", "Suntec Convention Centre"]
+    ];
+
   var tableOne = $('#data-table-1').DataTable( {
     data: dataSet,
     columns: [
@@ -138,7 +151,14 @@ var dataSet1= [
             },
             { title: "Location" },
             { title: "Date" },
-            { title: "Budget" }
+            { title: "Budget" },
+            {
+                title: '<a data-toggle="modal" data-target="#itinModal"><i class="fas fa-plus-circle text-white"></i></a>',
+                "data": null,
+                "bSortable": false,
+                "searchable": false,
+                "defaultContent": '<a onclick="deleteItem(this)"><i class="far fa-trash-alt ms-text-danger"></i></a>'
+            },
 
         ],
 
@@ -186,16 +206,32 @@ var dataSet1= [
       },
   });
   var tableSix = $('#data-table-6').DataTable({
-    data: dataSet1,
+    data: dataset3,
     columns: [
-    { title: "Item ID" },
-    { title: "Event Name" },
-
-    { title: "Location" },
-    { title: "Email ID" },
-    { title: "Date" },
-    { title: "Budget" }, 
-        ],
+        { title: "Item ID" },
+        {
+            title: "Event Name",
+            render: function (title) {
+                title = '<a href ="itinerary/testing">' + title + '</a>';
+                return title;
+            }
+        },
+        { title: "Location" },
+        {
+            title: "Budget ($)",
+            "bSortable": false,
+            "searchable": false,
+            "defaultContent":
+                '<div class="input-group">  \
+                    <input type="number" step="1" min="0" value="1" name="quantity quantity-field" class="quantity-field text-center">  \
+                </div>'
+        },
+        {
+            "bSortable": false,
+            "searchable": false,
+            "defaultContent": '<input type="radio" name="itemRow" class="editor-active">'
+        },
+    ],
     });
 
 

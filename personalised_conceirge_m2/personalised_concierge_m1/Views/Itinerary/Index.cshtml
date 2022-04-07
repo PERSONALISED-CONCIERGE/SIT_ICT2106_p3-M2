@@ -30,183 +30,7 @@
 
         </div>
     </div>
-    <div class="ms-content-wrapper">
-        <div class="row">
-
-            <div class="col-md-12">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb pl-0">
-                        <li class="breadcrumb-item"><a href="#"><i class="material-icons">home</i> Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Itinerary Food List</a></li>
-
-                    </ol>
-                </nav>
-
-                <div class="col-12 p-0">
-                    <div class="ms-panel">
-                        <div class="ms-panel-header">
-                            <h6>"Itinerary Name"</h6>
-                        </div>
-                        <div class="ms-panel-body">
-
-                            <div class="table-responsive">
-                                <table class="table table-hover thead-primary">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Item ID</th>
-                                            <th scope="col">Item Name</th>
-                                            <th scope="col">Date</th>
-                                            <th scope="col">Quantity</th>
-                                            <th scope="col">Budget</th>
-                                            <th scope="col">
-                                                <a id="addNewItem" data-toggle="modal" data-target="#itinModal"><i class='fas fa-plus-circle text-white'></i></a>
-                                            </th>
-                                    <tbody id="itineraryTable">
-                                        <tr>
-                                            <th scope="row">15451</th>
-                                            <td>French Fries</td>
-                                            <td> 19/02/2020</td>
-
-                                            <td>10</td>
-                                            <td>$10</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">15452</th>
-                                            <td>Mango Pie</td>
-                                            <td> 9/02/2020</td>
-
-                                            <td>14</td>
-                                            <td>$9</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">45263</th>
-                                            <td>FrieD Egg Sandwich</td>
-                                            <td> 18/02/2020</td>
-
-                                            <td>12</td>
-                                            <td>$19</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">45865</th>
-                                            <td>Lemon Yogurt Parfait</td>
-                                            <td>  16/02/2020</td>
-
-                                            <td>05</td>
-                                            <td>$18</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">56652</th>
-                                            <td>Spicy Grill Sandwich</td>
-                                            <td>  17/02/2020</td>
-
-                                            <td>15</td>
-                                            <td>$21</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">65845</th>
-                                            <td>Chicken  Sandwich</td>
-                                            <td>14/02/2020</td>
-
-                                            <td>120</td>
-                                            <td>$15</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">65425</th>
-                                            <td>Veg  Sandwich</td>
-                                            <td> 13/02/2020</td>
-
-                                            <td>2</td>
-                                            <td>$15</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">54556</th>
-                                            <td>Cake</td>
-                                            <td> 11/02/2020</td>
-
-                                            <td>15</td>
-                                            <td>$15</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">45556</th>
-                                            <td>Chicken  Fried</td>
-                                            <td> 12/02/2020</td>
-
-                                            <td>06</td>
-                                            <td>$15</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">55856</th>
-                                            <td>Nachos</td>
-                                            <td> 10/02/2020</td>
-
-                                            <td>08</td>
-                                            <td>$15</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">36456</th>
-                                            <td>Spaghetti</td>
-                                            <td> 20/02/2020</td>
-
-                                            <td>09</td>
-                                            <td>$15</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">78456</th>
-                                            <td>Pastries</td>
-                                            <td> 21/02/2020</td>
-
-                                            <td>14</td>
-                                            <td>$15</td>
-                                            <td>
-                                                <a onclick="deleteItem(this)"><i class='far fa-trash-alt ms-text-danger'></i></a>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
+    
     <div class="container-fluid">
         <div div class="modal show" id="itinModal" role="dialog">
             <div class="modal-dialog mw-100 w-75 mx-auto">
@@ -222,14 +46,13 @@
                     <form method="get">
                         <div class="modal-body">
                             <div class="table-responsive">
-                                <table id="data-table-5" class="table w-100 thead-primary"></table>
+                                <table id="data-table-6" class="table w-100 thead-primary"></table>
                             </div>
                         </div>
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
                             <button id="addItem" type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
-                            @*<button type="button" onclick="addNewItem()" class="btn btn-success" data-dismiss="modal">Submit</button>*@
                         </div>
                     </form>
                 </div>
@@ -251,29 +74,25 @@
                     var $tds = $ele.closest('tr').find('td');
                     var id = $tds.eq(0).text();
                     var name = $tds.eq(1).text();
-                    var qty = $tds.eq(4).find('input[type="number"]').val();
-                    var bud = $tds.eq(3).text();
+                    var loc = $tds.eq(2).text();
+                    var bud = $tds.eq(3).find('input[type="number"]').val();
 
                     // create new a new row and required cells
-                    var table = document.getElementById("itineraryTable");
-                    var row = table.insertRow(0);
+                    var table = document.getElementById("data-table-4");
+                    var row = table.insertRow(1);
                     var itemID = row.insertCell(0);
-                    var itemName = row.insertCell(1);
-                    var date = row.insertCell(2);
-                    var quantity = row.insertCell(3);
+                    var eventName = row.insertCell(1);
+                    var location = row.insertCell(2);
+                    var date = row.insertCell(3);
                     var budget = row.insertCell(4);
                     var deleteButton = row.insertCell(5);
 
-                    // calculate total budget value
-                    var budVal = bud.replace("$", "");
-                    var totalBudget = parseInt(budVal)*qty;
-
                     // Populate values to cells
                     itemID.innerHTML = "<b>" + id + "</b>";
-                    itemName.innerHTML = name;
+                    eventName.innerHTML = '<a href ="itinerary/testing">' + name + '</a>';
+                    location.innerHTML = loc;
                     date.innerHTML = "@DateTime.Today.ToString("dd/MM/yyyy")";
-                    quantity.innerHTML = qty;
-                    budget.innerHTML = "$" + totalBudget.toString()
+                    budget.innerHTML = "$" + bud.toString()
                     deleteButton.innerHTML = "<a id='deleteButton' onclick='deleteItem(this)'><i class='far fa-trash-alt ms-text-danger'></i></a>";
                 }
                 else {
@@ -284,15 +103,15 @@
         });
 
         /**
-         * delete item from food Itinerary List 
-         * 
+         * delete item from food Itinerary List
+         *
          * @@param r to get indev of row
          */
         function deleteItem(r) {
-            var table = document.getElementById("itineraryTable");
+            var table = document.getElementById("data-table-4");
             var rowIndex = r.parentNode.parentNode.rowIndex;
-            table.deleteRow(rowIndex-1);
+            table.deleteRow(rowIndex);
         }
-     </script>
+    </script>
 </body>
 </html >
