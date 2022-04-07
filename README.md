@@ -12,11 +12,11 @@ This module focuses main itinerary functionality of Guest
 
 
 ### P3-02
-    - Feature 1 - Navigation of Trips (Directions and Guide) - Doing for prototype
-    - Feature 2 - Tourist Attractions and Hawker/Restaurant Suggestion
+    - Feature 1 - Navigation of Trips (Directions and Guide)
+    - Feature 2 - Local Tourist Attractions Suggestion based on Current Location
     - Feature 3 - View List of Tourist Attractions
-    - Feature 4 - Allowing Guests to Vote Tourist Attractions and Hawker/Restaurant 
-    - Feature 5 - UI Feedback for Analysis
+    - Feature 4 - Search Bar with Additional Parameters for Local Tourist Attraction
+    - Feature 5 - Allow Users to Upvote on Local Tourist Attraction
     
    
 ### P3-03
