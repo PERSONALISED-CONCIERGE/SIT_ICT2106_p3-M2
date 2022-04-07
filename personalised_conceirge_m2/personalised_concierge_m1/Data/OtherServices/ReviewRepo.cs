@@ -49,7 +49,7 @@ namespace personalised_concierge_m1.Data.OtherServices
 
         public IEnumerable<Review> GetReviewByDescriptionNFoodLiesure(int foodleisure_id, string description)
         {
-            return _context.Reviews.Where(review => review.foodleisure_id == foodleisure_id).Where(review => review.refrence_review == null && EF.Functions.Like(review.Date, description)).ToList();
+            return _context.Reviews.Where(review => review.foodleisure_id == foodleisure_id).Where(review => review.refrence_review == null && EF.Functions.Like(review.review, description)).ToList();
         }
     }
 }

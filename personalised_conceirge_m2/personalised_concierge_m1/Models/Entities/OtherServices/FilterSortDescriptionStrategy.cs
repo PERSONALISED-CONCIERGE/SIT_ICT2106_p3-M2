@@ -33,7 +33,7 @@ namespace personalised_concierge_m1.Models.Entities.OtherServices
         public IEnumerable<Review> Filter(int FoodLeisureID, string searchstr)
         {
             var formatedsearchstr = "%" + searchstr + "%";
-            var reviews = _m2UnitOfWork.ReviewDetails.GetReviewByDateNFoodLiesure(FoodLeisureID, formatedsearchstr);
+            var reviews = _m2UnitOfWork.ReviewDetails.GetReviewByDescriptionNFoodLiesure(FoodLeisureID, formatedsearchstr);
             return reviews;
         }
     }
